@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { paths, t } from '../../site.js';
+import { works } from '../../lib/data.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params; const tr = t[lang]; const list = works().filter(w => w.buy_url);
+---
+<Base lang={lang} title={tr.shop} desc={tr.soon} path="tienda/">
+  <div class="wrap"><h2>{tr.shop}</h2><p>{tr.soon}</p>
+  {list.length > 0 && <div class="grid">{list.map(w => <Card w={w} lang={lang} />)}</div>}</div>
+</Base>

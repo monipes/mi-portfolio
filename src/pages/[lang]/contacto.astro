@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { paths, t, site } from '../../site.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params; const tr = t[lang];
+---
+<Base lang={lang} title={tr.contact} desc={site.city} path="contacto/">
+  <div class="wrap" style="max-width:640px"><h2>{tr.contact}</h2>
+    <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <!-- PEGÁ ACÁ TU FORMULARIO HTML -->
+    <form name="contacto" method="POST" action="TU-ENDPOINT-DEL-FORM" style="display:grid;gap:1rem">
+      <input name="nombre" placeholder="Nombre" required style="padding:.7rem;background:transparent;color:inherit;border:1px solid var(--line)" />
+      <input name="email" type="email" placeholder="Email" required style="padding:.7rem;background:transparent;color:inherit;border:1px solid var(--line)" />
+      <textarea name="mensaje" rows="5" placeholder="Mensaje" required style="padding:.7rem;background:transparent;color:inherit;border:1px solid var(--line)"></textarea>
+      <button class="btn" style="border:0;cursor:pointer">Enviar</button>
+    </form></div>
+</Base>

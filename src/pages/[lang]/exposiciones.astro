@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import { paths, t } from '../../site.js';
+import { expos, L } from '../../lib/data.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params; const tr = t[lang]; const list = expos();
+---
+<Base lang={lang} title={tr.exhibitions} desc={tr.intro} path="exposiciones/">
+  <div class="wrap"><h2>{tr.exhibitions}</h2>
+  {list.length ? list.map(e => <div class="row"><div class="d">{e.start}{e.end ? ` → ${e.end}` : ''}</div>
+    <div><h3>{e.url ? <a href={e.url} rel="noopener">{L(e,'title',lang)}</a> : L(e,'title',lang)}</h3><p style="margin:.3rem 0;color:var(--mut)">{e.venue}, {e.city}</p><p>{L(e,'desc',lang)}</p>
+    {e.image && <span class="art" style="max-width:420px"><img src={e.image} alt={L(e,'title',lang)} loading="lazy" draggable="false" /></span>}</div></div>) : <p>{tr.empty}</p>}</div>
+</Base>

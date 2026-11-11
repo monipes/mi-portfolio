@@ -1,0 +1,63 @@
+backend:
+  name: github
+  repo: TU-USUARIO-GITHUB/TU-REPO
+  branch: main
+  base_url: https://TU-PROYECTO.pages.dev   # login con GitHub (ver guía paso 5)
+media_folder: public/uploads
+public_path: /uploads
+locale: es
+collections:
+  - name: works
+    label: Obras
+    folder: src/content/works
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title_es}} ({{year}})"
+    fields:
+      - {name: published, label: Publicada, widget: boolean, default: true}
+      - {name: featured, label: Destacada en la home, widget: boolean, default: false}
+      - {name: order, label: Orden (número chico = primero), widget: number, default: 50}
+      - {name: category, label: Carpeta, widget: select, options: [{label: Collage digital, value: collage-digital},{label: Collage animado, value: collage-animado}]}
+      - {name: title_es, label: Título (ES), widget: string}
+      - {name: title_en, label: Título (EN), widget: string, required: false}
+      - {name: title_pt, label: Título (PT-BR), widget: string, required: false}
+      - {name: desc_es, label: Descripción (ES), widget: text}
+      - {name: desc_en, label: Descripción (EN), widget: text, required: false}
+      - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
+      - {name: image, label: Imagen principal, widget: image}
+      - {name: alt_es, label: Texto alternativo (ES) - describe la imagen, widget: string}
+      - {name: alt_en, label: Texto alternativo (EN), widget: string, required: false}
+      - {name: alt_pt, label: Texto alternativo (PT-BR), widget: string, required: false}
+      - name: gallery
+        label: Más imágenes
+        widget: list
+        required: false
+        fields: [{name: image, label: Imagen, widget: image},{name: alt_es, label: Alt (ES), widget: string, required: false},{name: alt_en, label: Alt (EN), widget: string, required: false},{name: alt_pt, label: Alt (PT), widget: string, required: false}]
+      - {name: year, label: Año, widget: number}
+      - {name: technique, label: Técnica, widget: string}
+      - {name: size, label: Medidas, widget: string, required: false}
+      - {name: youtube, label: ID de YouTube (ej. dQw4w9WgXcQ), widget: string, required: false}
+      - {name: vimeo, label: ID de Vimeo (ej. 123456789), widget: string, required: false}
+      - {name: video_file, label: Video subido (mp4 corto, máx ~20MB), widget: file, required: false}
+      - {name: buy_url, label: Link de compra (vacío = botón consultar), widget: string, required: false}
+  - name: expos
+    label: Exposiciones
+    folder: src/content/expos
+    extension: md
+    format: frontmatter
+    create: true
+    fields:
+      - {name: title_es, label: Nombre (ES), widget: string}
+      - {name: title_en, label: Nombre (EN), widget: string, required: false}
+      - {name: title_pt, label: Nombre (PT-BR), widget: string, required: false}
+      - {name: desc_es, label: Descripción (ES), widget: text, required: false}
+      - {name: desc_en, label: Descripción (EN), widget: text, required: false}
+      - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
+      - {name: venue, label: Lugar, widget: string}
+      - {name: city, label: Ciudad, widget: string}
+      - {name: start, label: Desde, widget: string}
+      - {name: end, label: Hasta, widget: string, required: false}
+      - {name: url, label: Link, widget: string, required: false}
+      - {name: image, label: Imagen, widget: image, required: false}

@@ -1,0 +1,86 @@
+---
+import { t, langs, site } from '../site.js';
+const { lang, title, desc = '', image = '/uploads/obra-1.svg', path = '', ld = null } = Astro.props;
+const tr = t[lang]; const origin = Astro.site?.origin ?? '';
+const nav = [['portfolio','portfolio/'],['exhibitions','exposiciones/'],['shop','tienda/'],['contact','contacto/']];
+const full = `${title} — ${site.name}`;
+---
+<!doctype html>
+<html lang={lang} data-theme="dark">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{full}</title><meta name="description" content={desc} />
+  <link rel="canonical" href={`${origin}/${lang}/${path}`} />
+  {langs.map(l => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
+  <link rel="alternate" hreflang="x-default" href={`${origin}/es/${path}`} />
+  <meta property="og:title" content={full} /><meta property="og:description" content={desc} />
+  <meta property="og:image" content={`${origin}${image}`} /><meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  {ld && <script type="application/ld+json" set:html={JSON.stringify(ld)} />}
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+  <script is:inline>try{var s=localStorage.getItem('theme');document.documentElement.dataset.theme=s||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+  <style is:global>
+    :root{--bg:#141218;--fg:#f1ece4;--mut:#a39d95;--line:#2f2b33;--acc:#ff5e8a;--r:2px}
+    [data-theme=light]{--bg:#f3efe8;--fg:#1c1a1e;--mut:#6d675f;--line:#d8d1c5;--acc:#d6275b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 'Hanken Grotesk',system-ui,sans-serif}
+    h1,h2,h3,.logo{font-family:'Bricolage Grotesque',sans-serif;line-height:1.05;margin:0}
+    a{color:inherit}a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+    header{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center;padding:1rem clamp(1rem,4vw,3rem);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+    .logo{font-weight:800;font-size:1.4rem;text-decoration:none;margin-right:auto}
+    nav{display:flex;gap:1.25rem;flex-wrap:wrap}nav a{text-decoration:none;color:var(--mut)}nav a:hover,nav a[aria-current]{color:var(--fg)}
+    .tools{display:flex;gap:.5rem;align-items:center}
+    .tools button,.tools select,.tools a{background:none;color:var(--fg);border:1px solid var(--line);border-radius:var(--r);padding:.3rem .6rem;font:inherit;font-size:.85rem;cursor:pointer;text-decoration:none}
+    main{padding:0 clamp(1rem,4vw,3rem) 4rem}.wrap{max-width:1400px;margin:0 auto}
+    .hero{position:relative;margin:0 calc(-1*clamp(1rem,4vw,3rem));min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
+    .hero .art{position:absolute;inset:0}.hero img{width:100%;height:100%;object-fit:cover}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 4%,transparent 65%)}
+    .hero div.t{position:relative;z-index:2;padding:2rem clamp(1rem,4vw,3rem);max-width:60rem}
+    .hero h1{font-size:clamp(2.6rem,8vw,6.5rem);font-weight:800}.hero p{max-width:42ch;color:var(--fg);font-size:1.15rem;margin:1rem 0 0}
+    h2{font-size:clamp(1.6rem,3.5vw,2.4rem);margin:4rem 0 1.5rem;font-weight:800}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1.25rem}
+    .card{text-decoration:none;display:block}.card .cap{display:flex;justify-content:space-between;padding-top:.5rem}.cap small{color:var(--mut)}
+    .art{position:relative;display:block;overflow:hidden;background:var(--line);-webkit-touch-callout:none;user-select:none}
+    .art img{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none;user-select:none}
+    .art::after{content:"";position:absolute;inset:0}
+    .card .art{aspect-ratio:4/5}.card .art img{height:100%;object-fit:cover}
+    .tabs{display:flex;gap:1rem;margin:2rem 0}.tabs a{padding:.4rem 0;text-decoration:none;color:var(--mut);border-bottom:2px solid transparent}.tabs a[aria-current]{color:var(--fg);border-color:var(--acc)}
+    .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin:1.5rem 0;color:var(--mut)}.meta b{display:block;color:var(--fg);font-weight:500}
+    .btn{display:inline-block;background:var(--acc);color:#fff;padding:.7rem 1.2rem;border-radius:var(--r);text-decoration:none;font-weight:500}
+    .video{aspect-ratio:16/9;width:100%;border:0;background:#000}
+    .two{display:grid;grid-template-columns:2fr 1fr;gap:2.5rem}@media(max-width:800px){.two{grid-template-columns:1fr}}
+    .row{display:flex;gap:1.5rem;padding:1.25rem 0;border-top:1px solid var(--line)}.row .d{min-width:9rem;color:var(--mut)}
+    footer{border-top:1px solid var(--line);padding:2rem clamp(1rem,4vw,3rem);color:var(--mut);font-size:.9rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+    dialog{background:var(--bg);color:var(--fg);border:1px solid var(--line);width:min(640px,92vw);max-height:80vh;padding:1.25rem}dialog::backdrop{background:#000a}
+    .pagefind-ui{--pagefind-ui-primary:var(--acc);--pagefind-ui-text:var(--fg);--pagefind-ui-background:var(--bg);--pagefind-ui-border:var(--line)}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href={`/${lang}/`}>{site.name}</a>
+  <nav aria-label="Principal">{nav.map(([k,p]) => <a href={`/${lang}/${p}`} aria-current={path.startsWith(p) ? 'page' : undefined}>{tr[k]}</a>)}</nav>
+  <div class="tools">
+    <button id="s" aria-label={tr.search}>{tr.search}</button>
+    {langs.map(l => <a href={`/${l}/${path}`} aria-current={l===lang ? 'true' : undefined} hreflang={l} lang={l} style={l===lang ? 'border-color:var(--acc)' : ''}>{l.toUpperCase()}</a>)}
+    <select id="gt" aria-label={tr.other}><option value="">{tr.other}</option><option value="fr">Français</option><option value="it">Italiano</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="zh-CN">中文</option><option value="ru">Русский</option><option value="ar">العربية</option></select>
+    <button id="th" aria-label={tr.theme}>◐</button>
+  </div>
+</header>
+<main data-pagefind-body><slot /></main>
+<footer>
+  <span>© {new Date().getFullYear()} {site.name}. {tr.rights}</span>
+  <span>{site.social.map(([n,u]) => <a href={u} rel="me noopener" target="_blank" style="margin-right:1rem">{n}</a>)}</span>
+</footer>
+<dialog id="sd"><div id="search"></div></dialog>
+<script is:inline>
+  var d=document;
+  d.getElementById('th').onclick=function(){var n=d.documentElement.dataset.theme==='dark'?'light':'dark';d.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}};
+  d.getElementById('gt').onchange=function(e){var l=e.target.value;if(!l)return;var h=location.hostname.replace(/-/g,'--').replace(/\./g,'-');location.href='https://'+h+'.translate.goog'+location.pathname+'?_x_tr_sl=auto&_x_tr_tl='+l+'&_x_tr_hl='+l};
+  var loaded=false;d.getElementById('s').onclick=function(){d.getElementById('sd').showModal();if(loaded)return;loaded=true;var c=d.createElement('link');c.rel='stylesheet';c.href='/pagefind/pagefind-ui.css';d.head.appendChild(c);var s=d.createElement('script');s.src='/pagefind/pagefind-ui.js';s.onload=function(){new PagefindUI({element:'#search',showImages:false,autofocus:true})};d.head.appendChild(s)};
+  d.getElementById('sd').addEventListener('click',function(e){if(e.target===this)this.close()});
+  // Protección de imágenes: sin clic derecho, sin arrastrar, sin menú largo en el celular
+  ['contextmenu','dragstart','selectstart'].forEach(function(ev){d.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.art'))e.preventDefault()})});
+</script>
+</body></html>

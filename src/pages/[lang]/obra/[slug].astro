@@ -1,0 +1,24 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { langs, t, site } from '../../../site.js';
+import { works, L, embed } from '../../../lib/data.js';
+export const getStaticPaths = () => langs.flatMap(lang => works().map(w => ({ params: { lang, slug: w.slug }, props: { w } })));
+const { lang, slug } = Astro.params; const { w } = Astro.props; const tr = t[lang];
+const title = L(w,'title',lang), desc = L(w,'desc',lang); const v = embed(w);
+const ld = { '@context':'https://schema.org','@type':'VisualArtwork',name:title,description:desc,image:`${Astro.site?.origin ?? ''}${w.image}`,dateCreated:String(w.year),artMedium:w.technique,creator:{'@type':'Person',name:site.name} };
+---
+<Base lang={lang} title={title} desc={desc.slice(0,155)} path={`obra/${slug}/`} image={w.image} ld={ld}>
+  <div class="wrap" style="padding-top:2rem"><div class="two">
+    <div>
+      {v ? <iframe class="video" src={v} title={title} allow="fullscreen; picture-in-picture" loading="lazy"></iframe>
+         : w.video_file ? <video class="video" src={w.video_file} autoplay loop muted playsinline controlslist="nodownload" disablepictureinpicture oncontextmenu="return false"></video> : null}
+      <span class="art" style={v || w.video_file ? 'margin-top:1rem' : ''}><img src={w.image} alt={L(w,'alt',lang) || title} draggable="false" /></span>
+      {(w.gallery || []).map(g => <span class="art" style="margin-top:1rem"><img src={g.image} alt={L(g,'alt',lang) || title} loading="lazy" draggable="false" /></span>)}
+    </div>
+    <aside><h1 style="font-size:clamp(2rem,4vw,3rem)">{title}</h1>
+      <div class="meta"><span>{tr.year}<b>{w.year}</b></span><span>{tr.technique}<b>{w.technique}</b></span>{w.size && <span>{tr.size}<b>{w.size}</b></span>}</div>
+      <p style="white-space:pre-line">{desc}</p>
+      {w.buy_url ? <a class="btn" href={w.buy_url} rel="noopener">{tr.buy}</a>
+        : <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent(title)}`}>{tr.inquire}</a>}
+    </aside></div></div>
+</Base>

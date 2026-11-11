@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { paths, t, site } from '../../site.js';
+import { works, L } from '../../lib/data.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params; const tr = t[lang]; const all = works();
+const feat = all.filter(w => w.featured); const hero = feat[0] || all[0];
+const anim = all.filter(w => w.category === 'collage-animado').slice(0, 3);
+const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:site.city,email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
+---
+<Base lang={lang} title={tr.tagline} desc={tr.intro} path="" ld={ld} image={hero?.image}>
+  {hero && <section class="hero"><span class="art"><img src={hero.image} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
+    <div class="t"><h1>{site.name}</h1><p>{tr.tagline} {tr.intro}</p></div></section>}
+  <div class="wrap">
+    <h2>{tr.featured}</h2>
+    <div class="grid">{(feat.length ? feat : all).map(w => <Card w={w} lang={lang} />)}</div>
+    {anim.length > 0 && <><h2>{tr.motion}</h2><div class="grid">{anim.map(w => <Card w={w} lang={lang} />)}</div>
+      <p><a href={`/${lang}/portfolio/collage-animado/`}>{tr.all}</a></p></>}
+  </div>
+</Base>

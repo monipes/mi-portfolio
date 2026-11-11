@@ -1,0 +1,8 @@
+---
+import { L } from '../lib/data.js';
+const { w, lang } = Astro.props;
+---
+<a class="card" href={`/${lang}/obra/${w.slug}/`}>
+  <span class="art"><img src={w.image} alt={L(w,'alt',lang) || L(w,'title',lang)} loading="lazy" draggable="false" /></span>
+  <span class="cap">{L(w,'title',lang)} <small>{w.year}</small></span>
+</a>
