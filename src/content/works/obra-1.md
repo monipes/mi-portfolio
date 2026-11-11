@@ -19,4 +19,7 @@ image: /uploads/obra-1.svg
 youtube: ""
 vimeo: ""
 buy_url: ""
+editions:
+  - {label: "30 x 40 cm · edición de 10", price: "USD 120", url: "https://example.com"}
+  - {label: "50 x 70 cm · edición de 5", price: "USD 220", url: "https://example.com"}
 ---

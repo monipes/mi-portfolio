@@ -18,7 +18,7 @@ const ld = { '@context':'https://schema.org','@type':'VisualArtwork',name:title,
     <aside><h1 style="font-size:clamp(2rem,4vw,3rem)">{title}</h1>
       <div class="meta"><span>{tr.year}<b>{w.year}</b></span><span>{tr.technique}<b>{w.technique}</b></span>{w.size && <span>{tr.size}<b>{w.size}</b></span>}</div>
       <p style="white-space:pre-line">{desc}</p>
-      {w.buy_url ? <a class="btn" href={w.buy_url} rel="noopener">{tr.buy}</a>
-        : <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent(title)}`}>{tr.inquire}</a>}
+      {(w.editions || []).length > 0 && <ul class="ed">{w.editions.map(e => <li><span>{e.label}{e.price && <b>{e.price}</b>}</span>{e.url && <a class="btn" href={e.url} rel="noopener">{tr.buy}</a>}</li>)}</ul>}
+      {w.buy_url && <a class="btn" href={w.buy_url} rel="noopener">{tr.shopLink}</a>}
     </aside></div></div>
 </Base>

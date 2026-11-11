@@ -3,7 +3,7 @@ export const site = {
   name: 'Tu Nombre Artista',
   email: 'hola@tudominio.com',
   city: 'Buenos Aires, Argentina',
-  social: [['Instagram','https://www.instagram.com/tuusuario/'],['YouTube','https://www.youtube.com/@tuusuario'],['Vimeo','https://vimeo.com/tuusuario']],
+  social: [['Instagram','https://www.instagram.com/tuusuario/'],['Facebook','https://www.facebook.com/tuusuario'],['Vimeo','https://vimeo.com/tuusuario']],
 };
 export const langs = ['es','en','pt'];
 export const paths = langs.map(lang => ({ params: { lang } }));
@@ -18,3 +18,8 @@ export const t = {
     tagline:'Colagem, animação e ilustração.',intro:'Fragmentos de tempo que você nunca viveu, mas de algum jeito lembra. Arte feita em Buenos Aires.',featured:'Obras em destaque',motion:'Colagem animada',all:'Ver tudo',
     year:'Ano',technique:'Técnica',size:'Medidas',buy:'Comprar',inquire:'Perguntar sobre esta obra',soon:'A loja está em construção. Enquanto isso, escreva-me sobre cada obra.',empty:'Ainda não há conteúdo aqui.',newsletter:'Novidades',rights:'Todos os direitos reservados. As imagens não podem ser copiadas nem reutilizadas.',tr:'Traduzir'},
 };
+
+Object.assign(t.es,{menu:'Menú',lang:'Idioma',shopLink:'Ver en la tienda',years:'Años',names:'Español'});
+Object.assign(t.en,{menu:'Menu',lang:'Language',shopLink:'View in the shop',years:'Years'});
+Object.assign(t.pt,{menu:'Menu',lang:'Idioma',shopLink:'Ver na loja',years:'Anos'});
+export const langNames = { es:'Español', en:'English', pt:'Português (BR)' };

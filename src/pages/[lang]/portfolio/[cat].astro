@@ -1,6 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import Card from '../../../components/Card.astro';
+import YearGroups from '../../../components/YearGroups.astro';
 import { langs, t } from '../../../site.js';
 import { works } from '../../../lib/data.js';
 const cats = { 'collage-digital':'digital', 'collage-animado':'animated' };
@@ -10,5 +10,5 @@ const tabs = [['','all'],['collage-digital','digital'],['collage-animado','anima
 ---
 <Base lang={lang} title={tr[cats[cat]]} desc={tr.intro} path={`portfolio/${cat}/`}>
   <div class="wrap"><nav class="tabs">{tabs.map(([s,k]) => <a href={`/${lang}/portfolio/${s ? s + '/' : ''}`} aria-current={s === cat ? 'page' : undefined}>{k === 'all' ? tr.all : tr[k]}</a>)}</nav>
-  {list.length ? <div class="grid">{list.map(w => <Card w={w} lang={lang} />)}</div> : <p>{tr.empty}</p>}</div>
+  {list.length ? <YearGroups list={list} lang={lang} /> : <p>{tr.empty}</p>}</div>
 </Base>

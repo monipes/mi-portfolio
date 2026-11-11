@@ -41,7 +41,12 @@ collections:
       - {name: youtube, label: ID de YouTube (ej. dQw4w9WgXcQ), widget: string, required: false}
       - {name: vimeo, label: ID de Vimeo (ej. 123456789), widget: string, required: false}
       - {name: video_file, label: Video subido (mp4 corto, máx ~20MB), widget: file, required: false}
-      - {name: buy_url, label: Link de compra (vacío = botón consultar), widget: string, required: false}
+      - {name: buy_url, label: Link a la tienda (si la obra se vende, un solo botón), widget: string, required: false}
+      - name: editions
+        label: Ediciones a la venta (tamaños y precios, opcional)
+        widget: list
+        required: false
+        fields: [{name: label, label: Tamaño o edición (ej. 30x40 cm - edición de 10), widget: string},{name: price, label: Precio (texto libre, ej. USD 120), widget: string, required: false},{name: url, label: Link de compra, widget: string, required: false}]
   - name: expos
     label: Exposiciones
     folder: src/content/expos
