@@ -1,5 +1,6 @@
 ---
 import { t, langs, langNames, site } from '../site.js';
+import Social from '../components/Social.astro';
 const { lang, title, desc = '', image = '/uploads/obra-1.svg', path = '', ld = null } = Astro.props;
 const tr = t[lang]; const origin = Astro.site?.origin ?? '';
 const nav = [['portfolio','portfolio/'],['exhibitions','exposiciones/'],['shop','tienda/'],['contact','contacto/']];
@@ -87,10 +88,15 @@ const full = `${title} — ${site.name}`;
     .yr{scroll-margin-top:6rem}.yr h2{margin:2.5rem 0 1rem}
     /* --- compra --- */
     .ed{list-style:none;padding:0;margin:1.5rem 0}.ed li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.75rem 0;border-top:1px solid var(--line)}.ed b{display:block;font-weight:500}
+
+    header>.burger{background:none;color:var(--fg);border:1px solid var(--line);border-radius:var(--r);padding:.35rem .6rem;cursor:pointer;align-items:center}
+    @media(max-width:820px){header>.burger{order:0}.logo{order:1}.tools{order:2}}
+    .soc{display:flex;gap:.6rem}.soc a{display:inline-flex;width:2.4rem;height:2.4rem;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;color:var(--fg)}.soc a:hover{border-color:var(--acc);color:var(--acc)}
   </style>
 </head>
 <body>
 <header>
+  <button id="bg" class="ic burger" aria-label={tr.menu} aria-expanded="false" aria-controls="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   <a class="logo" href={`/${lang}/`}>{site.name}</a>
   <nav id="nav" aria-label="Principal">
     <details class="dd"><summary>{tr.portfolio}</summary>
@@ -111,13 +117,12 @@ const full = `${title} — ${site.name}`;
         <select id="gt" aria-label={tr.other}><option value="">{tr.other}…</option><option value="fr">Français</option><option value="it">Italiano</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="zh-CN">中文</option><option value="ru">Русский</option><option value="ar">العربية</option></select>
       </div></details>
     <button id="th" class="ic" aria-label={tr.theme}>◐</button>
-    <button id="bg" class="ic burger" aria-label={tr.menu} aria-expanded="false" aria-controls="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
 </header>
 <main data-pagefind-body><slot /></main>
 <footer>
   <span>© {new Date().getFullYear()} {site.name}. {tr.rights}</span>
-  <span>{site.social.map(([n,u]) => <a href={u} rel="me noopener" target="_blank" style="margin-right:1rem">{n}</a>)}</span>
+  <Social items={site.social} />
 </footer>
 <dialog id="sd"><div id="search"></div></dialog>
 <script is:inline>
