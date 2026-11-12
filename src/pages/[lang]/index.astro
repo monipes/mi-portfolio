@@ -2,15 +2,15 @@
 import Base from '../../layouts/Base.astro';
 import Card from '../../components/Card.astro';
 import { paths, t, site } from '../../site.js';
-import { works, L } from '../../lib/data.js';
+import { works, L, img } from '../../lib/data.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
-const feat = all.filter(w => w.featured); const hero = feat[0] || all[0];
+const feat = all.filter(w => w.featured); const hero = all.find(w => w.hero) || feat[0] || all[0];
 const anim = all.filter(w => w.category === 'collage-animado').slice(0, 3);
-const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:site.city,email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
+const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 ---
-<Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero?.image}>
-  {hero && <section class="hero"><span class="art"><img src={hero.image} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
+<Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
+  {hero && <section class="hero"><span class="art"><img src={img(hero.image)} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
     <div class="t"><h1>{site.name}</h1><p>{tr.tagline} {tr.intro}</p></div></section>}
   <div class="wrap">
     <h2>{tr.featured}</h2>

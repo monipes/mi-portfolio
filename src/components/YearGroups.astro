@@ -2,7 +2,9 @@
 import Card from './Card.astro';
 import { t } from '../site.js';
 const { list, lang } = Astro.props;
-const years = [...new Set(list.map(w => w.year))].sort((a, b) => b - a);
+const years = [...new Set(list.filter(w => w.year).map(w => w.year))].sort((a, b) => b - a);
+const noYear = list.filter(w => !w.year);
 ---
 {years.length > 1 && <nav class="years" aria-label={t[lang].years}>{years.map(y => <a href={`#y${y}`}>{y}</a>)}</nav>}
 {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="grid">{list.filter(w => w.year === y).map(w => <Card w={w} lang={lang} />)}</div></section>)}
+{noYear.length > 0 && <section class="yr"><div class="grid">{noYear.map(w => <Card w={w} lang={lang} />)}</div></section>}
