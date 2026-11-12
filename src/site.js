@@ -3,7 +3,7 @@ export const site = {
   name: 'Miss Sam',
   email: 'hola@tudominio.com',
   city: 'Buenos Aires, Argentina',
-  social: [['Instagram','https://www.instagram.com/tuusuario/'],['Facebook','https://www.facebook.com/tuusuario'],['Vimeo','https://vimeo.com/tuusuario']],
+  social: [['Instagram','https://www.instagram.com/misssam.art/'],['Facebook','https://www.facebook.com/misssamfanpage']],
 };
 export const langs = ['es','en','pt'];
 export const paths = langs.map(lang => ({ params: { lang } }));

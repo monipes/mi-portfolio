@@ -1,4 +1,4 @@
-# Tu Nombre Artista
+# Miss Sam
 > Artista visual de Buenos Aires, Argentina. Collage digital, collage animado, ilustración y animación.
 - /es/portfolio/ : obras
 - /es/exposiciones/ : exposiciones

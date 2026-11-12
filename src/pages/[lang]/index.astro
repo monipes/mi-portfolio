@@ -9,7 +9,7 @@ const feat = all.filter(w => w.featured); const hero = feat[0] || all[0];
 const anim = all.filter(w => w.category === 'collage-animado').slice(0, 3);
 const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:site.city,email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 ---
-<Base lang={lang} title={tr.tagline} desc={tr.intro} path="" ld={ld} image={hero?.image}>
+<Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero?.image}>
   {hero && <section class="hero"><span class="art"><img src={hero.image} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
     <div class="t"><h1>{site.name}</h1><p>{tr.tagline} {tr.intro}</p></div></section>}
   <div class="wrap">

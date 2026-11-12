@@ -4,12 +4,13 @@ import Social from '../components/Social.astro';
 const { lang, title, desc = '', image = '/uploads/obra-1.svg', path = '', ld = null } = Astro.props;
 const tr = t[lang]; const origin = Astro.site?.origin ?? '';
 const nav = [['portfolio','portfolio/'],['exhibitions','exposiciones/'],['shop','tienda/'],['contact','contacto/']];
-const full = `${title} — ${site.name}`;
+const full = title === site.name ? site.name : `${title} — ${site.name}`;
 ---
 <!doctype html>
 <html lang={lang} data-theme="light">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{full}</title><meta name="description" content={desc} />
   <link rel="canonical" href={`${origin}/${lang}/${path}`} />
   {langs.map(l => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
