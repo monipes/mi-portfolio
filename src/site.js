@@ -1,6 +1,6 @@
 // Datos generales: editá acá tu nombre, mail y redes
 export const site = {
-  name: 'Tu Nombre Artista',
+  name: 'Miss Sam',
   email: 'hola@tudominio.com',
   city: 'Buenos Aires, Argentina',
   social: [['Instagram','https://www.instagram.com/tuusuario/'],['Facebook','https://www.facebook.com/tuusuario'],['Vimeo','https://vimeo.com/tuusuario']],
