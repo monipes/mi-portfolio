@@ -24,6 +24,6 @@ Object.assign(t.en,{menu:'Menu',lang:'Language',shopLink:'View in the shop',year
 Object.assign(t.pt,{menu:'Menu',lang:'Idioma',shopLink:'Ver na loja',years:'Anos'});
 export const langNames = { es:'Español', en:'English', pt:'Português (BR)' };
 
-Object.assign(t.es,{top:'Subir',home:'Inicio',prev:'Anterior',next:'Siguiente',more:'Seguir viendo',crumbs:'Ruta de navegación'});
-Object.assign(t.en,{top:'Back to top',home:'Home',prev:'Previous',next:'Next',more:'Keep browsing',crumbs:'Breadcrumb'});
-Object.assign(t.pt,{top:'Voltar ao topo',home:'Início',prev:'Anterior',next:'Próxima',more:'Continuar vendo',crumbs:'Caminho de navegação'});
+Object.assign(t.es,{viewExpo:'Ver exposiciones',viewWorks:'Ver trabajos',top:'Subir',home:'Inicio',prev:'Anterior',next:'Siguiente',more:'Seguir viendo',crumbs:'Ruta de navegación'});
+Object.assign(t.en,{viewExpo:'See exhibitions',viewWorks:'See works',top:'Back to top',home:'Home',prev:'Previous',next:'Next',more:'Keep browsing',crumbs:'Breadcrumb'});
+Object.assign(t.pt,{viewExpo:'Ver exposições',viewWorks:'Ver trabalhos',top:'Voltar ao topo',home:'Início',prev:'Anterior',next:'Próxima',more:'Continuar vendo',crumbs:'Caminho de navegação'});

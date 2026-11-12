@@ -20,14 +20,18 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
     <h2>{tr.featured}</h2>
     <div class="grid three">{six.map(w => <Card w={w} lang={lang} />)}</div>
     <p style="margin-top:1.5rem"><a href={`/${lang}/portfolio/`}>{tr.all} →</a></p>
+  </div>
+  <div class="band"><div class="wrap">
     <section class="split">
-      <div><h2 style="margin:0 0 1rem">{tr.exhibitions}</h2><p style="font-size:1.15rem;margin:0 0 1.5rem">{L(portada,'expo_text',lang)}</p><a class="btn" href={`/${lang}/exposiciones/`}>{tr.exhibitions}</a></div>
+      <div><h2 style="margin:0 0 1rem">{tr.exhibitions}</h2><p style="font-size:1.15rem;margin:0 0 1.5rem">{L(portada,'expo_text',lang)}</p><a class="btn" href={`/${lang}/exposiciones/`}>{tr.viewExpo}</a></div>
       {portada.expo_image && <span class="art frame"><img src={img(portada.expo_image)} alt={L(portada,'expo_alt',lang) || tr.exhibitions} loading="lazy" draggable="false" /></span>}
     </section>
+  </div></div>
+  <div class="wrap">
     <h2>{tr.animated}</h2>
     <section class="split" style="margin:1.5rem 0 5rem">
       {vid ? <iframe class="video" src={vid} title={L(portada,'video_title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : <div class="video ph" aria-hidden="true">▶</div>}
-      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p><a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.animated}</a></div>
+      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p><a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></div>
     </section>
   </div>
 </Base>

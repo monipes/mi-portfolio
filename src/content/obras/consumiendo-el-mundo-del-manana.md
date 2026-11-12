@@ -1,5 +1,5 @@
 ---
-order: 24
+order: 26
 published: true
 featured: false
 hero: false
