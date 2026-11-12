@@ -9,7 +9,8 @@ const { lang } = Astro.params; const tr = t[lang]; const all = works();
 const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 6);
 const hero = all.find(w => w.hero) || feat[0] || all[0];
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
-const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
+const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
+const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:(Astro.site?.origin ?? '') + `/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
 <Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {hero && <section class="hero"><span class="art"><img src={img(hero.image)} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
@@ -23,9 +24,10 @@ const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,job
       <div><h2 style="margin:0 0 1rem">{tr.exhibitions}</h2><p style="font-size:1.15rem;margin:0 0 1.5rem">{L(portada,'expo_text',lang)}</p><a class="btn" href={`/${lang}/exposiciones/`}>{tr.exhibitions}</a></div>
       {portada.expo_image && <span class="art frame"><img src={img(portada.expo_image)} alt={L(portada,'expo_alt',lang) || tr.exhibitions} loading="lazy" draggable="false" /></span>}
     </section>
-    <section class="split">
+    <h2>{tr.animated}</h2>
+    <section class="split" style="margin:1.5rem 0 5rem">
       {vid ? <iframe class="video" src={vid} title={L(portada,'video_title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : <div class="video ph" aria-hidden="true">▶</div>}
-      <div><h2 style="margin:0 0 .5rem">{L(portada,'video_title',lang)}</h2><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p>{L(portada,'video_desc',lang)}</p></div>
+      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p><a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.animated}</a></div>
     </section>
   </div>
 </Base>

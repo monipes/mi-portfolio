@@ -4,8 +4,8 @@ import { paths, t, site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang];
 ---
-<Base lang={lang} title={tr.contact} desc={site.city} path="contacto/">
-  <div class="wrap" style="max-width:640px"><h2>{tr.contact}</h2>
+<Base lang={lang} title={tr.contact} desc={`${tr.contact} · ${site.name} · ${site.city}`} path="contacto/">
+  <div class="wrap" style="max-width:640px"><h1 class="pt">{tr.contact}</h1>
     <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
     <!-- PEGÁ ACÁ TU FORMULARIO HTML -->
     <form name="contacto" method="POST" action="TU-ENDPOINT-DEL-FORM" style="display:grid;gap:1rem">

@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 7
 published: true
 featured: false
 hero: false

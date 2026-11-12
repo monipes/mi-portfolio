@@ -1,14 +1,14 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import YearGroups from '../../../components/YearGroups.astro';
-import { langs, t } from '../../../site.js';
-import { works } from '../../../lib/data.js';
+import { t, site } from '../../../site.js';
+import { works, itemList } from '../../../lib/data.js';
 const cats = { 'collage-digital':'digital', 'collage-animado':'animated' };
 export function getStaticPaths() { return ['es','en','pt'].flatMap(lang => ['collage-digital','collage-animado'].map(cat => ({ params: { lang, cat } }))); }
 const { lang, cat } = Astro.params; const tr = t[lang]; const list = works().filter(w => w.category === cat);
 const tabs = [['','all'],['collage-digital','digital'],['collage-animado','animated']];
 ---
-<Base lang={lang} title={tr[cats[cat]]} desc={tr.intro} path={`portfolio/${cat}/`}>
-  <div class="wrap"><nav class="tabs">{tabs.map(([s,k]) => <a href={`/${lang}/portfolio/${s ? s + '/' : ''}`} aria-current={s === cat ? 'page' : undefined}>{k === 'all' ? tr.all : tr[k]}</a>)}</nav>
+<Base lang={lang} title={tr[cats[cat]]} desc={`${tr[cats[cat]]} · ${site.name}. ${tr.intro}`} path={`portfolio/${cat}/`} ld={itemList(list, lang, Astro.site?.origin ?? '', tr[cats[cat]])}>
+  <div class="wrap"><h1 class="pt">{tr[cats[cat]]}</h1><nav class="tabs">{tabs.map(([s,k]) => <a href={`/${lang}/portfolio/${s ? s + '/' : ''}`} aria-current={s === cat ? 'page' : undefined}>{k === 'all' ? tr.all : tr[k]}</a>)}</nav>
   {list.length ? <YearGroups list={list} lang={lang} /> : <p>{tr.empty}</p>}</div>
 </Base>
