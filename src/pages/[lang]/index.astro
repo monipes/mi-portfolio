@@ -1,21 +1,31 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Card from '../../components/Card.astro';
-import { paths, t, site } from '../../site.js';
-import { works, L, img } from '../../lib/data.js';
+import { t, site } from '../../site.js';
+import { works, L, img, embed } from '../../lib/data.js';
+import portada from '../../data/portada.json';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
-const feat = all.filter(w => w.featured); const hero = all.find(w => w.hero) || feat[0] || all[0];
-const anim = all.filter(w => w.category === 'collage-animado').slice(0, 3);
+const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 6);
+const hero = all.find(w => w.hero) || feat[0] || all[0];
+const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
 const ld = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 ---
 <Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {hero && <section class="hero"><span class="art"><img src={img(hero.image)} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
     <div class="t"><h1>{site.name}</h1><p>{tr.tagline} {tr.intro}</p></div></section>}
   <div class="wrap">
+    <p class="phrase">{L(portada,'phrase',lang)}</p>
     <h2>{tr.featured}</h2>
-    <div class="grid">{(feat.length ? feat : all).map(w => <Card w={w} lang={lang} />)}</div>
-    {anim.length > 0 && <><h2>{tr.motion}</h2><div class="grid">{anim.map(w => <Card w={w} lang={lang} />)}</div>
-      <p><a href={`/${lang}/portfolio/collage-animado/`}>{tr.all}</a></p></>}
+    <div class="grid three">{six.map(w => <Card w={w} lang={lang} />)}</div>
+    <p style="margin-top:1.5rem"><a href={`/${lang}/portfolio/`}>{tr.all} →</a></p>
+    <section class="split">
+      <div><h2 style="margin:0 0 1rem">{tr.exhibitions}</h2><p style="font-size:1.15rem;margin:0 0 1.5rem">{L(portada,'expo_text',lang)}</p><a class="btn" href={`/${lang}/exposiciones/`}>{tr.exhibitions}</a></div>
+      {portada.expo_image && <span class="art frame"><img src={img(portada.expo_image)} alt={L(portada,'expo_alt',lang) || tr.exhibitions} loading="lazy" draggable="false" /></span>}
+    </section>
+    <section class="split">
+      {vid ? <iframe class="video" src={vid} title={L(portada,'video_title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : <div class="video ph" aria-hidden="true">▶</div>}
+      <div><h2 style="margin:0 0 .5rem">{L(portada,'video_title',lang)}</h2><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p>{L(portada,'video_desc',lang)}</p></div>
+    </section>
   </div>
 </Base>

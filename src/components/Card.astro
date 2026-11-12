@@ -1,8 +1,8 @@
 ---
 import { L, img, dim } from '../lib/data.js';
-const { w, lang } = Astro.props; const d = dim(w.image);
+const { w, lang } = Astro.props; const d = dim(w.image); const pos = { top: '0%', center: '50%', bottom: '100%' }[w.focus || 'top'];
 ---
 <a class="card" href={`/${lang}/obra/${w.slug}/`}>
-  <span class="art frame"><img src={img(w.image, 'thumb')} alt={L(w,'alt',lang) || L(w,'title',lang)} loading="lazy" draggable="false" {...d} onerror={`this.onerror=null;this.src='${w.image}'`} /></span>
+  <span class="art frame"><img src={img(w.image, 'thumb')} alt={L(w,'alt',lang) || L(w,'title',lang)} loading="lazy" draggable="false" {...d} style={`object-position:50% ${pos}`} onerror={`this.onerror=null;this.src='${w.image}'`} /></span>
   <span class="cap">{L(w,'title',lang)} <small>{w.year}</small></span>
 </a>

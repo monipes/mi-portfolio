@@ -28,6 +28,7 @@ collections:
       - {name: desc_en, label: Descripción (EN), widget: text, required: false}
       - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
       - {name: image, label: Imagen principal (JPG o PNG, hasta ~3000 px), widget: image}
+      - {name: focus, label: En la grilla cuadrada, qué parte se ve (para obras verticales), widget: select, options: [{label: Arriba, value: top},{label: Centro, value: center},{label: Abajo, value: bottom}], default: top, required: false}
       - {name: alt_es, label: Texto alternativo (ES) - describe la imagen, widget: string}
       - {name: alt_en, label: Texto alternativo (EN), widget: string, required: false}
       - {name: alt_pt, label: Texto alternativo (PT-BR), widget: string, required: false}
@@ -67,3 +68,27 @@ collections:
       - {name: end, label: Hasta, widget: string, required: false}
       - {name: url, label: Link, widget: string, required: false}
       - {name: image, label: Imagen, widget: image, required: false}
+  - name: portada
+    label: Portada de inicio
+    files:
+      - name: portada
+        label: Textos y video de la portada
+        file: src/data/portada.json
+        fields:
+          - {name: phrase_es, label: Frase debajo del banner (ES), widget: string}
+          - {name: phrase_en, label: Frase (EN), widget: string, required: false}
+          - {name: phrase_pt, label: Frase (PT-BR), widget: string, required: false}
+          - {name: expo_text_es, label: Texto del bloque Exposiciones (ES), widget: text}
+          - {name: expo_text_en, label: Texto Exposiciones (EN), widget: text, required: false}
+          - {name: expo_text_pt, label: Texto Exposiciones (PT-BR), widget: text, required: false}
+          - {name: expo_image, label: Imagen del bloque Exposiciones (mejor vertical), widget: image, required: false}
+          - {name: expo_alt_es, label: Descripción de esa imagen (ES), widget: string, required: false}
+          - {name: video_vimeo, label: ID de Vimeo del video, widget: string, required: false}
+          - {name: video_youtube, label: ID de YouTube del video (si no es Vimeo), widget: string, required: false}
+          - {name: video_title_es, label: Título del video (ES), widget: string}
+          - {name: video_title_en, label: Título (EN), widget: string, required: false}
+          - {name: video_title_pt, label: Título (PT-BR), widget: string, required: false}
+          - {name: video_year, label: Año del video, widget: string, required: false}
+          - {name: video_desc_es, label: De qué trata el video (ES), widget: text, required: false}
+          - {name: video_desc_en, label: De qué trata (EN), widget: text, required: false}
+          - {name: video_desc_pt, label: De qué trata (PT-BR), widget: text, required: false}
