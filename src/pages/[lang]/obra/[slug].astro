@@ -30,7 +30,7 @@ const ld = [art, { '@context':'https://schema.org','@type':'BreadcrumbList',item
     <nav class="pn" aria-label={tr.more}>
       {prev ? <a href={`/${lang}/obra/${prev.slug}/`} rel="prev">← {L(prev,'title',lang)}</a> : <span></span>}
       <a class="btn home" href={`/${lang}/`}>{tr.home}</a>
-      <button class="btn totop" aria-label={tr.top} title={tr.top} onclick="scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      <button class="btn totop" aria-label={tr.top} title={tr.top}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
       {next ? <a href={`/${lang}/obra/${next.slug}/`} rel="next">{L(next,'title',lang)} →</a> : <span></span>}
     </nav>
   </div>

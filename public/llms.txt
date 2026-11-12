@@ -2,4 +2,5 @@
 > Artista visual de Argentina. Collage digital, collage animado, ilustración y animación.
 - /es/portfolio/ : obras
 - /es/exposiciones/ : exposiciones
+- /es/acerca-de/ : biografía
 - /es/contacto/ : contacto

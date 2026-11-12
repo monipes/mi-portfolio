@@ -92,3 +92,12 @@ collections:
           - {name: video_desc_es, label: De qué trata el video (ES), widget: text, required: false}
           - {name: video_desc_en, label: De qué trata (EN), widget: text, required: false}
           - {name: video_desc_pt, label: De qué trata (PT-BR), widget: text, required: false}
+      - name: acerca
+        label: Acerca de (biografía)
+        file: src/data/acerca.json
+        fields:
+          - {name: bio_es, label: Biografía (ES), widget: text}
+          - {name: bio_en, label: Biografía (EN), widget: text, required: false}
+          - {name: bio_pt, label: Biografía (PT-BR), widget: text, required: false}
+          - {name: photo, label: Foto tuya (opcional), widget: image, required: false}
+          - {name: photo_alt_es, label: Descripción de la foto (ES), widget: string, required: false}

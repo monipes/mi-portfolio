@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Social from '../../components/Social.astro';
+import { t, site } from '../../site.js';
+import { L, img } from '../../lib/data.js';
+import acerca from '../../data/acerca.json';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params; const tr = t[lang]; const bio = L(acerca, 'bio', lang);
+const ld = { '@context':'https://schema.org','@type':'AboutPage',name:`${tr.about} · ${site.name}`,mainEntity:{ '@type':'Person',name:site.name,description:bio.replace(/\s+/g,' ').slice(0,300),sameAs:site.social.map(s => s[1]) } };
+---
+<Base lang={lang} title={tr.about} desc={bio.replace(/\s+/g,' ').slice(0,155)} path="acerca-de/" ld={ld} image={acerca.photo ? img(acerca.photo) : undefined}>
+  <div class="wrap">
+    <h1 class="pt">{tr.about}</h1>
+    <div class="two" style="margin-top:2rem">
+      <div>
+        <p style="white-space:pre-line;font-size:1.15rem">{bio}</p>
+        <p style="margin-top:2rem"><a class="btn" href={`/${lang}/contacto/`}>{tr.contact}</a></p>
+        <div style="margin-top:1.5rem"><Social items={site.social} /></div>
+      </div>
+      {acerca.photo && <span class="art frame"><img src={img(acerca.photo)} alt={L(acerca,'photo_alt',lang) || site.name} loading="lazy" draggable="false" /></span>}
+    </div>
+  </div>
+</Base>
