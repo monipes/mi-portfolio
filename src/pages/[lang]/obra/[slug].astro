@@ -17,8 +17,8 @@ const ld = [art, { '@context':'https://schema.org','@type':'BreadcrumbList',item
     <div class="two">
     <div>
       {v ? <iframe class="video" src={v} title={title} allow="fullscreen; picture-in-picture" loading="lazy"></iframe>
-         : w.video_file ? <video class="video" src={w.video_file} autoplay loop muted playsinline controlslist="nodownload" disablepictureinpicture oncontextmenu="return false"></video> : null}
-      <span class="art frame" style={v || w.video_file ? 'margin-top:1rem' : ''}><img src={img(w.image)} alt={L(w,'alt',lang) || title} draggable="false" {...dim(w.image)} onerror={`this.onerror=null;this.src='${w.image}'`} /></span>
+         : w.video_file ? <video class="vid" src={w.video_file} poster={img(w.image)} autoplay loop muted playsinline preload="metadata" controls controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback oncontextmenu="return false"></video> : null}
+      {!(v || w.video_file) && <span class="art frame" style={v || w.video_file ? 'margin-top:1rem' : ''}><img src={img(w.image)} alt={L(w,'alt',lang) || title} draggable="false" {...dim(w.image)} onerror={`this.onerror=null;this.src='${w.image}'`} /></span>}
       {(w.gallery || []).map(g => <span class="art frame" style="margin-top:1rem"><img src={img(g.image)} alt={L(g,'alt',lang) || title} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${g.image}'`} /></span>)}
     </div>
     <aside><h1 style="font-size:clamp(2rem,4vw,3rem)">{title}</h1>

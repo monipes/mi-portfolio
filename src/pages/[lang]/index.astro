@@ -31,7 +31,7 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
     <h2>{tr.animated}</h2>
     <section class="split" style="margin:1.5rem 0 5rem">
       {vid ? <iframe class="video" src={vid} title={L(portada,'video_title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : <div class="video ph" aria-hidden="true">▶</div>}
-      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p><p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p><a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></div>
+      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p>{L(portada,'video_desc',lang) && <p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p>}<a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></div>
     </section>
   </div>
 </Base>
