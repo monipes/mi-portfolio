@@ -2,19 +2,23 @@
 import Base from '../../layouts/Base.astro';
 import Card from '../../components/Card.astro';
 import { t, site } from '../../site.js';
-import { works, L, img, embed } from '../../lib/data.js';
+import { works, L, img, embed, dim } from '../../lib/data.js';
 import portada from '../../data/portada.json';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
 const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 6);
 const hero = all.find(w => w.hero) || feat[0] || all[0];
+const slides = [hero, ...feat.filter(w => w !== hero)].filter(Boolean).filter(w => { const d = dim(w.image); return !d.width || d.height / d.width < 1.2; }).slice(0, 6);
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
 const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:(Astro.site?.origin ?? '') + `/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
-<Base lang={lang} title={site.name} desc={tr.intro} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
-  {hero && <section class="hero"><span class="art"><img src={img(hero.image)} alt={L(hero,'alt',lang)} fetchpriority="high" draggable="false" /></span>
-    <div class="t"><h1>{site.name}</h1><p>{tr.tagline} {tr.intro}</p></div></section>}
+<Base lang={lang} title={site.name} desc={`${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
+  {slides.length > 0 && <section class="hero" aria-roledescription="carousel" aria-label={tr.featured}>
+    {slides.map((w, i) => <span class={`art slide${i === 0 ? ' on' : ''}`} aria-hidden={i === 0 ? undefined : 'true'}><img src={img(w.image)} alt={L(w,'alt',lang) || L(w,'title',lang)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} draggable="false" /></span>)}
+    <div class="t"><h1 class="sr">{site.name} · {tr.tagline}</h1><p class="k">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
+    {slides.length > 1 && <button id="hp" class="hp" data-pause={tr.pause} data-play={tr.play} aria-label={tr.pause}></button>}
+  </section>}
   <div class="wrap">
     <p class="phrase">{L(portada,'phrase',lang)}</p>
     <h2>{tr.featured}</h2>
@@ -34,4 +38,14 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
       <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p>{L(portada,'video_desc',lang) && <p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p>}<a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></div>
     </section>
   </div>
+<script is:inline>
+(function(){var s=[].slice.call(document.querySelectorAll('.hero .slide')),b=document.getElementById('hp');if(s.length<2||!b)return;
+var i=0,t=null,PA='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>',PL='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>';
+function show(n){s[i].classList.remove('on');s[i].setAttribute('aria-hidden','true');i=n;s[i].classList.add('on');s[i].removeAttribute('aria-hidden')}
+function stop(){if(t){clearInterval(t);t=null}b.innerHTML=PL;b.setAttribute('aria-label',b.dataset.play);b.dataset.s='paused'}
+function play(){if(t)clearInterval(t);t=setInterval(function(){show((i+1)%s.length)},5000);b.innerHTML=PA;b.setAttribute('aria-label',b.dataset.pause);b.dataset.s='playing'}
+b.onclick=function(){b.dataset.s==='playing'?stop():play()};
+document.addEventListener('visibilitychange',function(){if(document.hidden&&b.dataset.s==='playing'){clearInterval(t);t=null;b.dataset.s='hidden'}else if(!document.hidden&&b.dataset.s==='hidden'){play()}});
+matchMedia('(prefers-reduced-motion: reduce)').matches?stop():play();})();
+</script>
 </Base>
