@@ -6,16 +6,16 @@ import { works, L, img, embed, dim } from '../../lib/data.js';
 import portada from '../../data/portada.json';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
-const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 6);
+const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 8);
 const hero = all.find(w => w.hero) || feat[0] || all[0];
-const slides = [hero, ...feat.filter(w => w !== hero)].filter(Boolean).filter(w => { const d = dim(w.image); return !d.width || d.height / d.width < 1.2; }).slice(0, 6);
+const bn = all.filter(w => w.banner); const slides = [hero, ...(bn.length ? bn : feat).filter(w => w !== hero)].filter(Boolean).filter(w => { const d = dim(w.image); return !d.width || d.height / d.width < 1.2; }).slice(0, 6);
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
-const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},email:site.email,sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
+const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:(Astro.site?.origin ?? '') + `/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
 <Base lang={lang} title={site.name} desc={`${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {slides.length > 0 && <section class="hero" aria-roledescription="carousel" aria-label={tr.featured}>
-    {slides.map((w, i) => <span class={`art slide${i === 0 ? ' on' : ''}`} aria-hidden={i === 0 ? undefined : 'true'}><img src={img(w.image)} alt={L(w,'alt',lang) || L(w,'title',lang)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} draggable="false" /></span>)}
+    {slides.map((w, i) => <span class={`art slide${i === 0 ? ' on' : ''}`} aria-hidden={i === 0 ? undefined : 'true'}><img src={img(w.image)} style={`object-position:50% ${w.banner_y ?? 55}%`} alt={L(w,'alt',lang) || L(w,'title',lang)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} draggable="false" /></span>)}
     <div class="t"><h1 class="sr">{site.name} · {tr.tagline}</h1><p class="k">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
     {slides.length > 1 && <button id="hp" class="hp" data-pause={tr.pause} data-play={tr.play} aria-label={tr.pause}></button>}
   </section>}
@@ -43,7 +43,7 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
 var i=0,t=null,PA='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>',PL='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>';
 function show(n){s[i].classList.remove('on');s[i].setAttribute('aria-hidden','true');i=n;s[i].classList.add('on');s[i].removeAttribute('aria-hidden')}
 function stop(){if(t){clearInterval(t);t=null}b.innerHTML=PL;b.setAttribute('aria-label',b.dataset.play);b.dataset.s='paused'}
-function play(){if(t)clearInterval(t);t=setInterval(function(){show((i+1)%s.length)},5000);b.innerHTML=PA;b.setAttribute('aria-label',b.dataset.pause);b.dataset.s='playing'}
+function play(){if(t)clearInterval(t);t=setInterval(function(){show((i+1)%s.length)},8000);b.innerHTML=PA;b.setAttribute('aria-label',b.dataset.pause);b.dataset.s='playing'}
 b.onclick=function(){b.dataset.s==='playing'?stop():play()};
 document.addEventListener('visibilitychange',function(){if(document.hidden&&b.dataset.s==='playing'){clearInterval(t);t=null;b.dataset.s='hidden'}else if(!document.hidden&&b.dataset.s==='hidden'){play()}});
 matchMedia('(prefers-reduced-motion: reduce)').matches?stop():play();})();

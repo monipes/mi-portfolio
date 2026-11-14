@@ -3,6 +3,8 @@ order: 4
 published: true
 featured: true
 hero: false
+banner: true
+banner_y: 45
 category: collage-digital
 title_es: "El Tiempo en Sus Manos"
 title_en: ""

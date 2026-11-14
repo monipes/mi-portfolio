@@ -3,6 +3,8 @@ order: 11
 published: true
 featured: false
 hero: false
+banner: true
+banner_y: 45
 category: collage-digital
 title_es: "Vuelo sobre el Tiempo"
 title_en: ""

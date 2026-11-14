@@ -3,6 +3,8 @@ order: 2
 published: true
 featured: true
 hero: true
+banner: true
+banner_y: 62
 category: collage-digital
 title_es: "Travesía Celestial"
 title_en: ""
