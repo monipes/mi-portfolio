@@ -57,19 +57,30 @@ collections:
     extension: md
     format: frontmatter
     create: true
+    summary: "{{start}} · {{title_es}}"
     fields:
+      - {name: start, label: Fecha (2022-07-28 · o 2022-12 si solo sabés el mes · o 2025 si solo el año), widget: string}
       - {name: title_es, label: Nombre (ES), widget: string}
       - {name: title_en, label: Nombre (EN), widget: string, required: false}
       - {name: title_pt, label: Nombre (PT-BR), widget: string, required: false}
+      - {name: venue, label: Lugar / sala, widget: string}
+      - {name: address, label: Dirección (calle y número), widget: string, required: false}
+      - {name: city_es, label: Ciudad (ES), widget: string, required: false}
+      - {name: city_en, label: Ciudad (EN), widget: string, required: false}
+      - {name: city_pt, label: Ciudad (PT-BR), widget: string, required: false}
+      - {name: country_es, label: País (ES), widget: string, required: false}
+      - {name: country_en, label: País (EN), widget: string, required: false}
+      - {name: country_pt, label: País (PT-BR), widget: string, required: false}
       - {name: desc_es, label: Descripción (ES), widget: text, required: false}
       - {name: desc_en, label: Descripción (EN), widget: text, required: false}
       - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
-      - {name: venue, label: Lugar, widget: string}
-      - {name: city, label: Ciudad, widget: string}
-      - {name: start, label: Desde, widget: string}
-      - {name: end, label: Hasta, widget: string, required: false}
-      - {name: url, label: Link, widget: string, required: false}
-      - {name: image, label: Imagen, widget: image, required: false}
+      - {name: image, label: Afiche / imagen, widget: image, required: false}
+      - {name: alt_es, label: Descripción del afiche (ES) - para Google, widget: string, required: false}
+      - {name: work, label: Obra tuya que se mostró (opcional), widget: relation, collection: works, search_fields: [title_es], value_field: "{{slug}}", display_fields: [title_es], required: false}
+      - {name: url, label: Link con más información, widget: string, required: false}
+      - {name: youtube, label: ID de YouTube (opcional), widget: string, required: false}
+      - {name: vimeo, label: ID de Vimeo (opcional), widget: string, required: false}
+      - {name: video_file, label: Video subido (mp4, opcional), widget: file, required: false}
   - name: portada
     label: Portada de inicio
     files:

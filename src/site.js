@@ -31,3 +31,7 @@ Object.assign(t.pt,{about:'Sobre',viewExpo:'Ver exposições',viewWorks:'Ver tra
 Object.assign(t.es,{close:'Cerrar',pause:'Pausar las obras que cambian',play:'Reanudar las obras que cambian'});
 Object.assign(t.en,{close:'Close',pause:'Pause the changing artworks',play:'Resume the changing artworks'});
 Object.assign(t.pt,{close:'Fechar',pause:'Pausar as obras que mudam',play:'Retomar as obras que mudam'});
+
+Object.assign(t.es,{viewWork:'Ver la obra',moreInfo:'Más información'});
+Object.assign(t.en,{viewWork:'View the work',moreInfo:'More information'});
+Object.assign(t.pt,{viewWork:'Ver a obra',moreInfo:'Mais informações'});
