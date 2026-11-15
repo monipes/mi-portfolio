@@ -33,10 +33,15 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
   </div></div>
   <div class="wrap">
     <h2>{tr.animated}</h2>
-    <section class="split" style="margin:1.5rem 0 5rem">
+    <section class="split" style="margin:1.5rem 0 2.5rem">
       {vid ? <iframe class="video" src={vid} title={L(portada,'video_title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : <div class="video ph" aria-hidden="true">▶</div>}
-      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p>{L(portada,'video_desc',lang) && <p style="margin:0 0 1.5rem">{L(portada,'video_desc',lang)}</p>}<a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></div>
+      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video_year}</p>{L(portada,'video_desc',lang) && <p style="margin:0">{L(portada,'video_desc',lang)}</p>}</div>
     </section>
+    {portada.video2_file && <section class="split" style="margin:0 0 2.5rem">
+      <video class="video" src={portada.video2_file} poster={portada.video2_poster ? img(portada.video2_poster) : undefined} controls preload="metadata" playsinline controlslist="nodownload" disablepictureinpicture oncontextmenu="return false" title={L(portada,'video2_title',lang)}></video>
+      <div><h3 style="font-size:1.7rem;margin:0 0 .4rem">{L(portada,'video2_title',lang)}</h3><p style="color:var(--mut);margin:0 0 1rem">{portada.video2_year}</p>{L(portada,'video2_desc',lang) && <p style="margin:0">{L(portada,'video2_desc',lang)}</p>}</div>
+    </section>}
+    <p style="margin:0 0 5rem"><a class="btn" href={`/${lang}/portfolio/collage-animado/`}>{tr.viewWorks}</a></p>
   </div>
 <script is:inline>
 (function(){var s=[].slice.call(document.querySelectorAll('.hero .slide')),b=document.getElementById('hp');if(s.length<2||!b)return;
