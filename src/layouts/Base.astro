@@ -141,18 +141,20 @@ const full = title === site.name ? site.name : `${title} — ${site.name}`;
     .play{position:absolute;left:9%;bottom:9%;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;z-index:2;padding-left:2px}
     .vid{display:block;width:100%;height:auto;max-height:85vh;background:#000}
 
-    /* --- banner con obras que van pasando --- */
+    /* --- banner: texto a la izquierda, obras a la derecha (sin capas oscuras) --- */
     .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-    .hero{align-items:center;justify-content:flex-start;text-align:left}
-    .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.34) 32%,rgba(0,0,0,0) 62%)}
-    .hero::after{display:none}
-    .hero .slide{opacity:0;transition:opacity 1.2s ease}.hero .slide.on{opacity:1}
-    .hero div.t{z-index:3;color:#fff;text-shadow:0 2px 10px #000b,0 0 2px #0007;margin:0;padding:2rem clamp(1.25rem,5vw,4.5rem);max-width:38rem}
-    .hero .t .k{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.1;margin:0}
-    .hero .t .s{font-size:clamp(1rem,1.5vw,1.25rem);margin:1rem 0 0;max-width:36ch}
-    .hp{position:absolute;right:1rem;bottom:1rem;z-index:4;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid #fff7;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-    .hp:hover{background:#000a}
-    @media(max-width:820px){.hero{align-items:flex-end}.hero::before{background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.32) 45%,rgba(0,0,0,0) 80%)}.hero div.t{padding:1.2rem 1rem 1.3rem;max-width:none}.hero .t .k{font-size:1.2rem}.hero .t .s{font-size:.86rem;margin-top:.45rem;max-width:34ch}.hp{right:.6rem;bottom:.6rem;width:2.3rem;height:2.3rem}}
+    .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);height:60vh;min-height:420px;align-items:stretch;background:var(--band);overflow:hidden}
+    .hero::before,.hero::after{display:none}
+    .hero div.t{position:static;z-index:auto;align-self:center;max-width:none;margin:0;padding:2rem clamp(1.25rem,4vw,4rem);color:var(--fg);text-shadow:none}
+    .hero div.t::before{content:"";display:block;width:3rem;height:4px;background:var(--acc);margin-bottom:1.25rem}
+    .hero .t .k{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.7rem,3.2vw,2.8rem);line-height:1.1;margin:0}
+    .hero .t .s{font-size:clamp(1rem,1.4vw,1.2rem);margin:1rem 0 0;max-width:34ch;color:var(--fg)}
+    .hero .stage{position:relative;overflow:hidden;min-height:100%}
+    .hero .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}.hero .slide.on{opacity:1}
+    .hero .slide img{width:100%;height:100%;object-fit:cover}
+    .hp{position:absolute;right:.9rem;bottom:.9rem;z-index:4;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid #fff8;background:#000a;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+    .hp:hover{background:#000d}
+    @media(max-width:820px){.hero{grid-template-columns:1fr;height:auto;min-height:0}.hero .stage{order:-1;aspect-ratio:4/3;min-height:0}.hero div.t{padding:1.3rem 1.1rem 1.6rem}.hero div.t::before{margin-bottom:.9rem}.hero .t .k{font-size:1.3rem}.hero .t .s{font-size:.9rem;margin-top:.5rem}.hp{right:.6rem;bottom:.6rem;width:2.3rem;height:2.3rem}}
     @media(prefers-reduced-motion:reduce){.hero .slide{transition:none}}
     /* --- formulario de contacto --- */
     .cf{display:grid;gap:1.15rem;margin-top:1.5rem}
