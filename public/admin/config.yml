@@ -81,6 +81,7 @@ collections:
       - {name: youtube, label: ID de YouTube (opcional), widget: string, required: false}
       - {name: vimeo, label: ID de Vimeo (opcional), widget: string, required: false}
       - {name: video_file, label: Video subido (mp4, opcional), widget: file, required: false}
+      - {name: video_poster, label: Imagen de portada del video subido (opcional), widget: image, required: false}
   - name: portada
     label: Portada de inicio
     files:

@@ -23,7 +23,7 @@ const ld = { '@context':'https://schema.org','@graph': list.map(e => ({ '@type':
           return <article class="ex">
             {(e.image || v || e.video_file) && <div class="media">
               {e.image && <span class="art frame"><img src={img(e.image)} alt={L(e,'alt',lang) || L(e,'title',lang)} loading="lazy" draggable="false" {...dim(e.image)} onerror={`this.onerror=null;this.src='${e.image}'`} /></span>}
-              {v ? <iframe class="video" src={v} title={L(e,'title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : e.video_file ? <video class="vid" src={e.video_file} controls preload="metadata" playsinline controlslist="nodownload" disablepictureinpicture oncontextmenu="return false"></video> : null}
+              {v ? <iframe class="video" src={v} title={L(e,'title',lang)} allow="fullscreen; picture-in-picture" loading="lazy"></iframe> : e.video_file ? <video class="vid" src={e.video_file} poster={e.video_poster ? img(e.video_poster) : undefined} controls preload="metadata" playsinline controlslist="nodownload" disablepictureinpicture oncontextmenu="return false"></video> : null}
             </div>}
             <div class="info">
               <p class="when"><time datetime={e.start}>{fmt(e.start)}</time></p>

@@ -18,5 +18,6 @@ work: ""
 url: "https://2084futurosimaginados.org/buenos-aires-en-un-2084/"
 youtube: ""
 vimeo: ""
-video_file: ""
+video_file: "/uploads/buenos-aires-en-un-2084.mp4"
+video_poster: "/uploads/buenos-aires-en-un-2084.jpg"
 ---
