@@ -16,7 +16,7 @@ desc_en: "Exhibition for the fifth anniversary."
 desc_pt: "Exposição pelo quinto aniversário."
 image: /uploads/expo-mujeres-que-cortan-y-pegan-madrid-2022.jpg
 alt_es: "Afiche de la exposición Mujeres que cortan y pegan, quinto aniversario, con un retrato en tonos violetas"
-work: ""
+work: "el-corazon-que-ve-y-escucha"
 url: ""
 youtube: ""
 vimeo: ""

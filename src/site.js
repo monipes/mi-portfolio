@@ -39,3 +39,7 @@ Object.assign(t.pt,{viewWork:'Ver a obra',moreInfo:'Mais informações'});
 Object.assign(t.es,{expoVideos:'Videos de esta exposición'});
 Object.assign(t.en,{expoVideos:'Videos from this exhibition'});
 Object.assign(t.pt,{expoVideos:'Vídeos desta exposição'});
+
+Object.assign(t.es,{title:'Fragmentos de otros mundos'});
+Object.assign(t.en,{title:'Fragments of other worlds'});
+Object.assign(t.pt,{title:'Fragmentos de outros mundos'});

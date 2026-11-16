@@ -13,9 +13,9 @@ const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo }
 const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
 const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:(Astro.site?.origin ?? '') + `/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
-<Base lang={lang} title={site.name} desc={`${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
+<Base lang={lang} title={site.name} desc={`${tr.title}. ${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {slides.length > 0 && <section class="hero" aria-roledescription="carousel" aria-label={tr.featured}>
-    <div class="t"><h1 class="sr">{site.name} · {tr.intro}</h1><p class="k">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
+    <div class="t"><h1 class="sr">{site.name} · {tr.title}. {tr.intro}</h1><p class="k">{tr.title}</p><p class="sub">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
     <div class="stage">
       {slides.map((w, i) => <span class={`art slide${i === 0 ? ' on' : ''}`} aria-hidden={i === 0 ? undefined : 'true'}><img src={img(w.image)} style={`object-position:50% ${w.banner_y ?? 55}%`} alt={L(w,'alt',lang) || L(w,'title',lang)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} draggable="false" /></span>)}
       {slides.length > 1 && <button id="hp" class="hp" data-pause={tr.pause} data-play={tr.play} aria-label={tr.pause}></button>}
