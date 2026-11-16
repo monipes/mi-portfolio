@@ -77,6 +77,7 @@ collections:
       - {name: image, label: Afiche / imagen, widget: image, required: false}
       - {name: alt_es, label: Descripción del afiche (ES) - para Google, widget: string, required: false}
       - {name: work, label: Obra tuya que se mostró (opcional), widget: relation, collection: works, search_fields: [title_es], value_field: "{{slug}}", display_fields: [title_es], required: false}
+      - {name: works, label: Más obras o videos de esta exposición (aparecen como botones), widget: list, required: false, field: {name: obra, label: Obra o video, widget: relation, collection: works, search_fields: [title_es], value_field: "{{slug}}", display_fields: [title_es]}}
       - {name: url, label: Link con más información, widget: string, required: false}
       - {name: youtube, label: ID de YouTube (opcional), widget: string, required: false}
       - {name: vimeo, label: ID de Vimeo (opcional), widget: string, required: false}
@@ -89,9 +90,6 @@ collections:
         label: Textos y video de la portada
         file: src/data/portada.json
         fields:
-          - {name: phrase_es, label: Frase debajo del banner (ES), widget: string}
-          - {name: phrase_en, label: Frase (EN), widget: string, required: false}
-          - {name: phrase_pt, label: Frase (PT-BR), widget: string, required: false}
           - {name: expo_text_es, label: Texto del bloque Exposiciones (ES), widget: text}
           - {name: expo_text_en, label: Texto Exposiciones (EN), widget: text, required: false}
           - {name: expo_text_pt, label: Texto Exposiciones (PT-BR), widget: text, required: false}

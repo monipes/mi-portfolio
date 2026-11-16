@@ -16,6 +16,7 @@ desc_en: "Exhibition in partnership with Red Collage Perú. Curator: Carolina Ca
 desc_pt: "Exposição em parceria com a Red Collage Perú. Curadoria: Carolina Cardich."
 image: /uploads/expo-habitat-una-sola-tierra-lima-2022.jpg
 alt_es: "Afiche de la exposición Hábitat, una sola tierra, con collages de hojas, una jirafa, un rostro y mariposas"
+works: ["el-triste-final-del-planeta", "el-origen"]
 work: ""
 url: ""
 youtube: ""

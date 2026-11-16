@@ -16,7 +16,7 @@ desc_en: ""
 desc_pt: ""
 image: /uploads/expo-homenaje-maria-elena-walsh-2024.jpg
 alt_es: "Afiche de la exposición colectiva homenaje a María Elena Walsh, con un retrato en colores"
-work: ""
+work: "exposicion-colectiva-homenaje-a-maria-elena-walsh"
 url: ""
 youtube: ""
 vimeo: ""

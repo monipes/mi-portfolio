@@ -16,6 +16,7 @@ desc_en: ""
 desc_pt: ""
 image: /uploads/expo-cosecha-peruana-en-suelo-argentino-2022.jpg
 alt_es: "Afiche de Cosecha Peruana en Suelo Argentino con un obelisco, un campo sembrado, vacas, papas y una campesina"
+works: ["cosecha-peruana-en-suelo-argentino"]
 work: ""
 url: ""
 youtube: ""

@@ -15,14 +15,13 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
 ---
 <Base lang={lang} title={site.name} desc={`${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {slides.length > 0 && <section class="hero" aria-roledescription="carousel" aria-label={tr.featured}>
-    <div class="t"><h1 class="sr">{site.name} · {tr.tagline}</h1><p class="k">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
+    <div class="t"><h1 class="sr">{site.name} · {tr.intro}</h1><p class="k">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
     <div class="stage">
       {slides.map((w, i) => <span class={`art slide${i === 0 ? ' on' : ''}`} aria-hidden={i === 0 ? undefined : 'true'}><img src={img(w.image)} style={`object-position:50% ${w.banner_y ?? 55}%`} alt={L(w,'alt',lang) || L(w,'title',lang)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} draggable="false" /></span>)}
       {slides.length > 1 && <button id="hp" class="hp" data-pause={tr.pause} data-play={tr.play} aria-label={tr.pause}></button>}
     </div>
   </section>}
   <div class="wrap">
-    <p class="phrase">{L(portada,'phrase',lang)}</p>
     <h2>{tr.featured}</h2>
     <div class="grid three">{six.map(w => <Card w={w} lang={lang} />)}</div>
     <p style="margin-top:1.5rem"><a href={`/${lang}/portfolio/`}>{tr.all} →</a></p>

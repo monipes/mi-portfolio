@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t, site } from '../../site.js';
-import { expos, L, img, dim, embed } from '../../lib/data.js';
+import { expos, works, L, img, dim, embed } from '../../lib/data.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const list = expos(); const origin = Astro.site?.origin ?? '';
 const M = { es:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'], en:['January','February','March','April','May','June','July','August','September','October','November','December'], pt:['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'] }[lang];
@@ -10,6 +10,8 @@ const fmt = (s) => { const [y, m, d] = String(s).split('-'); if (!m) return y; c
 const years = [...new Set(list.map(e => e.start.slice(0, 4)))];
 const place = (e) => [L(e,'city',lang), L(e,'country',lang)].filter(Boolean).join(', ');
 const first = list.find(e => e.image);
+const byslug = Object.fromEntries(works().map(w => [w.slug, w]));
+const isVid = (w) => !!(w.video_file || w.youtube || w.vimeo);
 const ld = { '@context':'https://schema.org','@graph': list.map(e => ({ '@type':'ExhibitionEvent',name:L(e,'title',lang),startDate:e.start,description:L(e,'desc',lang) || undefined,image:e.image ? origin + img(e.image) : undefined,location:{ '@type':'Place',name:e.venue,address:(e.address || L(e,'city',lang)) ? { '@type':'PostalAddress',streetAddress:e.address || undefined,addressLocality:L(e,'city',lang) || undefined,addressCountry:L(e,'country',lang) || undefined } : undefined },performer:{ '@type':'Person',name:site.name } })) };
 ---
 <Base lang={lang} title={tr.exhibitions} desc={`${tr.exhibitions} · ${site.name}: ${list.slice(0, 3).map(e => L(e,'title',lang)).join(', ')}`} path="exposiciones/" ld={ld} image={first ? img(first.image) : undefined}>
@@ -32,10 +34,10 @@ const ld = { '@context':'https://schema.org','@graph': list.map(e => ({ '@type':
               {e.address && <p class="where">{e.address}</p>}
               {place(e) && <p class="where">{place(e)}</p>}
               {L(e,'desc',lang) && <p style="margin:1rem 0 0;white-space:pre-line">{L(e,'desc',lang)}</p>}
-              {(e.work || e.url) && <div class="acts">
-                {e.work && <a class="btn" href={`/${lang}/obra/${e.work}/`}>{tr.viewWork}</a>}
-                {e.url && <a class="btn ghost" href={e.url} target="_blank" rel="noopener">{tr.moreInfo}</a>}
-              </div>}
+              {(() => { const ws = [...(e.work ? [e.work] : []), ...(e.works || [])].map(k => byslug[k]).filter(Boolean); const vids = ws.filter(isVid), imgs = ws.filter(w => !isVid(w)); return <>
+                {vids.length > 0 && <div style="margin-top:1.25rem"><p class="where" style="margin:0">{tr.expoVideos}</p><div class="acts" style="margin-top:.6rem">{vids.map(w => <a class="btn" href={`/${lang}/obra/${w.slug}/`}>▶ {L(w,'title',lang)}</a>)}</div></div>}
+                {(imgs.length > 0 || e.url) && <div class="acts">{imgs.map(w => <a class="btn" href={`/${lang}/obra/${w.slug}/`}>{tr.viewWork}</a>)}{e.url && <a class="btn ghost" href={e.url} target="_blank" rel="noopener">{tr.moreInfo}</a>}</div>}
+              </>; })()}
             </div>
           </article>;
         })}
