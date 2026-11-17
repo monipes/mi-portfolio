@@ -1,7 +1,7 @@
 ---
 order: 43
 published: true
-featured: true
+featured: false
 hero: false
 category: collage-digital
 title_es: "Otro mundo"

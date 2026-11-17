@@ -6,11 +6,13 @@ export function getStaticPaths() { const all = works(); return ['es','en','pt'].
 const { lang, slug } = Astro.params; const { w, prev, next } = Astro.props; const origin = Astro.site?.origin ?? '';
 const catKey = w.category === 'collage-animado' ? 'animated' : 'digital';
 const crumbs = [[t[lang].home, `/${lang}/`],[t[lang].portfolio, `/${lang}/portfolio/`],[t[lang][catKey], `/${lang}/portfolio/${w.category}/`]]; const tr = t[lang];
-const title = L(w,'title',lang), desc = L(w,'desc',lang); const v = embed(w);
-const art = { '@context':'https://schema.org','@type':'VisualArtwork',name:title,description:desc,image:`${Astro.site?.origin ?? ''}${img(w.image)}`,dateCreated:w.year ? String(w.year) : undefined,artMedium:w.technique,creator:{'@type':'Person',name:site.name} };
-const ld = [art, { '@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[...crumbs.map((c,i)=>({ '@type':'ListItem',position:i+1,name:c[0],item:origin+c[1] })),{ '@type':'ListItem',position:crumbs.length+1,name:title }] }];
+const title = L(w,'title',lang), desc = L(w,'desc',lang); const dup = works().some(o => o.slug !== slug && L(o,'title',lang) === title); const v = embed(w);
+const abs = (p) => `${origin}${p}`;
+const art = { '@context':'https://schema.org','@type':'VisualArtwork',name:title,description:desc || `${title}. ${tr[catKey]} · ${site.name}`,url:abs(`/${lang}/obra/${slug}/`),image:abs(img(w.image)),thumbnailUrl:abs(img(w.image,'thumb')),dateCreated:w.year ? String(w.year) : undefined,artform:tr[catKey],artMedium:w.technique,inLanguage:lang === 'pt' ? 'pt-BR' : lang,creator:{ '@type':'Person',name:site.name,url:abs(`/${lang}/`) } };
+const vo = (w.video_file && w.year) ? { '@context':'https://schema.org','@type':'VideoObject',name:title,description:`${title} (${w.year}). ${tr[catKey]} · ${site.name}`,thumbnailUrl:abs(img(w.image)),contentUrl:abs(w.video_file),uploadDate:`${w.year}-01-01`,creator:{ '@type':'Person',name:site.name } } : null;
+const ld = [art, ...(vo ? [vo] : []), { '@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[...crumbs.map((c,i)=>({ '@type':'ListItem',position:i+1,name:c[0],item:origin+c[1] })),{ '@type':'ListItem',position:crumbs.length+1,name:title }] }];
 ---
-<Base lang={lang} title={title} desc={(desc || `${title}${w.year ? ' · ' + w.year : ''}`).slice(0,155)} path={`obra/${slug}/`} image={img(w.image)} ld={ld}>
+<Base lang={lang} title={dup ? `${title} · ${tr[catKey]}` : title} desc={(desc || `${title}${w.year ? ' (' + w.year + ')' : ''}. ${tr[catKey]} · ${site.name}. ${tr.tagline}`).slice(0,160)} path={`obra/${slug}/`} image={img(w.image)} ld={ld}>
   <div class="wrap">
     <nav class="bc" aria-label={tr.crumbs}>{crumbs.map(c => <><a href={c[1]}>{c[0]}</a><span aria-hidden="true">›</span></>)}<span aria-current="page">{title}</span></nav>
     <a class="back" href={`/${lang}/portfolio/${w.category}/${w.year ? '#y' + w.year : ''}`}>← {tr[catKey]}</a>

@@ -4,16 +4,19 @@ import Card from '../../components/Card.astro';
 import { t, site } from '../../site.js';
 import { works, L, img, embed, dim } from '../../lib/data.js';
 import portada from '../../data/portada.json';
+import acerca from '../../data/acerca.json';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
-const feat = all.filter(w => w.featured); const six = (feat.length ? feat : all).slice(0, 8);
+const byFo = (a, b) => (a.featured_order ?? 99) - (b.featured_order ?? 99);
+const feat = all.filter(w => w.featured).sort(byFo); const shown = (feat.length ? feat : all.slice(0, 7)).slice(0, 8);
 const hero = all.find(w => w.hero) || feat[0] || all[0];
-const bn = all.filter(w => w.banner); const slides = [hero, ...(bn.length ? bn : feat).filter(w => w !== hero)].filter(Boolean).filter(w => { const d = dim(w.image); return !d.width || d.height / d.width < 1.2; }).slice(0, 6);
+const bn = all.filter(w => w.banner).sort(byFo); const slides = [hero, ...(bn.length ? bn : feat).filter(w => w !== hero)].filter(Boolean).slice(0, 10);
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
-const person = { '@context':'https://schema.org','@type':'Person',name:site.name,jobTitle:'Artist',address:{'@type':'PostalAddress',addressCountry:'AR'},sameAs:site.social.map(s=>s[1]),knowsAbout:['digital collage','animation','illustration'] };
-const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:(Astro.site?.origin ?? '') + `/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
+const origin = Astro.site?.origin ?? '';
+const person = { '@context':'https://schema.org','@type':'Person',name:site.name,url:`${origin}/${lang}/`,description:tr.homeDesc,image:acerca.photo ? origin + img(acerca.photo) : undefined,jobTitle:'Visual artist',nationality:{ '@type':'Country',name:'Peru' },address:{ '@type':'PostalAddress',addressCountry:'AR' },sameAs:site.social.map(s => s[1]),knowsAbout:['surreal collage','digital collage','animated collage','illustration','surrealism'] };
+const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:`${origin}/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
-<Base lang={lang} title={site.name} desc={`${tr.title}. ${tr.tagline} ${tr.intro}`} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
+<Base lang={lang} title={tr.homeTitle} desc={tr.homeDesc} path="" ld={ld} image={hero ? img(hero.image) : undefined}>
   {slides.length > 0 && <section class="hero" aria-roledescription="carousel" aria-label={tr.featured}>
     <div class="t"><h1 class="sr">{site.name} · {tr.title}. {tr.intro}</h1><p class="k">{tr.title}</p><p class="sub">{tr.tagline}</p><p class="s">{tr.intro}</p></div>
     <div class="stage">
@@ -23,8 +26,7 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
   </section>}
   <div class="wrap">
     <h2>{tr.featured}</h2>
-    <div class="grid three">{six.map(w => <Card w={w} lang={lang} />)}</div>
-    <p style="margin-top:1.5rem"><a href={`/${lang}/portfolio/`}>{tr.all} →</a></p>
+    <div class="grid four">{shown.map(w => <Card w={w} lang={lang} />)}<a class="card seeall" href={`/${lang}/portfolio/`}><span class="tile">{tr.all} →</span></a></div>
   </div>
   <div class="band"><div class="wrap">
     <section class="split">

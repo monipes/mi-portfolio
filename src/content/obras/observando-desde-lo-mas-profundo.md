@@ -3,8 +3,6 @@ order: 15
 published: true
 featured: false
 hero: false
-banner: true
-banner_y: 50
 category: collage-digital
 title_es: "Observando desde lo más Profundo"
 title_en: ""

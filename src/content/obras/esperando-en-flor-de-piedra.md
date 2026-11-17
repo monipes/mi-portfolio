@@ -1,8 +1,11 @@
 ---
 order: 38
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 7
+banner: true
+banner_y: 50
 category: collage-digital
 title_es: "Esperando en flor de piedra"
 title_en: ""

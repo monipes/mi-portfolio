@@ -5,19 +5,20 @@ import { t, site } from '../../site.js';
 import { L, img } from '../../lib/data.js';
 import acerca from '../../data/acerca.json';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
-const { lang } = Astro.params; const tr = t[lang]; const bio = L(acerca, 'bio', lang);
-const ld = { '@context':'https://schema.org','@type':'AboutPage',name:`${tr.about} · ${site.name}`,mainEntity:{ '@type':'Person',name:site.name,description:bio.replace(/\s+/g,' ').slice(0,300),sameAs:site.social.map(s => s[1]) } };
+const { lang } = Astro.params; const tr = t[lang]; const bio = L(acerca, 'bio', lang); const origin = Astro.site?.origin ?? '';
+const flat = bio.replace(/\s+/g, ' ').trim();
+const ld = { '@context':'https://schema.org','@type':'AboutPage',name:`${tr.about} · ${site.name}`,url:`${origin}/${lang}/acerca-de/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang,mainEntity:{ '@type':'Person',name:site.name,url:`${origin}/${lang}/`,description:flat,image:acerca.photo ? origin + img(acerca.photo) : undefined,jobTitle:'Visual artist',nationality:{ '@type':'Country',name:'Peru' },address:{ '@type':'PostalAddress',addressCountry:'AR' },knowsAbout:['surreal collage','digital collage','animated collage','illustration','electronic music'],sameAs:site.social.map(s => s[1]) } };
 ---
-<Base lang={lang} title={tr.about} desc={bio.replace(/\s+/g,' ').slice(0,155)} path="acerca-de/" ld={ld} image={acerca.photo ? img(acerca.photo) : undefined}>
+<Base lang={lang} title={tr.about} desc={flat.slice(0, 158)} path="acerca-de/" ld={ld} image={acerca.photo ? img(acerca.photo) : undefined}>
   <div class="wrap">
     <h1 class="pt">{tr.about}</h1>
-    <div class="two" style="margin-top:2rem">
+    <div class="two about" style="margin-top:2rem;gap:3rem">
       <div>
-        <p style="white-space:pre-line;font-size:1.15rem">{bio}</p>
+        <p style="white-space:pre-line;font-size:1.1rem;line-height:1.75;max-width:64ch;margin:0">{bio}</p>
         <p style="margin-top:2rem"><a class="btn" href={`/${lang}/contacto/`}>{tr.contact}</a></p>
         <div style="margin-top:1.5rem"><Social items={site.social} /></div>
       </div>
-      {acerca.photo && <span class="art frame"><img src={img(acerca.photo)} alt={L(acerca,'photo_alt',lang) || site.name} loading="lazy" draggable="false" /></span>}
+      {acerca.photo && <span class="art frame"><img src={img(acerca.photo)} alt={L(acerca,'photo_alt',lang) || site.name} loading="eager" draggable="false" /></span>}
     </div>
   </div>
 </Base>

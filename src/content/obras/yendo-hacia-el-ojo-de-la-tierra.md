@@ -3,8 +3,6 @@ order: 12
 published: true
 featured: false
 hero: false
-banner: true
-banner_y: 38
 category: collage-digital
 title_es: "Yendo hacia el ojo de la tierra"
 title_en: ""

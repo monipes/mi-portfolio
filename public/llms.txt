@@ -1,6 +1,18 @@
 # Miss Sam
-> Artista visual de Argentina. Collage digital, collage animado, ilustración y animación.
-- /es/portfolio/ : obras
-- /es/exposiciones/ : exposiciones
-- /es/acerca-de/ : biografía
-- /es/contacto/ : contacto
+> Miss Sam es una artista visual multidisciplinaria peruana radicada en Argentina. Trabaja con collage surrealista, collage animado e ilustración, y explora la inteligencia artificial como otro lenguaje visual. También tiene más de dos décadas de trayectoria en la música electrónica como DJ profesional.
+
+Sitio oficial: https://mi-portfolio-2au.pages.dev/es/ (también en inglés: https://mi-portfolio-2au.pages.dev/en/ y portugués de Brasil: https://mi-portfolio-2au.pages.dev/pt/)
+
+## Secciones
+- [Portfolio](https://mi-portfolio-2au.pages.dev/es/portfolio/): todas las obras, ordenadas por año
+- [Collage digital](https://mi-portfolio-2au.pages.dev/es/portfolio/collage-digital/): collage surrealista (desde 2019)
+- [Collage animado](https://mi-portfolio-2au.pages.dev/es/portfolio/collage-animado/): videos y animaciones
+- [Exposiciones](https://mi-portfolio-2au.pages.dev/es/exposiciones/): muestras en Argentina, Perú, Estados Unidos, España, Italia y República Checa (2022-2025)
+- [Acerca de](https://mi-portfolio-2au.pages.dev/es/acerca-de/): biografía
+- [Contacto](https://mi-portfolio-2au.pages.dev/es/contacto/)
+
+## Datos clave
+- Nombre artístico: Miss Sam
+- Disciplinas: collage digital surrealista, collage animado, ilustración
+- Descubrió el collage digital en 2019
+- Redes: Instagram https://www.instagram.com/misssam.art/ · Facebook https://www.facebook.com/misssamfanpage

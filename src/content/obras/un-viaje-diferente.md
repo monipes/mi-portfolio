@@ -1,7 +1,7 @@
 ---
 order: 36
 published: true
-featured: true
+featured: false
 hero: false
 category: collage-digital
 title_es: "Un viaje diferente"

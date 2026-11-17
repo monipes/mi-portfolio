@@ -1,8 +1,11 @@
 ---
 order: 25
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 5
+banner: true
+banner_y: 38
 category: collage-digital
 title_es: "El ave me salvó"
 title_en: ""

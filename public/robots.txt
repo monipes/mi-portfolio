@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://TU-PROYECTO.pages.dev/sitemap.xml
+Disallow: /admin/
+
+Sitemap: https://mi-portfolio-2au.pages.dev/sitemap-index.xml

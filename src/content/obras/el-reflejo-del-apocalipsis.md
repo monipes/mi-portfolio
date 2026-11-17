@@ -3,8 +3,9 @@ order: 3
 published: true
 featured: true
 hero: false
+featured_order: 2
 banner: true
-banner_y: 55
+banner_y: 48
 category: collage-digital
 title_es: "El Reflejo del Apocalipsis"
 title_en: ""

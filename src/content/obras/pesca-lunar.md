@@ -3,8 +3,6 @@ order: 16
 published: true
 featured: false
 hero: false
-banner: true
-banner_y: 45
 category: collage-digital
 title_es: "Pesca Lunar"
 title_en: ""

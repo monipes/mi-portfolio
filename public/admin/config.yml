@@ -18,6 +18,7 @@ collections:
     fields:
       - {name: published, label: Publicada, widget: boolean, default: true}
       - {name: featured, label: Destacada en la home, widget: boolean, default: false}
+      - {name: featured_order, label: Orden en las destacadas y en el banner (1, 2, 3…), widget: number, required: false}
       - {name: hero, label: Banner de la home - la que aparece primero (solo una), widget: boolean, default: false}
       - {name: banner, label: Banner de la home - mostrar en el banner que va pasando (usá las de mejor calidad), widget: boolean, default: false}
       - {name: banner_y, label: Banner - qué parte se ve (0 = arriba, 50 = centro, 100 = abajo), widget: number, default: 55, min: 0, max: 100, required: false}

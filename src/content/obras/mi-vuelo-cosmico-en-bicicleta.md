@@ -1,8 +1,11 @@
 ---
 order: 20
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 4
+banner: true
+banner_y: 68
 category: collage-digital
 title_es: "Mi Vuelo Cósmico en Bicicleta"
 title_en: ""

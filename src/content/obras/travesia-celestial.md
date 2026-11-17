@@ -3,6 +3,7 @@ order: 2
 published: true
 featured: true
 hero: true
+featured_order: 1
 banner: true
 banner_y: 62
 category: collage-digital

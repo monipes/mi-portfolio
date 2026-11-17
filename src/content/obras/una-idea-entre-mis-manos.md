@@ -1,8 +1,11 @@
 ---
 order: 24
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 6
+banner: true
+banner_y: 38
 category: collage-digital
 title_es: "Una idea entre mis manos"
 title_en: ""

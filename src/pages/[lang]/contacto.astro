@@ -11,7 +11,7 @@ const F = {
 }[lang];
 const ld = { '@context':'https://schema.org','@type':'ContactPage',name:`${tr.contact} · ${site.name}`,url:(Astro.site?.origin ?? '') + `/${lang}/contacto/` };
 ---
-<Base lang={lang} title={tr.contact} desc={`${tr.contact} · ${site.name} · ${site.city}`} path="contacto/" ld={ld}>
+<Base lang={lang} title={tr.contact} desc={tr.contactDesc} path="contacto/" ld={ld}>
   <div class="wrap" style="max-width:680px">
     <h1 class="pt">{tr.contact}</h1>
     <form id="cf" class="cf" action="https://formspree.io/f/mleqqpab" method="POST" data-ok={F.ok} data-err={F.err} data-sending={F.sending}>

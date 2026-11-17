@@ -1,7 +1,7 @@
 ---
 order: 1
 published: true
-featured: true
+featured: false
 hero: false
 category: collage-digital
 title_es: "El humo del engaño"
