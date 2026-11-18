@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: TU-USUARIO-GITHUB/TU-REPO
+  repo: monipes/mi-portfolio
   branch: main
-  base_url: https://TU-PROYECTO.pages.dev   # login con GitHub (ver guía paso 5)
+  base_url: https://mi-portfolio-2au.pages.dev
+  auth_endpoint: api/auth
 media_folder: public/uploads
 public_path: /uploads
 locale: es
