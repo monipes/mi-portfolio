@@ -26,7 +26,7 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
   </section>}
   <div class="wrap">
     <h2>{tr.featured}</h2>
-    <div class="grid four">{shown.map(w => <Card w={w} lang={lang} />)}<a class="card seeall" href={`/${lang}/portfolio/`}><span class="tile">{tr.all} →</span></a></div>
+    <div class="grid four">{shown.map((w, i) => i === shown.length - 1 ? <div class="featured-last"><Card w={w} lang={lang} /><a class="btn seeall-btn" href={`/${lang}/portfolio/`}>{tr.all}<span aria-hidden="true">→</span></a></div> : <Card w={w} lang={lang} />)}</div>
   </div>
   <div class="band"><div class="wrap">
     <section class="split">

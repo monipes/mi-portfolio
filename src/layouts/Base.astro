@@ -180,11 +180,11 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
     .ex .acts{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}
     .btn.ghost{background:none;color:var(--fg);border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--fg)}
     @media(max-width:820px){.ex{grid-template-columns:1fr;gap:1.25rem;padding:2rem 0}.ex .media{max-width:420px}}
-    /* --- destacadas (4 columnas + 'ver todo'), marco igual en la home, Acerca de --- */
+    /* --- destacadas: ocho obras y un botón compacto de acceso al portfolio --- */
     .grid.four{grid-template-columns:repeat(4,1fr)}
-    .card.seeall{align-self:start}
-    .card.seeall .tile{display:flex;aspect-ratio:1/1;align-items:center;justify-content:center;text-align:center;padding:1rem;background:var(--band);border:1px solid var(--line);font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.1rem,1.8vw,1.5rem);transition:border-color .2s,color .2s}
-    .card.seeall:hover .tile{border-color:var(--acc);color:var(--acc)}
+    .featured-last{min-width:0}
+    .featured-last .seeall-btn{display:inline-flex;align-items:center;gap:.55rem;margin-top:.75rem;padding:.48rem .85rem;font-size:.9rem;line-height:1.2;border-radius:var(--r);transition:filter .2s,transform .2s}
+    .featured-last .seeall-btn:hover{filter:brightness(.92);transform:translateY(-1px)}
     .split .art.frame{padding:16px}
     .about{align-items:start}
     @media(max-width:820px){.grid.four{grid-template-columns:repeat(2,1fr);gap:.9rem}.split .art.frame{padding:9px}.about{gap:1.5rem!important}.about .art{order:-1;max-width:360px;margin-inline:auto}}
