@@ -47,3 +47,9 @@ Object.assign(t.pt,{title:'Realidades imaginadas',homeTitle:'Miss Sam · Colagem
 Object.assign(t.es,{contactDesc:'Escribile a Miss Sam: consultas sobre obras, exposiciones y colaboraciones. Artista visual peruana radicada en Argentina.'});
 Object.assign(t.en,{contactDesc:'Write to Miss Sam: inquiries about artworks, exhibitions and collaborations. Peruvian visual artist based in Argentina.'});
 Object.assign(t.pt,{contactDesc:'Escreva para a Miss Sam: consultas sobre obras, exposições e colaborações. Artista visual peruana radicada na Argentina.'});
+
+
+// Sección AI Motion
+Object.assign(t.es,{aiMotion:'AI Motion',comingSoon:'Muy pronto. Esta sección está en preparación.'});
+Object.assign(t.en,{aiMotion:'AI Motion',comingSoon:'Coming soon. This section is in preparation.'});
+Object.assign(t.pt,{aiMotion:'AI Motion',comingSoon:'Em breve. Esta seção está em preparação.'});

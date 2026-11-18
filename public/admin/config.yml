@@ -1,9 +1,8 @@
 backend:
   name: github
-  repo: monipes/mi-portfolio
+  repo: TU-USUARIO-GITHUB/TU-REPO
   branch: main
-  base_url: https://mi-portfolio-2au.pages.dev
-  auth_endpoint: api/auth
+  base_url: https://TU-PROYECTO.pages.dev   # login con GitHub (ver guía paso 5)
 media_folder: public/uploads
 public_path: /uploads
 locale: es
@@ -53,6 +52,29 @@ collections:
         widget: list
         required: false
         fields: [{name: label, label: Tamaño o edición (ej. 30x40 cm - edición de 10), widget: string},{name: price, label: Precio (texto libre, ej. USD 120), widget: string, required: false},{name: url, label: Link de compra, widget: string, required: false}]
+  - name: ai_motion
+    label: AI Motion
+    folder: src/content/ai-motion
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title_es}} · {{year}}"
+    fields:
+      - {name: published, label: Publicado, widget: boolean, default: true}
+      - {name: order, label: Orden (número chico = primero), widget: number, default: 50}
+      - {name: title_es, label: Título (ES), widget: string}
+      - {name: title_en, label: Título (EN), widget: string, required: false}
+      - {name: title_pt, label: Título (PT-BR), widget: string, required: false}
+      - {name: desc_es, label: Descripción (ES), widget: text, required: false}
+      - {name: desc_en, label: Descripción (EN), widget: text, required: false}
+      - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
+      - {name: year, label: Año, widget: number, required: false}
+      - {name: cover, label: Imagen de portada (opcional), widget: image, required: false}
+      - {name: video_file, label: Video / reel MP4, widget: file, required: false}
+      - {name: youtube, label: ID de YouTube (opcional), widget: string, required: false}
+      - {name: vimeo, label: ID de Vimeo (opcional), widget: string, required: false}
+      - {name: alt_es, label: Texto alternativo (ES), widget: string, required: false}
   - name: expos
     label: Exposiciones
     folder: src/content/exposiciones

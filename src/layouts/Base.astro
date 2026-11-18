@@ -183,7 +183,7 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
     /* --- destacadas: ocho obras y un botón compacto de acceso al portfolio --- */
     .grid.four{grid-template-columns:repeat(4,1fr)}
     .featured-last{min-width:0}
-    .featured-last .seeall-btn{display:inline-flex;align-items:center;gap:.55rem;margin-top:.75rem;padding:.48rem .85rem;font-size:.9rem;line-height:1.2;border-radius:var(--r);transition:filter .2s,transform .2s}
+    .featured-last .seeall-btn{display:flex;width:max-content;align-items:center;gap:.55rem;margin:.75rem 0 0 auto;padding:.48rem .85rem;font-size:.9rem;line-height:1.2;border-radius:var(--r);transition:filter .2s,transform .2s}
     .featured-last .seeall-btn:hover{filter:brightness(.92);transform:translateY(-1px)}
     .split .art.frame{padding:16px}
     .about{align-items:start}
@@ -201,6 +201,7 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
         <a href={`/${lang}/portfolio/collage-animado/`}>{tr.animated}</a>
         <a href={`/${lang}/portfolio/`}>{tr.all}</a>
       </div></details>
+    <a href={`/${lang}/ai-motion/`} aria-current={path.startsWith('ai-motion') ? 'page' : undefined}>{tr.aiMotion}</a>
     <a href={`/${lang}/exposiciones/`} aria-current={path.startsWith('exposiciones') ? 'page' : undefined}>{tr.exhibitions}</a>
     <a href={`/${lang}/tienda/`} aria-current={path.startsWith('tienda') ? 'page' : undefined}>{tr.shop}</a>
     <a href={`/${lang}/acerca-de/`} aria-current={path.startsWith('acerca-de') ? 'page' : undefined}>{tr.about}</a>
