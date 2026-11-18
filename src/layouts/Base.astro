@@ -23,10 +23,10 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
   <script is:inline>try{var s=sessionStorage.getItem('theme');if(s)document.documentElement.dataset.theme=s}catch(e){}</script>
   <style is:global>
-    :root{--bg:#141218;--band:#1b181f;--fg:#f1ece4;--mut:#a39d95;--line:#2f2b33;--acc:#ff5e8a;--r:2px}
-    [data-theme=light]{--bg:#f3efe8;--band:#ebe4d6;--fg:#1c1a1e;--mut:#6d675f;--line:#d8d1c5;--acc:#d6275b}
+    :root{--bg:#141218;--band:#1b181f;--fg:#f1ece4;--mut:#a39d95;--line:#2f2b33;--acc:#ff5e8a;--bio:#c4bdb5;--r:2px}
+    [data-theme=light]{--bg:#f3efe8;--band:#ebe4d6;--fg:#1c1a1e;--mut:#6d675f;--line:#d8d1c5;--acc:#d6275b;--bio:#514c48}
     *{box-sizing:border-box}html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 'Hanken Grotesk',system-ui,sans-serif}
+    body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 'Hanken Grotesk',system-ui,sans-serif}.about .bio{color:var(--bio)}
     h1,h2,h3,.logo{font-family:'Bricolage Grotesque',sans-serif;line-height:1.05;margin:0}
     a{color:inherit}a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
     header{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center;padding:1rem clamp(1rem,4vw,3rem);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}

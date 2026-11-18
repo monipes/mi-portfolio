@@ -1,8 +1,10 @@
 ---
 order: 17
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 7
+banner: true
 category: collage-digital
 title_es: "Cabeza Social"
 title_en: ""

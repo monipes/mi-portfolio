@@ -1,8 +1,10 @@
 ---
 order: 27
 published: true
-featured: false
+featured: true
 hero: false
+featured_order: 8
+banner: true
 category: collage-digital
 title_es: "Descubriendo un pequeño hábitat"
 title_en: ""
