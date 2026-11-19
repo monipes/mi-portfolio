@@ -10,3 +10,5 @@ export const img = (src, v = 'large') => (!src || !src.startsWith('/uploads/') |
 export const dim = (src) => { const s = sizes[base(src)]; return s ? { width: s[0], height: s[1] } : {}; };
 
 export const itemList = (list, lang, origin, name) => ({ '@context':'https://schema.org','@type':'CollectionPage',name,mainEntity:{ '@type':'ItemList',itemListElement:list.map((w,i)=>({ '@type':'ListItem',position:i+1,url:`${origin}/${lang}/obra/${w.slug}/`,name:L(w,'title',lang) })) } });
+
+export const aiMotion = () => load(import.meta.glob('../content/ai-motion/*.md', { eager: true })).filter(w => w.published !== false).sort((a,b) => (a.order ?? 99) - (b.order ?? 99));

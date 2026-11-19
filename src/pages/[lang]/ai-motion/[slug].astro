@@ -1,0 +1,13 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t, site } from '../../../site.js';
+import { aiMotion, L, img } from '../../../lib/data.js';
+export function getStaticPaths() { const all = aiMotion(); return ['es','en','pt'].flatMap(lang => all.map(w => ({ params: { lang, slug: w.slug }, props: { w } }))); }
+const { lang, slug } = Astro.params; const { w } = Astro.props; const tr = t[lang]; const title = L(w,'title',lang); const desc = L(w,'desc',lang); const origin = Astro.site?.origin ?? '';
+const ld = [{ '@context':'https://schema.org','@type':'VideoObject',name:title,description:desc || `${title} (${w.year}). AI Motion · ${site.name}`,thumbnailUrl:`${origin}${img(w.cover)}`,contentUrl:w.video_file ? `${origin}${w.video_file}` : undefined,uploadDate:w.year ? `${w.year}-01-01` : undefined,creator:{ '@type':'Person',name:site.name } }];
+---
+<Base lang={lang} title={title} desc={(desc || `${title}${w.year ? ' ('+w.year+')' : ''}. AI Motion · ${site.name}.`).slice(0,160)} path={`ai-motion/${slug}/`} image={img(w.cover)} ld={ld}>
+  <div class="wrap"><nav class="bc" aria-label={tr.crumbs}><a href={`/${lang}/`}>{tr.home}</a><span aria-hidden="true">›</span><a href={`/${lang}/ai-motion/`}>AI Motion</a><span aria-hidden="true">›</span><span aria-current="page">{title}</span></nav>
+    <a class="back" href={`/${lang}/ai-motion/`}>← AI Motion</a><div class="two"><div>{w.video_file && <video class="vid" src={w.video_file} poster={img(w.cover)} autoplay loop muted playsinline preload="metadata" controls controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback oncontextmenu="return false"></video>}</div><aside><h1 style="font-size:clamp(2rem,4vw,3rem)">{title}</h1><div class="meta">{w.year && <span>{tr.year}<b>{w.year}</b></span>}<span>{tr.technique}<b>AI Motion</b></span></div>{desc && <p style="white-space:pre-line">{desc}</p>}</aside></div>
+  </div>
+</Base>

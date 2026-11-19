@@ -1,12 +1,17 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t, site } from '../../site.js';
+import { aiMotion, L, img } from '../../lib/data.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
-const { lang } = Astro.params; const tr = t[lang];
+const { lang } = Astro.params; const tr = t[lang]; const list = aiMotion();
+const years = [...new Set(list.filter(w => w.year).map(w => w.year))].sort((a,b) => b-a);
+const noYear = list.filter(w => !w.year);
+const title = 'AI Motion';
+const desc = `${title} · ${site.name}.`;
 ---
-<Base lang={lang} title="AI Motion" desc={`AI Motion · ${site.name}. ${tr.comingSoon}`} path="ai-motion/">
-  <section class="wrap" style="min-height:48vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 1rem">
-    <h1 style="font-size:clamp(2.8rem,8vw,5.5rem);margin:0 0 1.25rem">AI Motion</h1>
-    <p style="color:var(--mut);font-size:1.15rem;max-width:38rem">{tr.comingSoon}</p>
-  </section>
+<Base lang={lang} title={title} desc={desc} path="ai-motion/">
+  <div class="wrap"><h1 class="pt">AI Motion</h1>
+    {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="grid">{list.filter(w => w.year === y).map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)} <small>{w.year}</small></span></a>)}</div></section>)}
+    {noYear.length > 0 && <section class="yr"><div class="grid">{noYear.map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)}</span></a>)}</div></section>}
+  </div>
 </Base>
