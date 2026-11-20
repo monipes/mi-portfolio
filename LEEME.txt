@@ -1,44 +1,19 @@
-CORRECCIONES PUNTUALES — MISS SAM
-=================================
+CORRECCIONES ACTUALIZADAS — PANEL DE ADMINISTRACIÓN
+====================================================
 
-Este paquete contiene solamente los archivos de las correcciones puntuales.
-No reemplaza el sitio completo ni contiene las 95 obras.
+Este ZIP complementa las correcciones puntuales anteriores. Contiene el mismo conjunto de archivos y una configuración actualizada del panel de Decap CMS.
 
-CÓMO APLICARLO
-1. Descomprimí este ZIP.
-2. Copiá las carpetas src y public dentro de la carpeta raíz de tu proyecto.
-3. Cuando Windows pregunte, elegí combinar carpetas y reemplazar solamente los archivos con el mismo nombre.
-4. Subí los cambios al repositorio de GitHub y esperá el despliegue de Cloudflare Pages.
-
-CAMBIOS INCLUIDOS
-- Banner: usa las siete obras solicitadas. Empieza por “Travesía Celestial”; luego elige las demás al azar, sin repetir hasta mostrar todas.
-- Menú: “Visión Alternativa” queda después de “Exposiciones”.
-- AI Motion: muestra una descripción en las tarjetas y se completa la descripción del video “El portal que no se debe cruzar”.
-- Visión Alternativa: se amplía el primer artículo, se corrige la fecha para evitar “Invalid Date” y se muestra solamente la fecha, sin firma editorial.
-- Decap CMS: la fecha de publicación queda identificada como tal y editable; se elimina la firma automática “Redacción de Visión Alternativa”.
-- Idiomas: el selector conserva Español como idioma original y ofrece Inglés y Portugués (Brasil) mediante el mismo sistema translate.goog que ya usás para francés y otros idiomas. Se quitan del menú los enlaces manuales a las versiones EN/PT para que no tengas que mantener esas traducciones.
-- Barra de Google Translate: se agregan reglas para ocultar los elementos habituales de la barra/tooltip superior y evitar que deje un espacio arriba. La apariencia final debe comprobarse en la página traducida, porque Google puede cambiar el HTML que inyecta.
+CAMBIOS DEL PANEL
+- Se quitaron de la interfaz de administración los campos para completar títulos, descripciones y textos alternativos en inglés y portugués, en las colecciones donde aparecían.
+- Los datos ya existentes en inglés y portugués NO se borran de los archivos Markdown/JSON; simplemente dejan de mostrarse como campos editables en el panel.
+- Se quitó del panel el selector antiguo “Banner de la home - la que aparece primero (solo una)”, porque el carrusel se controla con “Incluir en el carrusel” y “Posición en el carrusel”.
+- Se aclararon los nombres de los campos de destacadas, banner, orden y encuadres.
+- Se agregaron ayudas breves para explicar qué hace cada opción.
+- Se conserva el campo de descripción en español y el texto alternativo en español.
+- Se conservan técnica, año, medidas, imágenes adicionales, video, YouTube, Vimeo y opciones de venta.
 
 IMPORTANTE
-Las rutas y archivos de las versiones EN/PT que ya existen en el proyecto no se borran; simplemente dejan de ofrecerse como traducciones manuales en el selector. La navegación de idiomas que verá la gente usa Español o la traducción automática.
-
-NOTA SOBRE EL NOMBRE DE LA OBRA
-En los archivos del proyecto, la obra que mencionaste como “Unidad entre mis manos” figura como “Una idea entre mis manos”. El banner usa ese archivo existente.
-
-CORRECCIONES ADICIONALES SOLICITADAS
------------------------------------
-- AI Motion: en la grilla de entrada se muestra solamente el título y el año. La descripción y la técnica aparecen al abrir cada video, junto con título y año.
-- AI Motion: se puede editar la técnica desde Decap CMS; el año/fecha ya es editable.
-- Banner de inicio: orden solicitado fijo, sin aleatoriedad:
-  1. Travesía Celestial
-  2. Una idea entre mis manos
-  3. El ave me salvó
-  4. La sombrilla de los sueños
-  5. El secuestro de la Tierra
-  6. Nubes en la Mente
-  7. Esperando en flor de piedra
-  8. Cabeza Social
-- El banner ahora se administra desde Decap CMS: marcar las obras que se mostrarán y asignarles el número en "Orden del banner". Los ocho trabajos anteriores quedan configurados con ese orden. Se desactivan en el banner Globolandia, Descubriendo un pequeño hábitat y El Reflejo del Apocalipsis.
-
-ACLARACIÓN
-En el mensaje de voz, "el label me salvó" se interpretó como "El ave me salvó", que es el título que existe en el portfolio. La repetición se tomó como una repetición accidental y se incluyó una sola vez.
+- No se borraron títulos, descripciones ni traducciones que ya existieran en los archivos del sitio.
+- No se modificó el contenido de las obras.
+- Este paquete no reemplaza el proyecto completo. Copiá sus carpetas dentro de la raíz del proyecto, combinando y reemplazando solamente los archivos coincidentes.
+- Después subí los cambios a GitHub y esperá el despliegue de Cloudflare Pages.
