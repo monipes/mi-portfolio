@@ -11,7 +11,10 @@ const desc = `${title} · ${site.name}.`;
 ---
 <Base lang={lang} title={title} desc={desc} path="ai-motion/">
   <div class="wrap"><h1 class="pt">AI Motion</h1>
-    {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="grid">{list.filter(w => w.year === y).map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)} <small>{w.year}</small></span></a>)}</div></section>)}
+    {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="grid">{list.filter(w => w.year === y).map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)} <small>{w.year}</small></span>{L(w,'desc',lang) && <small class="motion-desc">{L(w,'desc',lang)}</small>}</a>)}</div></section>)}
     {noYear.length > 0 && <section class="yr"><div class="grid">{noYear.map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)}</span></a>)}</div></section>}
   </div>
 </Base>
+<style>
+  .motion-desc{display:block;color:var(--mut);line-height:1.45;margin-top:.35rem}
+</style>

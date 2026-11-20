@@ -20,7 +20,9 @@ const intro = lang === 'en'
 const dateLabel = (value) => {
   if (!value) return '';
   const day = value instanceof Date ? value.toISOString().slice(0, 10) : String(value).slice(0, 10);
-  return new Date(`${day}T12:00:00`).toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+  const parsed = /^\d{4}-\d{2}-\d{2}$/.test(day) ? new Date(`${day}T12:00:00`) : new Date(value);
+  if (Number.isNaN(parsed.getTime())) return '';
+  return parsed.toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
 };
 ---
 <Base lang={lang} title={tr.visionAlternative} desc={intro} path="vision-alternativa/" image={featured ? img(featured.image) : undefined}>

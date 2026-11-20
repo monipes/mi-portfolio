@@ -17,7 +17,11 @@ const title = L(post, 'title', lang);
 const excerpt = L(post, 'excerpt', lang);
 const body = L(post, 'body', lang);
 const alt = L(post, 'alt', lang) || title;
-const dateLabel = post.date ? new Date(`${post.date}T12:00:00`).toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+const dateValue = post.date instanceof Date ? post.date.toISOString().slice(0, 10) : String(post.date || '').slice(0, 10);
+const parsedDate = /^\d{4}-\d{2}-\d{2}$/.test(dateValue) ? new Date(`${dateValue}T12:00:00`) : new Date(post.date);
+const dateLabel = post.date && !Number.isNaN(parsedDate.getTime())
+  ? parsedDate.toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+  : '';
 const origin = Astro.site?.origin ?? '';
 const ld = {
   '@context': 'https://schema.org',
@@ -25,8 +29,7 @@ const ld = {
   headline: title,
   description: post.seo_description_es || excerpt,
   image: `${origin}${img(post.image)}`,
-  datePublished: post.date,
-  author: { '@type': 'Organization', name: post.author || 'Redacción de Visión Alternativa' },
+  datePublished: dateValue || undefined,
   publisher: { '@type': 'Organization', name: 'Visión Alternativa' },
 };
 ---
@@ -36,7 +39,7 @@ const ld = {
     <p class="eyebrow">{post.category || t[lang].visionAlternative}</p>
     <h1>{title}</h1>
     <p class="excerpt">{excerpt}</p>
-    <div class="byline">{dateLabel}{post.author ? ` · ${post.author}` : ''}</div>
+    {dateLabel && <div class="byline">{dateLabel}</div>}
     <figure class="cover"><img src={img(post.image)} alt={alt} fetchpriority="high" /></figure>
     <div class="article-body">{body}</div>
     {post.tags?.length > 0 && <div class="tags">{post.tags.map((tag) => <span>{tag}</span>)}</div>}

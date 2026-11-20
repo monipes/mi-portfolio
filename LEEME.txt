@@ -1,43 +1,26 @@
-PARCHE DEL SITIO — VISIÓN ALTERNATIVA Y DESCRIPCIONES
+CORRECCIONES PUNTUALES — MISS SAM
+=================================
 
-Este ZIP NO reemplaza todo el sitio. Contiene únicamente los archivos nuevos o modificados.
-Copiá las carpetas respetando sus rutas y aceptá sobrescribir los archivos existentes.
+Este paquete contiene solamente los archivos de las correcciones puntuales.
+No reemplaza el sitio completo ni contiene las 95 obras.
+
+CÓMO APLICARLO
+1. Descomprimí este ZIP.
+2. Copiá las carpetas src y public dentro de la carpeta raíz de tu proyecto.
+3. Cuando Windows pregunte, elegí combinar carpetas y reemplazar solamente los archivos con el mismo nombre.
+4. Subí los cambios al repositorio de GitHub y esperá el despliegue de Cloudflare Pages.
 
 CAMBIOS INCLUIDOS
-- Nuevo botón Visión Alternativa en el menú.
-- Nueva sección editorial y página individual para cada artículo.
-- Panel Decap con colección manual de Visión Alternativa: título, fecha, texto breve, autoría,
-  categoría, etiquetas, imagen principal (cargable y reemplazable) y SEO.
-- Primer artículo breve con imagen principal original.
-- 95 descripciones desc_es incorporadas a los archivos de las obras.
-- La plantilla muestra la descripción debajo del año y la técnica.
-- El campo manual desc_es queda visible en Decap, con límite de 110 caracteres.
-- Identificador de archivo basado en title_es para evitar nombres de archivo enormes en nuevas obras.
-- Corregida la ruta de imagen de “La sombrilla de los sueños”.
-- El registro de prueba queda como no publicado en prueba-carga-decapp.md.
+- Banner: usa las siete obras solicitadas. Empieza por “Travesía Celestial”; luego elige las demás al azar, sin repetir hasta mostrar todas.
+- Menú: “Visión Alternativa” queda después de “Exposiciones”.
+- AI Motion: muestra una descripción en las tarjetas y se completa la descripción del video “El portal que no se debe cruzar”.
+- Visión Alternativa: se amplía el primer artículo, se corrige la fecha para evitar “Invalid Date” y se muestra solamente la fecha, sin firma editorial.
+- Decap CMS: la fecha de publicación queda identificada como tal y editable; se elimina la firma automática “Redacción de Visión Alternativa”.
+- Idiomas: el selector conserva Español como idioma original y ofrece Inglés y Portugués (Brasil) mediante el mismo sistema translate.goog que ya usás para francés y otros idiomas. Se quitan del menú los enlaces manuales a las versiones EN/PT para que no tengas que mantener esas traducciones.
+- Barra de Google Translate: se agregan reglas para ocultar los elementos habituales de la barra/tooltip superior y evitar que deje un espacio arriba. La apariencia final debe comprobarse en la página traducida, porque Google puede cambiar el HTML que inyecta.
 
-IMPORTANTE: LIMPIEZA DEL REGISTRO DE PRUEBA
-En GitHub, dentro de src/content/obras/, eliminá el archivo antiguo cuyo nombre empieza así:
-map-alt_es-sdsadsadasdsa-banner_y-55-banner-false-featured-false-published-true-order-50-technique-collagre-title_en-dasdsadsa-title_es-tretret-etrtertre-focus-top-hero-false-image-uploads-2-jpg.md
-El parche incluye su versión corta y no publicada: prueba-carga-decapp.md.
-La imagen public/uploads/2.jpg ya estaba presente en el ZIP original.
+IMPORTANTE
+Las rutas y archivos de las versiones EN/PT que ya existen en el proyecto no se borran; simplemente dejan de ofrecerse como traducciones manuales en el selector. La navegación de idiomas que verá la gente usa Español o la traducción automática.
 
-SOBRE LA PRUEBA DE CARGA
-En el ZIP recibido sí aparece public/uploads/2.jpg y el registro de prueba apunta a /uploads/2.jpg.
-Por lo tanto, la imagen de prueba sí llegó al repositorio; el problema visible era el nombre larguísimo
-del archivo Markdown generado por el panel. El cambio identifier_field: title_es corrige la generación
-del nombre para las próximas entradas. Aun así, después de desplegar, conviene hacer una nueva prueba
-con una imagen real desde /admin para confirmar el flujo completo.
-
-DESPLIEGUE
-1. Copiá los archivos del parche a tu proyecto.
-2. Eliminá en GitHub el archivo de prueba antiguo indicado arriba.
-3. Guardá y subí los cambios al repositorio de GitHub.
-4. Esperá el nuevo despliegue de Cloudflare Pages.
-5. Entrá a /admin y probá crear una obra y un artículo, cargando y luego reemplazando su imagen.
-
-NOTA DE VALIDACIÓN
-Se validó la sintaxis YAML del panel, las 95 descripciones (todas menores de 110 caracteres),
-las rutas de medios de las obras y que títulos, años y técnicas permanecen idénticos al ZIP recibido.
-No se pudo completar el build de Astro en este entorno porque la instalación de dependencias (npm ci)
-agotó el tiempo disponible; por eso la prueba final debe hacerse después del despliegue.
+NOTA SOBRE EL NOMBRE DE LA OBRA
+En los archivos del proyecto, la obra que mencionaste como “Unidad entre mis manos” figura como “Una idea entre mis manos”. El banner usa ese archivo existente.

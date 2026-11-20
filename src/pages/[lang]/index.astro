@@ -9,8 +9,19 @@ export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
 const byFo = (a, b) => (a.featured_order ?? 99) - (b.featured_order ?? 99);
 const feat = all.filter(w => w.featured).sort(byFo); const shown = (feat.length ? feat : all.slice(0, 7)).slice(0, 8);
-const hero = all.find(w => w.hero) || feat[0] || all[0];
-const bn = all.filter(w => w.banner).sort(byFo); const slides = [hero, ...(bn.length ? bn : feat).filter(w => w !== hero)].filter(Boolean).slice(0, 10);
+// El banner usa exclusivamente estas siete obras. Travesía Celestial abre la secuencia;
+// después el recorrido se mezcla al azar sin repetir una obra hasta mostrar las siete.
+const bannerSlugs = [
+  'travesia-celestial',
+  'una-idea-entre-mis-manos',
+  'globolandia',
+  'esperando-en-flor-de-piedra',
+  'la-sombrilla-de-los-suenos',
+  'danzando-entre-nubes',
+  'pequeno-salto-mortal',
+];
+const slides = bannerSlugs.map(slug => all.find(w => w.slug === slug)).filter(Boolean);
+const hero = slides[0] || all.find(w => w.hero) || feat[0] || all[0];
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
 const origin = Astro.site?.origin ?? '';
 const person = { '@context':'https://schema.org','@type':'Person',name:site.name,url:`${origin}/${lang}/`,description:tr.homeDesc,image:acerca.photo ? origin + img(acerca.photo) : undefined,jobTitle:'Visual artist',nationality:{ '@type':'Country',name:'Peru' },address:{ '@type':'PostalAddress',addressCountry:'AR' },sameAs:site.social.map(s => s[1]),knowsAbout:['surreal collage','digital collage','animated collage','illustration','surrealism'] };
@@ -50,8 +61,10 @@ const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:sit
 (function(){var s=[].slice.call(document.querySelectorAll('.hero .slide')),b=document.getElementById('hp');if(s.length<2||!b)return;
 var i=0,t=null,PA='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>',PL='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>';
 function show(n){s[i].classList.remove('on');s[i].setAttribute('aria-hidden','true');i=n;s[i].classList.add('on');s[i].removeAttribute('aria-hidden')}
+var remaining=[];
+function refill(){remaining=[];for(var j=0;j<s.length;j++)if(j!==i)remaining.push(j);for(var k=remaining.length-1;k>0;k--){var r=Math.floor(Math.random()*(k+1)),v=remaining[k];remaining[k]=remaining[r];remaining[r]=v}}
 function stop(){if(t){clearInterval(t);t=null}b.innerHTML=PL;b.setAttribute('aria-label',b.dataset.play);b.dataset.s='paused'}
-function play(){if(t)clearInterval(t);t=setInterval(function(){show((i+1)%s.length)},6000);b.innerHTML=PA;b.setAttribute('aria-label',b.dataset.pause);b.dataset.s='playing'}
+function play(){if(t)clearInterval(t);if(!remaining.length)refill();t=setInterval(function(){if(!remaining.length)refill();show(remaining.shift())},6000);b.innerHTML=PA;b.setAttribute('aria-label',b.dataset.pause);b.dataset.s='playing'}
 b.onclick=function(){b.dataset.s==='playing'?stop():play()};
 document.addEventListener('visibilitychange',function(){if(document.hidden&&b.dataset.s==='playing'){clearInterval(t);t=null;b.dataset.s='hidden'}else if(!document.hidden&&b.dataset.s==='hidden'){play()}});
 matchMedia('(prefers-reduced-motion: reduce)').matches?stop():play();})();

@@ -89,14 +89,13 @@ collections:
     summary: "{{title_es}} · {{date}}"
     fields:
       - {name: published, label: Publicado, widget: boolean, default: true}
-      - {name: date, label: Fecha, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD"}
+      - {name: date, label: Fecha de publicación, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD"}
       - {name: title_es, label: Título (ES), widget: string}
       - {name: title_en, label: Título (EN), widget: string, required: false}
       - {name: title_pt, label: Título (PT-BR), widget: string, required: false}
       - {name: excerpt_es, label: Bajada breve (ES), widget: text}
       - {name: excerpt_en, label: Bajada (EN), widget: text, required: false}
       - {name: excerpt_pt, label: Bajada (PT-BR), widget: text, required: false}
-      - {name: author, label: Firma / autoría, widget: string, default: "Redacción de Visión Alternativa"}
       - {name: category, label: Categoría, widget: select, options: [Arte digital, Surrealismo, Animación experimental, Cultura visual, Tecnología y creatividad, Artistas]}
       - name: tags
         label: Etiquetas
