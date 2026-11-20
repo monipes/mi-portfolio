@@ -24,3 +24,21 @@ Las rutas y archivos de las versiones EN/PT que ya existen en el proyecto no se 
 
 NOTA SOBRE EL NOMBRE DE LA OBRA
 En los archivos del proyecto, la obra que mencionaste como “Unidad entre mis manos” figura como “Una idea entre mis manos”. El banner usa ese archivo existente.
+
+CORRECCIONES ADICIONALES SOLICITADAS
+-----------------------------------
+- AI Motion: en la grilla de entrada se muestra solamente el título y el año. La descripción y la técnica aparecen al abrir cada video, junto con título y año.
+- AI Motion: se puede editar la técnica desde Decap CMS; el año/fecha ya es editable.
+- Banner de inicio: orden solicitado fijo, sin aleatoriedad:
+  1. Travesía Celestial
+  2. Una idea entre mis manos
+  3. El ave me salvó
+  4. La sombrilla de los sueños
+  5. El secuestro de la Tierra
+  6. Nubes en la Mente
+  7. Esperando en flor de piedra
+  8. Cabeza Social
+- El banner ahora se administra desde Decap CMS: marcar las obras que se mostrarán y asignarles el número en "Orden del banner". Los ocho trabajos anteriores quedan configurados con ese orden. Se desactivan en el banner Globolandia, Descubriendo un pequeño hábitat y El Reflejo del Apocalipsis.
+
+ACLARACIÓN
+En el mensaje de voz, "el label me salvó" se interpretó como "El ave me salvó", que es el título que existe en el portfolio. La repetición se tomó como una repetición accidental y se incluyó una sola vez.

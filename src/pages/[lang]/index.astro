@@ -9,18 +9,20 @@ export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params
 const { lang } = Astro.params; const tr = t[lang]; const all = works();
 const byFo = (a, b) => (a.featured_order ?? 99) - (b.featured_order ?? 99);
 const feat = all.filter(w => w.featured).sort(byFo); const shown = (feat.length ? feat : all.slice(0, 7)).slice(0, 8);
-// El banner usa exclusivamente estas siete obras. Travesía Celestial abre la secuencia;
-// después el recorrido se mezcla al azar sin repetir una obra hasta mostrar las siete.
-const bannerSlugs = [
+// El banner se administra desde Decap CMS: marcar "Banner" y asignar "Orden del banner".
+const bannerWorks = all.filter(w => w.banner).sort((a, b) => (a.banner_order ?? 999) - (b.banner_order ?? 999));
+const defaultBannerSlugs = [
   'travesia-celestial',
   'una-idea-entre-mis-manos',
-  'globolandia',
-  'esperando-en-flor-de-piedra',
+  'el-ave-me-salvo',
   'la-sombrilla-de-los-suenos',
-  'danzando-entre-nubes',
-  'pequeno-salto-mortal',
+  'el-secuestro-de-la-tierra',
+  'nubes-en-la-mente',
+  'esperando-en-flor-de-piedra',
+  'cabeza-social',
 ];
-const slides = bannerSlugs.map(slug => all.find(w => w.slug === slug)).filter(Boolean);
+const defaultSlides = defaultBannerSlugs.map(slug => all.find(w => w.slug === slug)).filter(Boolean);
+const slides = bannerWorks.length ? bannerWorks : defaultSlides;
 const hero = slides[0] || all.find(w => w.hero) || feat[0] || all[0];
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
 const origin = Astro.site?.origin ?? '';

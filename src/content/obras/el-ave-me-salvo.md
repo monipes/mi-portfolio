@@ -10,7 +10,7 @@ category: collage-digital
 title_es: "El ave me salvó"
 title_en: ""
 title_pt: ""
-desc_es: "Una figura equilibra su cuerpo sobre una pirámide mientras libera un ave."
+desc_es: ""
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza en traje de baño, en equilibrio sobre una pirámide en el mar, sostiene un ave con la mano en alto"
@@ -22,4 +22,5 @@ image: /uploads/el-ave-me-salvo.jpg
 youtube: ""
 vimeo: ""
 buy_url: ""
+banner_order: 3
 ---

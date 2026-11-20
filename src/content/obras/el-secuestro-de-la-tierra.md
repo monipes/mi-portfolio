@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "El secuestro de la Tierra"
 title_en: ""
 title_pt: ""
-desc_es: "Un platillo volador captura la Tierra sobre un paisaje rojo y desolado."
+desc_es: ""
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con sombrero sentado sobre un maletín en un paisaje rojo mira un platillo volador con un ojo que atrapa la Tierra con un haz de luz"
@@ -19,4 +19,6 @@ image: /uploads/el-secuestro-de-la-tierra.jpg
 youtube: ""
 vimeo: ""
 buy_url: ""
+banner: true
+banner_order: 5
 ---
