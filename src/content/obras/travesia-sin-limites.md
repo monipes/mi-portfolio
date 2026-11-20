@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Travesía sin límites"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura saluda mientras otra salta hacia un horizonte imposible sobre el agua."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza saluda con su sombrero mientras una persona salta de un acantilado hacia una piraña flotante"

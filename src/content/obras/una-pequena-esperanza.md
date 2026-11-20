@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Una pequeña esperanza"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un viajero espera junto a una gran batería en un paisaje de montañas y nubes."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre de abrigo y sombrero de copa junto a una gran batería en un campo, frente a montañas y nubes"

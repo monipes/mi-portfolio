@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Saludo a la distancia"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura saluda desde el desierto mientras una casa aparece dentro de una burbuja."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza saluda con su sombrero en un desierto rojo; en una burbuja, una casa y una mujer"

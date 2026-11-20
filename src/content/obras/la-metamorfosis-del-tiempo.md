@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "La metamorfosis del tiempo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer transforma el paso del tiempo con un reloj y un jardín por cabeza."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con un reloj y plantas en lugar de cabeza sostiene una taza humeante y un ojo, entre troncos de árboles"

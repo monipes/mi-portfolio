@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Sabiduría con Sabor a Cosmos"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una lectora flota sobre una isla sostenida por un tenedor frente a la Luna."
 desc_en: ""
 desc_pt: ""
 alt_es: "Collage surrealista de una mujer leyendo sobre una pequeña isla de tierra cubierta de césped, sostenida por un tenedor frente a una enorme Luna y un cielo cósmico rojizo."

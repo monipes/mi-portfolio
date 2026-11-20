@@ -10,7 +10,7 @@ category: collage-digital
 title_es: "Globolandia"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una niña observa un castillo flotante que se eleva como un globo sobre las montañas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Niña con un ojo por cabeza sobre una montaña mira un castillo flotante atado como un globo"

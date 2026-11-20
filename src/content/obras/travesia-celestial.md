@@ -10,7 +10,7 @@ category: collage-digital
 title_es: "Travesía Celestial"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer navega sobre un barco de papel en un mar de nubes."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer en un barco de papel sobre un mar de nubes, con la Tierra y la Luna detrás"

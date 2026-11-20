@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "La mirada del tiempo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer busca alcanzar un reloj mientras otros vigilan desde lo alto."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con vestido violeta estira el brazo hacia un reloj entre columnas de tronco con relojes en lo alto, con un ojo flotando y un pájaro amarillo"

@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Sabor cósmico"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mano ofrece un cucurucho con un ojo en lugar de helado frente al cosmos."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una mano sostiene un cucurucho con un ojo en lugar de helado, frente a una Luna grande, Júpiter y un volcán nevado"

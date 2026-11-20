@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "La Protectora de la Tierra"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura abraza el planeta bajo un cielo estrellado."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con un ojo por cabeza abraza la Tierra bajo un cielo estrellado con la Luna"

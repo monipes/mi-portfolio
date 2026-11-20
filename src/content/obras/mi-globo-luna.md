@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Mi globo luna"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer sostiene una Luna convertida en globo, llena de flores y recuerdos."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer mayor sostiene la cuerda de una luna-globo donde asoma el retrato de una mujer entre flores rojas"

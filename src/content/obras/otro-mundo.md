@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Otro mundo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer con cabeza de jirafa contempla un paisaje suspendido entre agua y montañas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con cabeza de jirafa sobre media esfera flotante frente a un lago y montañas"

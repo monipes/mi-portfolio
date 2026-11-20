@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Flotando en la Quietud Cósmica"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un astronauta permanece en silencio sobre un asteroide frente a la inmensidad del cosmos."
 desc_en: ""
 desc_pt: ""
 alt_es: "Astronauta con un ojo por casco sentado sobre un asteroide mira la Tierra, la Luna y la Vía Láctea"

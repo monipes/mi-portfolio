@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Nubes en la Mente"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos personas conversan sobre el agua con nubes ocupando el lugar de sus cabezas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Un hombre y una mujer sentados en sillas sobre el mar bajo la Luna, con nubes en lugar de cabeza"

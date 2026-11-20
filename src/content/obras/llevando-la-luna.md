@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Llevando la Luna"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer escala una montaña y arrastra la Luna mediante una cuerda."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con un ojo por cabeza escala una montaña nevada tirando de una cuerda atada a la Luna"

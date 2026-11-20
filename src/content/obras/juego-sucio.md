@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Juego Sucio"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una enfermera aparece entre mapas y titulares en una escena de juego y engaño."
 desc_en: ""
 desc_pt: ""
 alt_es: "Enfermera con barbijo y una paleta de ping pong, con un virus en el delantal, sobre diarios japoneses y mapas antiguos"

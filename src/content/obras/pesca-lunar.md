@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Pesca Lunar"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos figuras pescan la Luna desde un acantilado frente a la Tierra."
 desc_en: ""
 desc_pt: ""
 alt_es: "Dos hombres con un ojo por cabeza en un acantilado, uno de ellos pesca la Luna con una caña, frente a la Tierra y las estrellas"

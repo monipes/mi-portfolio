@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Te estoy mirando"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un rostro observa el desierto mientras un camino nace de su boca."
 desc_en: ""
 desc_pt: ""
 alt_es: "Rostro blanco con las manos como anteojos y el cerebro asomando de la cabeza; un camino parte de su boca hacia dos figuras en un desierto agrietado"

@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Fuera de este mundo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura contempla la Tierra desde un paisaje lunar poblado de ojos y planetas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Figura con un ojo por cabeza sentada junto a un tronco seco en un paisaje lunar, con la Tierra y ojos flotando en el espacio"

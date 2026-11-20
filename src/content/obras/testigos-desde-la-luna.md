@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Testigos desde la Luna"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos figuras observan desde la Luna una Tierra envuelta en llamas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una pareja tomada de la mano sobre la Luna mira la Tierra en llamas"

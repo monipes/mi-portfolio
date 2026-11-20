@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Saliendo desde lo más profundo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Unas manos emergen del agua mientras una figura parece regresar desde las profundidades."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una imagen surrealista sobre emerger desde las profundidades."

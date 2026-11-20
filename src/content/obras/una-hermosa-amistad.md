@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Una hermosa amistad"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer toca a una ballena que flota en el cielo frente al mar."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer en el borde de un acantilado toca el hocico de una ballena que flota en el cielo"

@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Testigo en el cielo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una ventanilla de avión revela un platillo volador suspendido entre las nubes."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una escena de collage animado que abre una ventana hacia lo inesperado."

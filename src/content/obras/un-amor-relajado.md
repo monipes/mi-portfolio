@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Un amor relajado"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos figuras descansan en un paisaje lunar bajo un cielo estrellado."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer recostada en un desierto bajo un cielo estrellado, con montañas al fondo y una figura pequeña a lo lejos"

@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Obelisco mío"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mano gigante desciende del cielo sobre un obelisco solitario en el campo."
 desc_en: ""
 desc_pt: ""
 alt_es: "Persona de abrigo frente a un obelisco en un campo verde con montañas, y una mano gigante que baja del cielo"

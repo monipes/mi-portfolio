@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Regando la ciudad"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un hombre riega una ciudad desde un acantilado mientras un pájaro cruza el cielo."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre sobre un acantilado riega con una regadera una ciudad al pie de montañas, con un canario amarillo en el aire"

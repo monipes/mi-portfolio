@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "La vuelta al mundo con mi hogar"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una casa viaja sobre las nubes suspendida de un globo aerostático."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una casa sobre una isla flotante, atada a un globo aerostático, sobre un mar de nubes"

@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Salto mortal"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer observa un salto imposible junto a una pecera sobre tierra agrietada."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con delantal junto a un tacho convertido en pecera con tiburones y pirañas, sobre tierra agrietada, mientras un hombre salta al vacío desde un acantilado"

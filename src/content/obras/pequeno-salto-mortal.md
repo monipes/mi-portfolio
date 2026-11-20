@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Pequeño salto mortal"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura vierte agua sobre un pequeño mundo marino en equilibrio precario."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza vierte agua sobre un disco con un mar en miniatura, un faro y tiburones"

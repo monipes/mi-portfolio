@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "La vida que desconocemos"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un tulipán gigante y dos figuras habitan un paisaje rojizo entre estrellas y planetas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer sentada sobre una roca en un paisaje rojizo con un tulipán gigante y una estrella, mientras otra figura se sienta sobre la Tierra en el cielo"

@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Una idea entre mis manos"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer sostiene una bombilla mientras un árbol con ojos ocupa su lugar de cabeza."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con un árbol con ojos en lugar de cabeza sostiene una bombilla, sentada sobre montañas"

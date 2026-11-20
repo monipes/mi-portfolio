@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Observando desde lo más Profundo"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una observadora mira la Tierra a través de un telescopio entre montañas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con una serpiente enroscada en el sombrero y una burbuja de casco mira por un telescopio hacia la Tierra, entre montañas y un cielo estrellado"

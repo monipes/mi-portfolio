@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Fin de la Jornada Espacial"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un viajero flota sobre la Tierra mientras una casa ilumina la noche cósmica."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre de traje con un maletín flota sobre la Tierra mientras una casa sobre una nube brilla en el espacio, con la Luna y las estrellas"

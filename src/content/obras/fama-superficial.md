@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Fama superficial"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer lleva los likes sobre los ojos mientras posa entre flores y palmeras."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con un cartel de me gusta (854) sobre los ojos, fuma frente a una Luna, entre palmeras y flores rojas, sobre un degradé rosa"

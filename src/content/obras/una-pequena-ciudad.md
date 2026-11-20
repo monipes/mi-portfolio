@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Una pequeña ciudad"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un astronauta descubre una ciudad diminuta dentro de una esfera transparente."
 desc_en: ""
 desc_pt: ""
 alt_es: "Astronauta con un ojo por casco en un terreno rojizo junto a una burbuja que contiene una ciudad de rascacielos"

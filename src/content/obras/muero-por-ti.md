@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Muero por ti"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos figuras se encuentran entre el mar y las montañas bajo un cielo imposible."
 desc_en: ""
 desc_pt: ""
 alt_es: "Figura con un ojo por cabeza y un corazón en el pecho frente a un mapa antiguo y montañas, con un hombre sentado en el mar y un pájaro amarillo"
