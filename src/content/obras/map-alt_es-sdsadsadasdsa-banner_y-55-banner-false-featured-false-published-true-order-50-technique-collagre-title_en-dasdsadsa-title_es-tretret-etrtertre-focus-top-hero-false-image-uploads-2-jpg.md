@@ -6,8 +6,8 @@ banner: false
 banner_y: 55
 order: 50
 category: collage-digital
-title_es: tretret etrtertre
-title_en: dasdsadsa
+title_es: collage sam studio
+title_en: ""
 image: /uploads/2.jpg
 focus: top
 alt_es: sdsadsadasdsa
