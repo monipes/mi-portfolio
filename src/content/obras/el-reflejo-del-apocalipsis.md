@@ -10,7 +10,7 @@ category: collage-digital
 title_es: "El Reflejo del Apocalipsis"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer mira en un espejo lunar el reflejo de una ciudad devastada."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer sentada en la Luna frente a un espejo antiguo que refleja una ciudad con un hongo nuclear"

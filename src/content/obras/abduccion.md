@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Abducción"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una puerta se abre en el desierto mientras una nave misteriosa espera bajo el cielo."
 desc_en: ""
 desc_pt: ""
 alt_es: "Un platillo volador con un haz de luz dentro de un marco, sobre un desierto rojizo con cactus"

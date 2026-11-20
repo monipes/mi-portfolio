@@ -49,6 +49,7 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
     .card .art{aspect-ratio:4/5}.card .art img{height:100%;object-fit:cover}
     .tabs{display:flex;gap:1rem;margin:2rem 0}.tabs a{padding:.4rem 0;text-decoration:none;color:var(--mut);border-bottom:2px solid transparent}.tabs a[aria-current]{color:var(--fg);border-color:var(--acc)}
     .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin:1.5rem 0;color:var(--mut)}.meta b{display:block;color:var(--fg);font-weight:500}
+    .work-description{margin:0 0 1.5rem;color:var(--bio);font-size:1.02rem;line-height:1.65;white-space:pre-line;max-width:58ch}
     .btn{display:inline-block;background:var(--acc);color:#fff;padding:.7rem 1.2rem;border-radius:var(--r);text-decoration:none;font-weight:500}
     .video{aspect-ratio:16/9;width:100%;border:0;background:#000}
     .two{display:grid;grid-template-columns:2fr 1fr;gap:2.5rem}@media(max-width:800px){.two{grid-template-columns:1fr}}
@@ -202,6 +203,7 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
         <a href={`/${lang}/portfolio/`}>{tr.all}</a>
       </div></details>
     <a href={`/${lang}/ai-motion/`} aria-current={path.startsWith('ai-motion') ? 'page' : undefined}>{tr.aiMotion}</a>
+    <a href={`/${lang}/vision-alternativa/`} aria-current={path.startsWith('vision-alternativa') ? 'page' : undefined}>{tr.visionAlternative}</a>
     <a href={`/${lang}/exposiciones/`} aria-current={path.startsWith('exposiciones') ? 'page' : undefined}>{tr.exhibitions}</a>
     <a href={`/${lang}/tienda/`} aria-current={path.startsWith('tienda') ? 'page' : undefined}>{tr.shop}</a>
     <a href={`/${lang}/acerca-de/`} aria-current={path.startsWith('acerca-de') ? 'page' : undefined}>{tr.about}</a>

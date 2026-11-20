@@ -1,0 +1,57 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { langs, t } from '../../../site.js';
+import { L, img } from '../../../lib/data.js';
+import { visionArticles } from '../../../lib/vision.js';
+
+export function getStaticPaths() {
+  const posts = visionArticles();
+  return langs.flatMap((lang) => posts.map((post) => ({
+    params: { lang, slug: post.slug },
+    props: { post },
+  })));
+}
+const { lang, slug } = Astro.params;
+const { post } = Astro.props;
+const title = L(post, 'title', lang);
+const excerpt = L(post, 'excerpt', lang);
+const body = L(post, 'body', lang);
+const alt = L(post, 'alt', lang) || title;
+const dateLabel = post.date ? new Date(`${post.date}T12:00:00`).toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+const origin = Astro.site?.origin ?? '';
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: post.seo_description_es || excerpt,
+  image: `${origin}${img(post.image)}`,
+  datePublished: post.date,
+  author: { '@type': 'Organization', name: post.author || 'Redacción de Visión Alternativa' },
+  publisher: { '@type': 'Organization', name: 'Visión Alternativa' },
+};
+---
+<Base lang={lang} title={post.seo_title_es || title} desc={(post.seo_description_es || excerpt).slice(0,160)} path={`vision-alternativa/${slug}/`} image={img(post.image)} ld={ld}>
+  <article class="wrap article-page">
+    <a class="back-link" href={`/${lang}/vision-alternativa/`}>← {t[lang].visionAlternative}</a>
+    <p class="eyebrow">{post.category || t[lang].visionAlternative}</p>
+    <h1>{title}</h1>
+    <p class="excerpt">{excerpt}</p>
+    <div class="byline">{dateLabel}{post.author ? ` · ${post.author}` : ''}</div>
+    <figure class="cover"><img src={img(post.image)} alt={alt} fetchpriority="high" /></figure>
+    <div class="article-body">{body}</div>
+    {post.tags?.length > 0 && <div class="tags">{post.tags.map((tag) => <span>{tag}</span>)}</div>}
+  </article>
+</Base>
+<style>
+  .article-page{max-width:1050px;padding-top:2.5rem}
+  .back-link{display:inline-block;text-decoration:none;color:var(--mut);margin-bottom:2.5rem}
+  .eyebrow{color:var(--acc);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 1rem}
+  h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.045em;max-width:18ch}
+  .excerpt{font-size:clamp(1.1rem,2vw,1.45rem);color:var(--mut);max-width:42rem;margin:1.2rem 0}
+  .byline{color:var(--mut);font-size:.9rem;margin-bottom:1.5rem}
+  .cover{margin:0 0 2rem;aspect-ratio:16/9;overflow:hidden;background:var(--line)}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .article-body{font-size:1.12rem;line-height:1.85;white-space:pre-line;max-width:66ch}
+  .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+  .tags span{border:1px solid var(--line);padding:.25rem .7rem;font-size:.8rem;color:var(--mut)}
+</style>

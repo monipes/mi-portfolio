@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "El desapego"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mano emerge del mar mientras un globo rojo se aleja hacia el cielo."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una mano sale del mar mientras un globo rojo flota sobre las olas, bajo un cielo nublado"

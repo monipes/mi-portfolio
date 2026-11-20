@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Dominación"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una multitud observa un monumento coronado por un ojo gigantesco."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una multitud de hombres de sombrero mira un monumento coronado por un ojo gigante, con montañas y un cielo violeta"

@@ -10,6 +10,7 @@ locale: es
 collections:
   - name: works
     label: Obras
+    identifier_field: title_es
     folder: src/content/obras
     extension: md
     format: frontmatter
@@ -28,7 +29,7 @@ collections:
       - {name: title_es, label: Título (ES), widget: string}
       - {name: title_en, label: Título (EN), widget: string, required: false}
       - {name: title_pt, label: Título (PT-BR), widget: string, required: false}
-      - {name: desc_es, label: Descripción (ES), widget: text, required: false}
+      - {name: desc_es, label: Descripción breve (ES, máximo 110 caracteres), widget: text, required: false, pattern: ["^.{0,110}$", "Máximo 110 caracteres"]}
       - {name: desc_en, label: Descripción (EN), widget: text, required: false}
       - {name: desc_pt, label: Descripción (PT-BR), widget: text, required: false}
       - {name: image, label: Imagen principal (JPG o PNG, hasta ~3000 px), widget: image}
@@ -55,6 +56,7 @@ collections:
         fields: [{name: label, label: Tamaño o edición (ej. 30x40 cm - edición de 10), widget: string},{name: price, label: Precio (texto libre, ej. USD 120), widget: string, required: false},{name: url, label: Link de compra, widget: string, required: false}]
   - name: ai_motion
     label: AI Motion
+    identifier_field: title_es
     folder: src/content/ai-motion
     create: true
     slug: "{{slug}}"
@@ -76,8 +78,41 @@ collections:
       - {name: youtube, label: ID de YouTube (opcional), widget: string, required: false}
       - {name: vimeo, label: ID de Vimeo (opcional), widget: string, required: false}
       - {name: alt_es, label: Texto alternativo (ES), widget: string, required: false}
+  - name: vision_alternativa
+    label: Visión Alternativa
+    folder: src/content/vision-alternativa
+    create: true
+    identifier_field: title_es
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title_es}} · {{date}}"
+    fields:
+      - {name: published, label: Publicado, widget: boolean, default: true}
+      - {name: date, label: Fecha, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD"}
+      - {name: title_es, label: Título (ES), widget: string}
+      - {name: title_en, label: Título (EN), widget: string, required: false}
+      - {name: title_pt, label: Título (PT-BR), widget: string, required: false}
+      - {name: excerpt_es, label: Bajada breve (ES), widget: text}
+      - {name: excerpt_en, label: Bajada (EN), widget: text, required: false}
+      - {name: excerpt_pt, label: Bajada (PT-BR), widget: text, required: false}
+      - {name: author, label: Firma / autoría, widget: string, default: "Redacción de Visión Alternativa"}
+      - {name: category, label: Categoría, widget: select, options: [Arte digital, Surrealismo, Animación experimental, Cultura visual, Tecnología y creatividad, Artistas]}
+      - name: tags
+        label: Etiquetas
+        widget: list
+        required: false
+        field: {name: tag, label: Etiqueta, widget: string}
+      - {name: image, label: Imagen principal (podés cargarla o cambiarla), widget: image}
+      - {name: alt_es, label: Texto alternativo de imagen (ES), widget: string}
+      - {name: seo_title_es, label: Título SEO (ES), widget: string, required: false}
+      - {name: seo_description_es, label: Descripción SEO (ES), widget: text, required: false}
+      - {name: body_es, label: Texto del artículo (ES), widget: text}
+      - {name: body_en, label: Texto del artículo (EN), widget: text, required: false}
+      - {name: body_pt, label: Texto del artículo (PT-BR), widget: text, required: false}
   - name: expos
     label: Exposiciones
+    identifier_field: title_es
     folder: src/content/exposiciones
     extension: md
     format: frontmatter

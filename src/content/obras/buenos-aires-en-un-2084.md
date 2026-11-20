@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Buenos Aires en un 2084"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una Buenos Aires futura mezcla cúpulas, vegetación y escenas cotidianas imposibles."
 desc_en: ""
 desc_pt: ""
 alt_es: "Paisaje futurista con un obelisco, cúpulas de vidrio con vegetación, montañas y una persona con traje de astronauta usando una notebook sobre un campo verde"

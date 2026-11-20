@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Danzando entre Nubes"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una bailarina salta entre nubes y sostiene la Luna en una escena de ensueño."
 desc_en: ""
 desc_pt: ""
 alt_es: "Bailarina salta con los brazos en alto sosteniendo la Luna sobre un mar de nubes, con globos aerostáticos y montañas"

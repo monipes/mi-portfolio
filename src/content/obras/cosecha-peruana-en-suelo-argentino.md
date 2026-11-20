@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Cosecha Peruana en Suelo Argentino"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura contempla un planeta suspendido sobre un mar de nubes y montañas."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una figura pequeña sobre una roca frente a un mar de nubes y montañas, bajo un cielo turquesa con un planeta"

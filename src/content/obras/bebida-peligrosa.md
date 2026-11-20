@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Bebida peligrosa"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un astronauta descansa sobre el agua con una copa en la mano y un pez cerca."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza sentado entre dos acantilados sobre el mar, con un tiburón abajo"

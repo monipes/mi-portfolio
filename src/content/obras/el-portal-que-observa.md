@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "El Portal que Observa"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un viajero se acerca a un portal circular que parece observarlo desde el paisaje."
 desc_en: ""
 desc_pt: ""
 alt_es: "Un portal que contempla y conecta otros paisajes."

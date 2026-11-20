@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "El enigma del casco estelar"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un casco con un ojo observa a una figura solitaria bajo la Luna."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre sin cabeza sentado sobre una roca bajo un cielo turquesa con la Luna, junto a un casco de astronauta con un ojo, en un paisaje desértico"

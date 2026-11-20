@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Consumiendo el mundo del mañana"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura con casco de ojo observa un mapa mientras el futuro parece consumirse."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer de espaldas con un ojo dentro de un casco de tela fuma frente a un mapa antiguo"

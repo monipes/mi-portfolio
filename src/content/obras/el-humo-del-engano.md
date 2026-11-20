@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "El humo del engaño"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer camina sobre el planeta con una nube de noticias falsas por cabeza."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer de espaldas caminando sobre la Tierra; en lugar de cabeza, una nube de humo con titulares de noticias falsas"

@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "El Controlador de la Mente"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una máquina antigua conecta dos figuras en una escena de control mental."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre sonriente presiona el botón de una máquina antigua conectada a la cabeza de otro hombre que mira hacia arriba, frente a montañas nevadas y un cielo estrellado"

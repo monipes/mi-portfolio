@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "El Tiempo en Sus Manos"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura cae por el espacio mientras sostiene un reloj sobre la Tierra."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer cayendo por el espacio sobre la Tierra mientras sostiene un reloj"

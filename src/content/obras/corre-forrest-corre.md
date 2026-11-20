@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Corre Forrest, corre"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una carrera imposible atraviesa un paisaje nocturno donde la Luna ilumina el camino."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una carrera fantástica a través de un paisaje imposible."

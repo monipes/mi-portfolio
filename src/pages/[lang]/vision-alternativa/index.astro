@@ -1,0 +1,76 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { langs, t, site } from '../../../site.js';
+import { L, img } from '../../../lib/data.js';
+import { visionArticles } from '../../../lib/vision.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const tr = t[lang];
+const posts = visionArticles();
+const featured = posts[0] || null;
+const rest = posts.slice(1);
+const intro = lang === 'en'
+  ? 'Ideas, images and explorations to see the world from another angle.'
+  : lang === 'pt'
+    ? 'Ideias, imagens e explorações para olhar o mundo de outro jeito.'
+    : 'Ideas, imágenes y exploraciones para mirar el mundo desde otro lugar.';
+const dateLabel = (value) => {
+  if (!value) return '';
+  const day = value instanceof Date ? value.toISOString().slice(0, 10) : String(value).slice(0, 10);
+  return new Date(`${day}T12:00:00`).toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+};
+---
+<Base lang={lang} title={tr.visionAlternative} desc={intro} path="vision-alternativa/" image={featured ? img(featured.image) : undefined}>
+  <div class="wrap vision-page">
+    <p class="eyebrow">MISS SAM · ESPACIO EDITORIAL</p>
+    <h1>{tr.visionAlternative}</h1>
+    <p class="intro">{intro}</p>
+    {featured ? <article class="feature">
+      <a class="feature-image" href={`/${lang}/vision-alternativa/${featured.slug}/`}>
+        <img src={img(featured.image)} alt={L(featured, 'alt', lang) || L(featured, 'title', lang)} loading="eager" />
+      </a>
+      <div class="feature-copy">
+        <p class="meta-line">{featured.category} · {dateLabel(featured.date)}</p>
+        <h2><a href={`/${lang}/vision-alternativa/${featured.slug}/`}>{L(featured, 'title', lang)}</a></h2>
+        <p>{L(featured, 'excerpt', lang)}</p>
+        <a class="read-link" href={`/${lang}/vision-alternativa/${featured.slug}/`}>{lang === 'en' ? 'Read article' : lang === 'pt' ? 'Ler artigo' : 'Leer artículo'} →</a>
+      </div>
+    </article> : <p>{tr.empty}</p>}
+    {rest.length > 0 && <section class="latest">
+      <h2>{lang === 'en' ? 'More ideas' : lang === 'pt' ? 'Mais ideias' : 'Más ideas'}</h2>
+      <div class="cards">
+        {rest.map((post) => <article class="post-card">
+          <a class="post-image" href={`/${lang}/vision-alternativa/${post.slug}/`}><img src={img(post.image, 'thumb')} alt={L(post, 'alt', lang) || L(post, 'title', lang)} loading="lazy" /></a>
+          <p class="meta-line">{post.category} · {dateLabel(post.date)}</p>
+          <h3><a href={`/${lang}/vision-alternativa/${post.slug}/`}>{L(post, 'title', lang)}</a></h3>
+          <p>{L(post, 'excerpt', lang)}</p>
+        </article>)}
+      </div>
+    </section>}
+  </div>
+</Base>
+<style>
+  .vision-page{padding-top:clamp(2.5rem,7vw,5rem)}
+  .eyebrow,.meta-line{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:0 0 .8rem}
+  h1{font-size:clamp(2.8rem,8vw,6rem);letter-spacing:-.045em}
+  .intro{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--mut);max-width:38rem;margin:1rem 0 3rem}
+  .feature{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+  .feature-image,.post-image{display:block;overflow:hidden;background:var(--line)}
+  .feature-image{aspect-ratio:16/9}
+  .feature-image img,.post-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+  .feature-image:hover img,.post-image:hover img{transform:scale(1.025)}
+  .feature-copy h2{font-size:clamp(2rem,4vw,3.5rem);margin:.5rem 0 1rem;line-height:1.05}
+  .feature-copy h2 a,.post-card h3 a{text-decoration:none}
+  .feature-copy>p:not(.meta-line){color:var(--mut);font-size:1.05rem}
+  .read-link{display:inline-block;margin-top:.8rem;color:var(--acc);font-weight:600;text-decoration:none}
+  .latest{margin-top:4rem}
+  .latest h2{font-size:2rem;margin:0 0 1.5rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+  .post-image{aspect-ratio:16/10}
+  .post-card h3{font-size:1.45rem;margin:.3rem 0 .6rem}
+  .post-card>p:last-child{color:var(--mut);margin-top:0}
+  @media(max-width:760px){.feature{grid-template-columns:1fr}.feature-copy h2{font-size:2.3rem}}
+</style>

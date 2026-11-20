@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "El espejo que ve más allá"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mano sostiene un espejo con un ojo en medio de un campo verde."
 desc_en: ""
 desc_pt: ""
 alt_es: "Una mano emerge de un campo de pasto y sostiene un espejo redondo con un ojo, bajo un cielo con nubes"

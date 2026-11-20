@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Aireando planetas"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una mujer tiende pequeños planetas como si fueran ropa bajo un cielo cósmico."
 desc_en: ""
 desc_pt: ""
 alt_es: "Mujer con delantal sostiene la Tierra humeante sobre la Luna mientras planetas cuelgan de un tendedero"

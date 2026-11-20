@@ -8,13 +8,13 @@ export const site = {
 export const langs = ['es','en','pt'];
 export const paths = langs.map(lang => ({ params: { lang } }));
 export const t = {
-  es:{portfolio:'Portfolio',digital:'Collage digital',animated:'Collage animado',exhibitions:'Exposiciones',shop:'Tienda',contact:'Contacto',search:'Buscar',other:'Otro idioma',theme:'Modo claro/oscuro',
+  es:{portfolio:'Portfolio',digital:'Collage digital',animated:'Collage animado',visionAlternative:'Visión Alternativa',exhibitions:'Exposiciones',shop:'Tienda',contact:'Contacto',search:'Buscar',other:'Otro idioma',theme:'Modo claro/oscuro',
     tagline:'Collage surrealista · Animación · Ilustración',intro:'Un universo visual donde la imaginación no tiene límites.',featured:'Obras destacadas',motion:'Collage animado',all:'Ver todo',
     year:'Año',technique:'Técnica',size:'Medidas',buy:'Comprar',inquire:'Consultar por esta obra',soon:'La tienda está en construcción. Mientras tanto, escribime por cada obra.',empty:'Todavía no hay contenido acá.',newsletter:'Novedades',rights:'Todos los derechos reservados. Las imágenes no pueden copiarse ni reutilizarse.',tr:'Traducir'},
-  en:{portfolio:'Portfolio',digital:'Digital collage',animated:'Motion collage',exhibitions:'Exhibitions',shop:'Shop',contact:'Contact',search:'Search',other:'Other language',theme:'Light/dark mode',
+  en:{portfolio:'Portfolio',digital:'Digital collage',animated:'Motion collage',visionAlternative:'Alternative Vision',exhibitions:'Exhibitions',shop:'Shop',contact:'Contact',search:'Search',other:'Other language',theme:'Light/dark mode',
     tagline:'Surreal collage · Animation · Illustration',intro:'A visual universe where imagination knows no limits.',featured:'Featured works',motion:'Motion collage',all:'View all',
     year:'Year',technique:'Technique',size:'Size',buy:'Buy',inquire:'Inquire about this work',soon:'The shop is under construction. Meanwhile, write to me about any piece.',empty:'Nothing here yet.',newsletter:'News',rights:'All rights reserved. Images may not be copied or reused.',tr:'Translate'},
-  pt:{portfolio:'Portfólio',digital:'Colagem digital',animated:'Colagem animada',exhibitions:'Exposições',shop:'Loja',contact:'Contato',search:'Buscar',other:'Outro idioma',theme:'Modo claro/escuro',
+  pt:{portfolio:'Portfólio',digital:'Colagem digital',animated:'Colagem animada',visionAlternative:'Visão Alternativa',exhibitions:'Exposições',shop:'Loja',contact:'Contato',search:'Buscar',other:'Outro idioma',theme:'Modo claro/escuro',
     tagline:'Colagem surrealista · Animação · Ilustração',intro:'Um universo visual onde a imaginação não tem limites.',featured:'Obras em destaque',motion:'Colagem animada',all:'Ver tudo',
     year:'Ano',technique:'Técnica',size:'Medidas',buy:'Comprar',inquire:'Perguntar sobre esta obra',soon:'A loja está em construção. Enquanto isso, escreva-me sobre cada obra.',empty:'Ainda não há conteúdo aqui.',newsletter:'Novidades',rights:'Todos os direitos reservados. As imagens não podem ser copiadas nem reutilizadas.',tr:'Traduzir'},
 };

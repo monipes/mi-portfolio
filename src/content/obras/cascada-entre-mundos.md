@@ -7,7 +7,7 @@ category: collage-animado
 title_es: "Cascada entre Mundos"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una figura sostiene un espejo que conecta un paisaje árido con otra realidad."
 desc_en: ""
 desc_pt: ""
 alt_es: "Un encuentro visual entre mundos y realidades."

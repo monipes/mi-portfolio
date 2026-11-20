@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Corte letal"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un hombre descansa sobre el agua mientras unas tijeras cortan su frágil equilibrio."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre con un ojo por cabeza descansa en una hamaca sobre el agua; unas tijeras cortan la cuerda y un tiburón espera abajo"

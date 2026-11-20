@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Descansando mis pensamientos sin"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Una cabeza abierta revela un pequeño paisaje interior donde alguien descansa."
 desc_en: ""
 desc_pt: ""
 alt_es: "Cabeza de piedra abierta que muestra un árbol bajo un cielo estrellado, con una mujer sentada sobre el cerebro"

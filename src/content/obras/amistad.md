@@ -7,7 +7,7 @@ category: collage-digital
 title_es: "Amistad"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Dos astronautas se encuentran frente a una mariposa en un paisaje lunar."
 desc_en: ""
 desc_pt: ""
 alt_es: "Astronauta con un ojo por casco, parado en una escalera, estira la mano hacia una mariposa posada en un peñasco bajo un cielo estrellado"

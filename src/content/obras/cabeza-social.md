@@ -9,7 +9,7 @@ category: collage-digital
 title_es: "Cabeza Social"
 title_en: ""
 title_pt: ""
-desc_es: ""
+desc_es: "Un hombre camina por una ruta desierta mientras los likes brotan de su cabeza."
 desc_en: ""
 desc_pt: ""
 alt_es: "Hombre parado en un camino desierto con una lluvia de me gusta rojos en lugar de cabeza"
