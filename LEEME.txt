@@ -1,19 +1,14 @@
-CORRECCIONES ACTUALIZADAS — PANEL DE ADMINISTRACIÓN
-====================================================
+MISS SAM — Corrección puntual v3
 
-Este ZIP complementa las correcciones puntuales anteriores. Contiene el mismo conjunto de archivos y una configuración actualizada del panel de Decap CMS.
+Este paquete contiene SOLAMENTE 3 archivos corregidos. No es el sitio completo.
+Copiá la carpeta src dentro de tu proyecto original y elegí combinar/reemplazar los archivos cuando Windows lo pregunte.
 
-CAMBIOS DEL PANEL
-- Se quitaron de la interfaz de administración los campos para completar títulos, descripciones y textos alternativos en inglés y portugués, en las colecciones donde aparecían.
-- Los datos ya existentes en inglés y portugués NO se borran de los archivos Markdown/JSON; simplemente dejan de mostrarse como campos editables en el panel.
-- Se quitó del panel el selector antiguo “Banner de la home - la que aparece primero (solo una)”, porque el carrusel se controla con “Incluir en el carrusel” y “Posición en el carrusel”.
-- Se aclararon los nombres de los campos de destacadas, banner, orden y encuadres.
-- Se agregaron ayudas breves para explicar qué hace cada opción.
-- Se conserva el campo de descripción en español y el texto alternativo en español.
-- Se conservan técnica, año, medidas, imágenes adicionales, video, YouTube, Vimeo y opciones de venta.
+Cambios:
+- AI Motion ahora usa la misma grilla cuadrada, tarjeta, marco blanco, tamaños y espaciado que Collage Digital y Collage Animado (reutiliza el componente Card y las clases globales del sitio).
+- Al abrir una obra AI Motion, el video queda junto a su ficha con título, año, técnica y descripción, siguiendo la estructura de la ficha de obra del portfolio.
+- Visión Alternativa tiene paginación numerada, con puntos suspensivos para muchas páginas y botones Anterior/Siguiente. Muestra hasta 6 artículos por página; con los 2 artículos actuales aparece el número 1 y al agregar más se habilitan las páginas siguientes.
 
-IMPORTANTE
-- No se borraron títulos, descripciones ni traducciones que ya existieran en los archivos del sitio.
-- No se modificó el contenido de las obras.
-- Este paquete no reemplaza el proyecto completo. Copiá sus carpetas dentro de la raíz del proyecto, combinando y reemplazando solamente los archivos coincidentes.
-- Después subí los cambios a GitHub y esperá el despliegue de Cloudflare Pages.
+Archivos incluidos:
+src/pages/[lang]/ai-motion.astro
+src/pages/[lang]/ai-motion/[slug].astro
+src/pages/[lang]/vision-alternativa/index.astro

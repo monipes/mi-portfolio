@@ -27,11 +27,11 @@ const read = lang === 'en' ? 'Read article' : lang === 'pt' ? 'Ler artigo' : 'Le
         </div>
       </article>)}
     </section> : <p>{tr.empty}</p>}
-    <nav class="pagination" aria-label={lang === 'en' ? 'Article pages' : lang === 'pt' ? 'Páginas de artigos' : 'Páginas de artículos'} hidden>
-      <button type="button" class="page-button previous" disabled>← {lang === 'en' ? 'Previous' : lang === 'pt' ? 'Anterior' : 'Anterior'}</button>
-      <span class="page-status" aria-live="polite"></span>
+    {posts.length > 0 && <nav class="pagination" aria-label={lang === 'en' ? 'Article pages' : lang === 'pt' ? 'Páginas de artigos' : 'Páginas de artículos'} hidden>
+      <button type="button" class="page-button previous">← {lang === 'en' ? 'Previous' : lang === 'pt' ? 'Anterior' : 'Anterior'}</button>
+      <div class="page-numbers" aria-label={lang === 'en' ? 'Choose page' : lang === 'pt' ? 'Escolher página' : 'Elegir página'}></div>
       <button type="button" class="page-button next">{lang === 'en' ? 'Next' : lang === 'pt' ? 'Próxima' : 'Siguiente'} →</button>
-    </nav>
+    </nav>}
   </div>
 </Base>
 <script is:inline>
@@ -41,17 +41,37 @@ const read = lang === 'en' ? 'Read article' : lang === 'pt' ? 'Ler artigo' : 'Le
     if (!list || !nav) return;
     const cards = [...list.querySelectorAll('[data-article-index]')];
     const perPage = 6;
-    const total = Math.ceil(cards.length / perPage);
-    if (total <= 1) return;
+    const total = Math.max(1, Math.ceil(cards.length / perPage));
     let page = 1;
     const previous = nav.querySelector('.previous');
     const next = nav.querySelector('.next');
-    const status = nav.querySelector('.page-status');
+    const numbers = nav.querySelector('.page-numbers');
+    const labels = { first: 'Primera página', last: 'Última página' };
+    const addNumber = (n) => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'page-number'; button.textContent = String(n);
+      button.setAttribute('aria-label', `Página ${n}`);
+      if (n === page) { button.classList.add('active'); button.setAttribute('aria-current', 'page'); }
+      button.addEventListener('click', () => { page = n; render(); });
+      numbers.append(button);
+    };
+    const addDots = () => { const dots = document.createElement('span'); dots.className = 'page-dots'; dots.textContent = '…'; dots.setAttribute('aria-hidden', 'true'); numbers.append(dots); };
+    const renderNumbers = () => {
+      numbers.replaceChildren();
+      if (total <= 7) { for (let n = 1; n <= total; n++) addNumber(n); return; }
+      addNumber(1);
+      if (page > 3) addDots();
+      const from = Math.max(2, page - 1);
+      const to = Math.min(total - 1, page + 1);
+      for (let n = from; n <= to; n++) addNumber(n);
+      if (page < total - 2) addDots();
+      addNumber(total);
+    };
     const render = () => {
       cards.forEach((card, index) => { card.hidden = index < (page - 1) * perPage || index >= page * perPage; });
       previous.disabled = page === 1;
       next.disabled = page === total;
-      status.textContent = `${page} / ${total}`;
+      renderNumbers();
       nav.hidden = false;
     };
     previous.addEventListener('click', () => { if (page > 1) { page--; render(); } });
@@ -74,8 +94,8 @@ const read = lang === 'en' ? 'Read article' : lang === 'pt' ? 'Ler artigo' : 'Le
   .article-copy h2 a{text-decoration:none}.article-copy h2 a:hover{color:var(--acc)}
   .article-excerpt{color:var(--mut);font-size:.94rem;line-height:1.55;margin:.4rem 0}
   .read-link{display:inline-block;margin-top:.55rem;color:var(--acc);font-weight:600;text-decoration:none;font-size:.9rem}
-  .pagination{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin:2.5rem 0 1rem}
-  .pagination[hidden]{display:none}.page-button{font:inherit;color:var(--fg);background:var(--band);border:1px solid var(--line);padding:.55rem .9rem;cursor:pointer}.page-button:disabled{opacity:.4;cursor:default}.page-status{color:var(--mut);font-size:.9rem}
+  .pagination{display:flex;align-items:center;justify-content:center;gap:.55rem;flex-wrap:wrap;margin:2.5rem 0 1rem}
+  .pagination[hidden]{display:none}.page-numbers{display:flex;align-items:center;gap:.35rem}.page-button,.page-number{font:inherit;color:var(--fg);background:var(--band);border:1px solid var(--line);padding:.5rem .75rem;cursor:pointer;min-width:2.35rem}.page-number.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}.page-button:disabled{opacity:.4;cursor:default}.page-dots{padding:0 .2rem;color:var(--mut)}
   @media(max-width:1000px){.article-list{grid-template-columns:1fr}}
   @media(max-width:560px){.article-card{grid-template-columns:110px minmax(0,1fr);gap:.8rem;padding:.7rem}.article-thumb{padding:6px}.article-copy h2{font-size:1.15rem}.article-excerpt{font-size:.86rem}}
 </style>
