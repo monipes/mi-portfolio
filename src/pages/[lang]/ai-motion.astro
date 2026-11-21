@@ -8,10 +8,31 @@ const years = [...new Set(list.filter(w => w.year).map(w => w.year))].sort((a,b)
 const noYear = list.filter(w => !w.year);
 const title = 'AI Motion';
 const desc = `${title} · ${site.name}.`;
+const label = (es, en, pt) => lang === 'en' ? en : lang === 'pt' ? pt : es;
 ---
 <Base lang={lang} title={title} desc={desc} path="ai-motion/">
-  <div class="wrap"><h1 class="pt">AI Motion</h1>
-    {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="grid">{list.filter(w => w.year === y).map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)} <small>{w.year || ''}</small></span></a>)}</div></section>)}
-    {noYear.length > 0 && <section class="yr"><div class="grid">{noYear.map(w => <a class="card" href={`/${lang}/ai-motion/${w.slug}/`}><span class="art frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span><span class="cap">{L(w,'title',lang)} <small>{w.year || ''}</small></span></a>)}</div></section>}
+  <div class="wrap motion-page"><h1 class="pt">AI Motion</h1>
+    {years.map(y => <section id={`y${y}`} class="yr"><h2>{y}</h2><div class="motion-grid">{list.filter(w => w.year === y).map(w => <a class="motion-card" href={`/${lang}/ai-motion/${w.slug}/`}>
+        <span class="motion-image frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span>
+        <span class="motion-copy"><strong class="motion-title">{L(w,'title',lang)}</strong><span class="motion-meta"><span><small>{label('Año','Year','Ano')}</small>{w.year}</span><span><small>{label('Técnica','Technique','Técnica')}</small>{w.technique || 'AI Motion'}</span></span>{L(w,'desc',lang) && <span class="motion-description">{L(w,'desc',lang)}</span>}</span>
+      </a>)}</div></section>)}
+    {noYear.length > 0 && <section class="yr"><div class="motion-grid">{noYear.map(w => <a class="motion-card" href={`/${lang}/ai-motion/${w.slug}/`}>
+        <span class="motion-image frame"><span class="play" aria-hidden="true">▶</span><img src={img(w.cover, 'thumb')} alt={w.alt_es || L(w,'title',lang)} loading="lazy" draggable="false" onerror={`this.onerror=null;this.src='${w.cover}'`} /></span>
+        <span class="motion-copy"><strong class="motion-title">{L(w,'title',lang)}</strong><span class="motion-meta">{w.year && <span><small>{label('Año','Year','Ano')}</small>{w.year}</span>}<span><small>{label('Técnica','Technique','Técnica')}</small>{w.technique || 'AI Motion'}</span></span>{L(w,'desc',lang) && <span class="motion-description">{L(w,'desc',lang)}</span>}</span>
+      </a>)}</div></section>}
   </div>
 </Base>
+<style>
+  .motion-page{padding-top:clamp(2.5rem,7vw,5rem)}
+  .motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:clamp(1.2rem,2.5vw,2rem);align-items:start}
+  .motion-card{display:grid;grid-template-columns:minmax(110px,.82fr) minmax(0,1.18fr);gap:1rem;align-items:start;text-decoration:none;min-width:0;padding:1rem;border:1px solid var(--line);background:var(--band);transition:transform .2s,border-color .2s}
+  .motion-card:hover{transform:translateY(-3px);border-color:var(--acc)}
+  .motion-image{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#fff;padding:7px;box-shadow:0 1px 2px #0002,0 8px 22px #0002}
+  .motion-image img{display:block;width:100%;height:100%;object-fit:cover}
+  .motion-copy{display:flex;flex-direction:column;gap:.8rem;min-width:0}
+  .motion-title{font:800 clamp(1.15rem,1.8vw,1.55rem)/1.08 'Bricolage Grotesque',sans-serif}
+  .motion-meta{display:flex;gap:1rem;flex-wrap:wrap;color:var(--fg);font-size:.9rem}
+  .motion-meta span{display:flex;flex-direction:column;gap:.12rem}.motion-meta small{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .motion-description{font-size:.92rem;line-height:1.55;color:var(--mut)}
+  @media(max-width:520px){.motion-card{grid-template-columns:minmax(100px,.72fr) minmax(0,1.28fr);gap:.8rem;padding:.7rem}.motion-meta{gap:.7rem}}
+</style>

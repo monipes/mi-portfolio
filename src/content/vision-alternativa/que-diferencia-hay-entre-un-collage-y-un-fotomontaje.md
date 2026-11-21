@@ -13,8 +13,8 @@ tags:
   - fotomontaje
   - arte digital
   - composición visual
-image: ""
-alt_es: ""
+image: /uploads/collage-y-fotomontaje.jpg
+alt_es: "Composición surrealista que combina fragmentos de papel rasgado, una figura fotográfica y un paisaje con un árbol reflejado en el agua."
 seo_title_es: "Collage y fotomontaje: diferencias y posibilidades | MISS SAM"
 seo_description_es: "Qué distingue al collage del fotomontaje, cómo se relacionan y qué posibilidades ofrecen en la creación artística contemporánea y digital."
 reading_time_manual: 0
