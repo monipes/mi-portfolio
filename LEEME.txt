@@ -1,14 +1,13 @@
-MISS SAM — Corrección puntual v3
+MISS SAM — Corrección puntual v4
 
-Este paquete contiene SOLAMENTE 3 archivos corregidos. No es el sitio completo.
-Copiá la carpeta src dentro de tu proyecto original y elegí combinar/reemplazar los archivos cuando Windows lo pregunte.
+Este paquete contiene SOLAMENTE 2 archivos corregidos. Copiá la carpeta src dentro del proyecto que ya estás actualizando y combiná/reemplazá los archivos cuando Windows lo pregunte.
 
 Cambios:
-- AI Motion ahora usa la misma grilla cuadrada, tarjeta, marco blanco, tamaños y espaciado que Collage Digital y Collage Animado (reutiliza el componente Card y las clases globales del sitio).
-- Al abrir una obra AI Motion, el video queda junto a su ficha con título, año, técnica y descripción, siguiendo la estructura de la ficha de obra del portfolio.
-- Visión Alternativa tiene paginación numerada, con puntos suspensivos para muchas páginas y botones Anterior/Siguiente. Muestra hasta 6 artículos por página; con los 2 artículos actuales aparece el número 1 y al agregar más se habilitan las páginas siguientes.
+- AI Motion ahora muestra todas las obras en UNA SOLA grilla horizontal, sin separarlas en bloques por año. Así “El portal que no se debe cruzar” y “Una nube para llevar” aparecen uno al lado del otro.
+- Cada tarjeta mantiene la imagen cuadrada y muestra su año debajo del título. “Una nube para llevar” figura como 2026.
+- Al abrir cada obra, la ficha muestra título, año y técnica (AI Motion), además de la descripción.
+- Visión Alternativa ya está configurada para mostrar 6 artículos por página: los primeros 6 quedan en la página 1 y el séptimo inicia la página 2. La paginación numérica se activa cuando hay más de una página.
 
 Archivos incluidos:
 src/pages/[lang]/ai-motion.astro
 src/pages/[lang]/ai-motion/[slug].astro
-src/pages/[lang]/vision-alternativa/index.astro

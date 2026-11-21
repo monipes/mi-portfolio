@@ -5,7 +5,7 @@ import { aiMotion, L, img } from '../../../lib/data.js';
 export function getStaticPaths() { const all = aiMotion(); return langs.flatMap(lang => all.map(w => ({ params: { lang, slug: w.slug }, props: { w } }))); }
 const { lang, slug } = Astro.params; const { w } = Astro.props; const tr = t[lang];
 const title = L(w,'title',lang); const desc = L(w,'desc',lang); const origin = Astro.site?.origin ?? '';
-const ld = [{ '@context':'https://schema.org','@type':'VideoObject',name:title,description:desc || `${title}${w.year ? ` (${w.year})` : ''}. AI Motion · ${site.name}`,thumbnailUrl:`${origin}${img(w.cover)}`,contentUrl:w.video_file ? `${origin}${w.video_file}` : undefined,uploadDate:w.year ? `${w.year}-01-01` : undefined,creator:{ '@type':'Person',name:site.name } }];
+const ld = [{ '@context':'https://schema.org','@type':'VideoObject',name:title,description:desc || `${title}${w.year ? ` (${w.year})` : ''}. AI Motion · ${site.name}`,thumbnailUrl:`${origin}${img(w.cover)}`,contentUrl:w.video_file ? `${origin}${w.video_file}` : undefined,creator:{ '@type':'Person',name:site.name } }];
 ---
 <Base lang={lang} title={title} desc={(desc || `${title}${w.year ? ' ('+w.year+')' : ''}. AI Motion · ${site.name}.`).slice(0,160)} path={`ai-motion/${slug}/`} image={img(w.cover)} ld={ld}>
   <div class="wrap">
