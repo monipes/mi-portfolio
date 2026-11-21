@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import { langs, t } from '../../../site.js';
 import { L, img } from '../../../lib/data.js';
-import { visionArticles, readingTime } from '../../../lib/vision.js';
+import { visionArticles, readingMinutes } from '../../../lib/vision.js';
 
 export function getStaticPaths() {
   const posts = visionArticles();
@@ -15,52 +15,33 @@ const { lang, slug } = Astro.params;
 const { post } = Astro.props;
 const title = L(post, 'title', lang);
 const excerpt = L(post, 'excerpt', lang);
+const readTime = readingMinutes(post);
 const body = L(post, 'body', lang);
 const alt = L(post, 'alt', lang) || title;
-const minutes = readingTime(post);
-const readingLabel = lang === 'en' ? `${minutes} min read` : lang === 'pt' ? `${minutes} min de leitura` : `${minutes} min de lectura`;
 const dateValue = post.date instanceof Date ? post.date.toISOString().slice(0, 10) : String(post.date || '').slice(0, 10);
 const parsedDate = /^\d{4}-\d{2}-\d{2}$/.test(dateValue) ? new Date(`${dateValue}T12:00:00`) : new Date(post.date);
 const dateLabel = post.date && !Number.isNaN(parsedDate.getTime())
   ? parsedDate.toLocaleDateString(lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
   : '';
 const origin = Astro.site?.origin ?? '';
-const pageUrl = `${origin}/${lang}/vision-alternativa/${slug}/`;
-const ld = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
-    description: post.seo_description_es || excerpt,
-    image: post.image ? `${origin}${img(post.image)}` : undefined,
-    author: { '@type': 'Person', name: 'MISS SAM', url: `${origin}/${lang}/acerca-de/` },
-    publisher: { '@type': 'Person', name: 'MISS SAM', url: `${origin}/${lang}/acerca-de/` },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
-    inLanguage: lang === 'pt' ? 'pt-BR' : lang,
-    articleSection: post.category || undefined,
-    keywords: post.tags?.length ? post.tags : undefined,
-    wordCount: body.trim() ? body.trim().split(/\s+/).length : 0,
-    datePublished: dateValue || undefined,
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t[lang].home, item: `${origin}/${lang}/` },
-      { '@type': 'ListItem', position: 2, name: t[lang].visionAlternative, item: `${origin}/${lang}/vision-alternativa/` },
-      { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
-    ],
-  },
-];
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: post.seo_description_es || excerpt,
+  image: `${origin}${img(post.image)}`,
+  datePublished: dateValue || undefined,
+  publisher: { '@type': 'Organization', name: 'Visión Alternativa' },
+};
 ---
-<Base lang={lang} title={post.seo_title_es || title} desc={(post.seo_description_es || excerpt).slice(0,160)} path={`vision-alternativa/${slug}/`} image={post.image ? img(post.image) : undefined} ld={ld} ogType="article">
+<Base lang={lang} title={post.seo_title_es || title} desc={(post.seo_description_es || excerpt).slice(0,160)} path={`vision-alternativa/${slug}/`} image={img(post.image)} ld={ld}>
   <article class="wrap article-page">
     <a class="back-link" href={`/${lang}/vision-alternativa/`}>← {t[lang].visionAlternative}</a>
     <p class="eyebrow">{post.category || t[lang].visionAlternative}</p>
     <h1>{title}</h1>
     <p class="excerpt">{excerpt}</p>
-    {(dateLabel || minutes) && <div class="byline">{dateLabel}{dateLabel && minutes ? ' · ' : ''}{readingLabel}</div>}
-    {post.image && <figure class="cover frame"><img src={img(post.image)} alt={alt} fetchpriority="high" /></figure>}
+    {dateLabel && <div class="byline">{dateLabel} · {readTime} min de lectura</div>}
+    <figure class="cover"><img src={img(post.image)} alt={alt} fetchpriority="high" /></figure>
     <div class="article-body">{body}</div>
     {post.tags?.length > 0 && <div class="tags">{post.tags.map((tag) => <span>{tag}</span>)}</div>}
   </article>
@@ -72,7 +53,7 @@ const ld = [
   h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.045em;max-width:18ch}
   .excerpt{font-size:clamp(1.1rem,2vw,1.45rem);color:var(--mut);max-width:42rem;margin:1.2rem 0}
   .byline{color:var(--mut);font-size:.9rem;margin-bottom:1.5rem}
-  .cover{margin:0 0 2rem;aspect-ratio:16/9;overflow:hidden;background:#fff;padding:12px;box-shadow:0 1px 2px #0002,0 10px 28px #0002}
+  .cover{margin:0 0 2rem;aspect-ratio:16/9;overflow:hidden;background:var(--line)}
   .cover img{width:100%;height:100%;object-fit:cover;display:block}
   .article-body{font-size:1.12rem;line-height:1.85;white-space:pre-line;width:100%;max-width:none;margin-inline:auto}
   .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}

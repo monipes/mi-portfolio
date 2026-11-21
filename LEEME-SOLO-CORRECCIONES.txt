@@ -1,0 +1,21 @@
+MISS SAM — SOLO CORRECCIONES Y CONTENIDO NUEVO
+
+Este paquete NO contiene el portfolio completo. Contiene únicamente archivos nuevos o reemplazos puntuales.
+
+INCLUIDO:
+- Seis artículos de Visión Alternativa con sus seis imágenes.
+- Fecha de publicación semanal: martes 20:00 (Argentina), desde 24/11/2026 hasta 29/12/2026.
+- Tiempo de lectura por artículo (editable; cálculo automático si queda vacío).
+- Campo de programación en Decap CMS y flujo de GitHub Actions para disparar una compilación semanal.
+- AI Motion: ficha de Una nube para llevar con año 2026, portada y video.
+- Plantillas AI Motion de la última corrección (grilla horizontal y ficha individual).
+- Visión Alternativa: lista horizontal, paginación de seis artículos por página.
+
+FLECHITA VOLVER ARRIBA:
+La plantilla general Base.astro del proyecto original ya contiene el botón global de volver arriba; por eso no se incluye ni reemplaza ese archivo. También funciona en Visión Alternativa.
+
+CÓMO USAR:
+Descomprimí este ZIP y copiá su contenido dentro de la carpeta del proyecto original, conservando las rutas. Cuando Windows pregunte si querés combinar carpetas y reemplazar archivos, aceptá reemplazar únicamente los archivos con el mismo nombre. No borres el resto del proyecto.
+
+IMPORTANTE SOBRE LA PROGRAMACIÓN:
+El workflow se ejecuta los martes a las 23:00 UTC (20:00 Argentina) y genera un commit para activar el despliegue conectado a GitHub en Cloudflare Pages. Para que funcione, GitHub Actions debe estar habilitado y Cloudflare Pages debe estar conectado a la rama main. La primera publicación depende de que el primer despliegue con estos cambios termine correctamente.

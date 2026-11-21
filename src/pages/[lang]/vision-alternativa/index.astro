@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import { langs, t } from '../../../site.js';
 import { L, img } from '../../../lib/data.js';
-import { visionArticles } from '../../../lib/vision.js';
+import { visionArticles, readingMinutes } from '../../../lib/vision.js';
 export function getStaticPaths() { return langs.map((lang) => ({ params: { lang } })); }
 const { lang } = Astro.params; const tr = t[lang]; const posts = visionArticles();
 const intro = lang === 'en' ? 'Ideas, images and explorations to see the world from another angle.' : lang === 'pt' ? 'Ideias, imagens e explorações para olhar o mundo de outro jeito.' : 'Ideas, imágenes y exploraciones para mirar el mundo desde otro lugar.';
@@ -20,7 +20,7 @@ const read = lang === 'en' ? 'Read article' : lang === 'pt' ? 'Ler artigo' : 'Le
           <img src={img(post.image, 'thumb')} alt={L(post,'alt',lang) || L(post,'title',lang)} loading={index < 2 ? 'eager' : 'lazy'} />
         </a>
         <div class="article-copy">
-          <p class="meta-line">{post.category || tr.visionAlternative}{dateLabel(post.date) ? ` · ${dateLabel(post.date)}` : ''}</p>
+          <p class="meta-line">{post.category || tr.visionAlternative}{dateLabel(post.date) ? ` · ${dateLabel(post.date)}` : ''} · {readingMinutes(post)} min</p>
           <h2><a href={`/${lang}/vision-alternativa/${post.slug}/`}>{L(post,'title',lang)}</a></h2>
           <p class="article-excerpt">{L(post,'excerpt',lang)}</p>
           <a class="read-link" href={`/${lang}/vision-alternativa/${post.slug}/`}>{read} →</a>
