@@ -58,4 +58,8 @@ const ld = {
   .article-body{font-size:1.12rem;line-height:1.85;white-space:pre-line;width:100%;max-width:none;margin-inline:auto}
   .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
   .tags span{border:1px solid var(--line);padding:.25rem .7rem;font-size:.8rem;color:var(--mut)}
+  @media(min-width:821px){
+    .article-page h1,.article-page .excerpt{max-width:none;width:100%;text-align:justify;text-justify:inter-word}
+    .article-page .article-body{text-align:justify;text-justify:inter-word}
+  }
 </style>

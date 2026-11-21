@@ -1,0 +1,25 @@
+MISS SAM — CORRECCIONES PUNTUALES
+
+Este paquete contiene únicamente 5 archivos para combinar con tu proyecto existente:
+
+1) src/content/ai-motion/una-nube-para-llevar.md
+   - Restablece el año 2026. La tarjeta ya muestra el año desde este dato y la ficha interior también lo presenta en sus metadatos.
+
+2) src/lib/vision.js
+   - Oculta artículos programados hasta la fecha y hora indicadas.
+   - Evita mostrar tarjetas incompletas o vacías.
+
+3) src/pages/[lang]/vision-alternativa/index.astro
+   - Da a los botones Anterior/Siguiente y a la numeración el estilo rojo con blanco de la flecha superior.
+
+4) src/pages/[lang]/vision-alternativa/[slug].astro
+   - En pantallas de PC, ajusta a lo ancho del artículo el título, la bajada y el cuerpo. En móvil conserva el estilo actual.
+
+5) public/uploads/inteligencia-artificial-cambia-creacion-artistica.jpg
+   - Nueva imagen de collage fotográfico sin texto para el artículo “¿La inteligencia artificial está cambiando la manera de crear arte?”.
+
+CÓMO APLICAR:
+Descomprimí el ZIP dentro de la carpeta de tu proyecto y aceptá combinar carpetas/reemplazar únicamente los archivos indicados. No reemplaces el proyecto completo.
+
+NOTA:
+La flechita superior ya está incluida en la plantilla general del sitio, por eso no se modifica. Este paquete no incluye los artículos completos ni las demás imágenes, porque no necesitan cambios en esta corrección.
