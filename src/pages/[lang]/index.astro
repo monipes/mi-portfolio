@@ -26,7 +26,7 @@ const slides = bannerWorks.length ? bannerWorks : defaultSlides;
 const hero = slides[0] || all.find(w => w.hero) || feat[0] || all[0];
 const vid = embed({ youtube: portada.video_youtube, vimeo: portada.video_vimeo });
 const origin = Astro.site?.origin ?? '';
-const person = { '@context':'https://schema.org','@type':'Person',name:site.name,url:`${origin}/${lang}/`,description:tr.homeDesc,image:acerca.photo ? origin + img(acerca.photo) : undefined,jobTitle:'Visual artist',nationality:{ '@type':'Country',name:'Peru' },address:{ '@type':'PostalAddress',addressCountry:'AR' },sameAs:site.social.map(s => s[1]),knowsAbout:['surreal collage','digital collage','animated collage','illustration','surrealism'] };
+const person = { '@context':'https://schema.org','@type':'Person',name:site.name,url:`${origin}/${lang}/`,description:tr.homeDesc,image:acerca.photo ? origin + img(acerca.photo) : undefined,jobTitle:'Visual artist',nationality:{ '@type':'Country',name:'Peru' },address:{ '@type':'PostalAddress',addressCountry:'AR' },sameAs:site.social.map(s => s[1]),knowsAbout:['digital art','surreal collage','digital collage','photomontage','animated collage','AI art','AI Motion','visual composition','visual experimentation','illustration','surrealism'] };
 const ld = [person, { '@context':'https://schema.org','@type':'WebSite',name:site.name,url:`${origin}/${lang}/`,inLanguage:lang === 'pt' ? 'pt-BR' : lang }];
 ---
 <Base lang={lang} title={tr.homeTitle} desc={tr.homeDesc} path="" ld={ld} image={hero ? img(hero.image) : undefined}>

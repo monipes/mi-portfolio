@@ -29,8 +29,6 @@ collections:
     hint: Activalo si querés que la obra aparezca en la sección de destacadas de la página de inicio.
   - name: featured_order
     label: Orden entre las obras destacadas (número menor = primero)
-    2: null
-    3…): null
     widget: number
     required: false
     hint: Solo organiza las obras que estén marcadas como destacadas.
@@ -46,8 +44,6 @@ collections:
     hint: Solo organiza las obras incluidas en el carrusel.
   - name: banner_y
     label: Encuadre vertical del banner (0 = arriba, 50 = centro, 100 = abajo)
-    50 = centro: null
-    100 = abajo): null
     widget: number
     default: 55
     min: 0
@@ -72,7 +68,6 @@ collections:
     widget: string
   - name: desc_es
     label: Descripción en español
-    máximo 110 caracteres): null
     widget: text
     required: false
     pattern:
@@ -81,11 +76,9 @@ collections:
     hint: Una frase breve sobre la obra. Máximo 110 caracteres.
   - name: image
     label: Imagen principal
-    hasta ~3000 px): null
     widget: image
   - name: focus
     label: Encuadre de la miniatura cuadrada (para obras verticales)
-    qué parte se ve (para obras verticales): null
     widget: select
     options:
     - label: Arriba
@@ -133,12 +126,10 @@ collections:
     required: false
   - name: video_file
     label: Archivo de video MP4
-    máx ~20MB): null
     widget: file
     required: false
   - name: buy_url
     label: Enlace de compra (si corresponde)
-    un solo botón): null
     widget: string
     required: false
   - name: editions
@@ -150,8 +141,7 @@ collections:
       label: Tamaño o edición (ej. 30x40 cm - edición de 10)
       widget: string
     - name: price
-      label: Precio (texto libre
-      ej. USD 120): null
+      label: Precio (texto libre, ej. USD 120)
       widget: string
       required: false
     - name: url
@@ -231,11 +221,21 @@ collections:
   - name: date
     label: Fecha de publicación
     widget: datetime
-    date_format: DD/MM/YYYY
+    date_format: YYYY-MM-DD
     time_format: false
     format: YYYY-MM-DD
+    picker_utc: true
+  - name: publish_at
+    label: Programar publicación (fecha y hora de Argentina)
+    widget: datetime
+    date_format: YYYY-MM-DD
+    time_format: HH:mm
+    format: YYYY-MM-DDTHH:mm
+    picker_utc: false
+    required: false
+    hint: Hora local de Argentina (UTC-3). Marcá Publicada y elegí una fecha futura; el sitio la mostrará cuando llegue ese momento.
   - name: title_es
-    label: Título de la obra
+    label: Título del artículo
     widget: string
   - name: excerpt_es
     label: Bajada breve del artículo
@@ -259,11 +259,13 @@ collections:
       label: Etiqueta
       widget: string
   - name: image
-    label: Imagen principal
+    label: Imagen principal (opcional)
     widget: image
+    required: false
   - name: alt_es
     label: Texto alternativo en español
     widget: string
+    required: false
   - name: seo_title_es
     label: Título para Google (SEO)
     widget: string
@@ -272,6 +274,13 @@ collections:
     label: Descripción para Google (SEO)
     widget: text
     required: false
+  - name: reading_time_manual
+    label: Tiempo de lectura manual en minutos (0 = automático)
+    widget: number
+    min: 0
+    default: 0
+    required: false
+    hint: Si dejás 0, el sitio calcula el tiempo según las palabras del artículo.
   - name: body_es
     label: Texto del artículo
     widget: text
@@ -356,7 +365,6 @@ collections:
     required: false
   - name: video_file
     label: Archivo de video MP4
-    opcional): null
     widget: file
     required: false
   - name: video_poster

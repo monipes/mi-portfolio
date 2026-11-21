@@ -1,6 +1,6 @@
 // Datos generales: editá acá tu nombre, mail y redes
 export const site = {
-  name: 'Miss Sam',
+  name: 'MISS SAM',
   email: 'hola@tudominio.com',
   city: 'Argentina',
   social: [['Instagram','https://www.instagram.com/misssam.art/'],['Facebook','https://www.facebook.com/misssamfanpage']],
@@ -40,13 +40,13 @@ Object.assign(t.es,{expoVideos:'Videos de esta exposición'});
 Object.assign(t.en,{expoVideos:'Videos from this exhibition'});
 Object.assign(t.pt,{expoVideos:'Vídeos desta exposição'});
 
-Object.assign(t.es,{title:'Realidades imaginadas',homeTitle:'Miss Sam · Collage surrealista, animación e ilustración',homeDesc:'Miss Sam, artista visual peruana radicada en Argentina. Collage surrealista, collage animado e ilustración: un universo visual donde la imaginación no tiene límites.'});
-Object.assign(t.en,{title:'Imagined realities',homeTitle:'Miss Sam · Surreal collage, animation and illustration',homeDesc:'Miss Sam, Peruvian visual artist based in Argentina. Surreal collage, animated collage and illustration: a visual universe where imagination knows no limits.'});
-Object.assign(t.pt,{title:'Realidades imaginadas',homeTitle:'Miss Sam · Colagem surrealista, animação e ilustração',homeDesc:'Miss Sam, artista visual peruana radicada na Argentina. Colagem surrealista, colagem animada e ilustração: um universo visual onde a imaginação não tem limites.'});
+Object.assign(t.es,{title:'Realidades imaginadas',homeTitle:'MISS SAM · Collage surrealista, animación e ilustración',homeDesc:'MISS SAM, artista visual peruana radicada en Argentina. Portfolio de arte digital contemporáneo: collage surrealista, collage animado, fotomontaje y experimentación visual con inteligencia artificial.'});
+Object.assign(t.en,{title:'Imagined realities',homeTitle:'MISS SAM · Surreal collage, animation and illustration',homeDesc:'MISS SAM, Peruvian visual artist based in Argentina. A contemporary digital art portfolio exploring surreal collage, animated collage, photomontage and visual experimentation with artificial intelligence.'});
+Object.assign(t.pt,{title:'Realidades imaginadas',homeTitle:'MISS SAM · Colagem surrealista, animação e ilustração',homeDesc:'MISS SAM, artista visual peruana radicada na Argentina. Portfólio de arte digital contemporânea: colagem surrealista, colagem animada, fotomontagem e experimentação visual com inteligência artificial.'});
 
-Object.assign(t.es,{contactDesc:'Escribile a Miss Sam: consultas sobre obras, exposiciones y colaboraciones. Artista visual peruana radicada en Argentina.'});
-Object.assign(t.en,{contactDesc:'Write to Miss Sam: inquiries about artworks, exhibitions and collaborations. Peruvian visual artist based in Argentina.'});
-Object.assign(t.pt,{contactDesc:'Escreva para a Miss Sam: consultas sobre obras, exposições e colaborações. Artista visual peruana radicada na Argentina.'});
+Object.assign(t.es,{contactDesc:'Escribile a MISS SAM: consultas sobre obras, exposiciones y colaboraciones. Artista visual peruana radicada en Argentina.'});
+Object.assign(t.en,{contactDesc:'Write to MISS SAM: inquiries about artworks, exhibitions and collaborations. Peruvian visual artist based in Argentina.'});
+Object.assign(t.pt,{contactDesc:'Escreva para MISS SAM: consultas sobre obras, exposições e colaborações. Artista visual peruana radicada na Argentina.'});
 
 
 // Sección AI Motion

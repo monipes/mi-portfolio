@@ -6,7 +6,7 @@ export const L = (o, k, lang) => o[`${k}_${lang}`] || o[`${k}_es`] || '';
 export const embed = (w) => w.youtube ? `https://www.youtube-nocookie.com/embed/${w.youtube}` : w.vimeo ? `https://player.vimeo.com/video/${w.vimeo}` : null;
 const base = (s) => String(s || '').split('/').pop().replace(/\.[^.]+$/, '');
 // versiones livianas generadas en el build (scripts/thumbs.mjs): 'thumb' para la grilla, 'large' para ver la obra
-export const img = (src, v = 'large') => (!src || !src.startsWith('/uploads/') || /\.(svg|gif)$/i.test(src)) ? src : `/uploads/${v}/${base(src)}.webp`;
+export const img = (src, v = 'large') => (!src || !src.startsWith('/uploads/') || /\.(svg|gif)$/i.test(src)) ? src : (sizes[base(src)] ? `/uploads/${v}/${base(src)}.webp` : src);
 export const dim = (src) => { const s = sizes[base(src)]; return s ? { width: s[0], height: s[1] } : {}; };
 
 export const itemList = (list, lang, origin, name) => ({ '@context':'https://schema.org','@type':'CollectionPage',name,mainEntity:{ '@type':'ItemList',itemListElement:list.map((w,i)=>({ '@type':'ListItem',position:i+1,url:`${origin}/${lang}/obra/${w.slug}/`,name:L(w,'title',lang) })) } });

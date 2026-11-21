@@ -1,7 +1,7 @@
 ---
 import { t, langs, site } from '../site.js';
 import Social from '../components/Social.astro';
-const { noindex = false, lang, title, desc = '', image = '/icon-512.png', path = '', ld = null } = Astro.props;
+const { noindex = false, lang, title, desc = '', image = '/icon-512.png', path = '', ld = null, ogType = 'website' } = Astro.props;
 const tr = t[lang]; const origin = Astro.site?.origin ?? '';
 const nav = [['portfolio','portfolio/'],['exhibitions','exposiciones/'],['shop','tienda/'],['contact','contacto/']];
 const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
@@ -16,8 +16,8 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
   {langs.map(l => <link rel="alternate" hreflang={l === 'pt' ? 'pt-BR' : l} href={`${origin}/${l}/${path}`} />)}
   <link rel="alternate" hreflang="x-default" href={`${origin}/es/${path}`} />
   <meta property="og:title" content={full} /><meta property="og:description" content={desc} />
-  <meta property="og:image" content={`${origin}${image}`} /><meta property="og:type" content="website" /><meta property="og:locale" content={{es:'es_AR',en:'en_US',pt:'pt_BR'}[lang]} /><meta property="og:site_name" content={site.name} />
-  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={full} /><meta name="twitter:description" content={desc} />
+  <meta property="og:image" content={`${origin}${image}`} /><meta property="og:url" content={`${origin}/${lang}/${path}`} /><meta property="og:type" content={ogType} /><meta property="og:locale" content={{es:'es_AR',en:'en_US',pt:'pt_BR'}[lang]} /><meta property="og:site_name" content={site.name} />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={full} /><meta name="twitter:description" content={desc} /><meta name="twitter:image" content={`${origin}${image}`} />
   {ld && <script type="application/ld+json" set:html={JSON.stringify(ld)} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet" />

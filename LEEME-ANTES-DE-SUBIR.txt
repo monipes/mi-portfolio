@@ -1,0 +1,16 @@
+MISS SAM — Correcciones para aplicar sobre el repositorio existente
+
+Este paquete contiene SOLO los archivos nuevos o corregidos. No es el sitio completo.
+
+Cómo aplicarlo:
+1. Descomprimí este ZIP.
+2. Copiá el contenido de la carpeta (incluidas las carpetas .github, public y src) dentro de la carpeta raíz de tu proyecto mi-portfolio.
+3. Cuando Windows pregunte si querés combinar carpetas o reemplazar archivos, elegí combinar y reemplazar los archivos existentes.
+4. Subí esos cambios a la rama main de tu repositorio de GitHub.
+
+No borres archivos del proyecto original. Este paquete no incluye node_modules ni archivos temporales.
+
+Notas:
+- public/robots.txt y la configuración de sitemap ya estaban presentes en el proyecto original, por eso no se duplican en este paquete.
+- El sitio mantiene la dirección temporal de Cloudflare Pages que ya figura en el proyecto. Cuando tengas tu dominio propio, habrá que actualizarla.
+- La publicación programada y las copias de seguridad se ejecutan mediante automatizaciones de GitHub Actions incluidas en .github/workflows.
