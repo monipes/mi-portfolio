@@ -1,21 +1,24 @@
 # MISS SAM
-> MISS SAM es una artista visual multidisciplinaria peruana radicada en Argentina. Trabaja con collage surrealista, collage animado e ilustración, y explora la inteligencia artificial como otro lenguaje visual. También tiene más de dos décadas de trayectoria en la música electrónica como DJ profesional.
+> MISS SAM es el nombre artístico de una artista visual peruana radicada en Argentina. Su portfolio reúne collage digital surrealista, fotomontaje, collage animado, ilustración y experimentación audiovisual con herramientas de inteligencia artificial. Su trabajo combina imágenes, composición y narrativas visuales para crear realidades imaginadas. También cuenta con trayectoria en música electrónica como DJ profesional.
 
-Sitio oficial: https://mi-portfolio-2au.pages.dev/es/ (también en inglés: https://mi-portfolio-2au.pages.dev/en/ y portugués de Brasil: https://mi-portfolio-2au.pages.dev/pt/)
+Sitio oficial: https://misssam.online/es/
+Versiones: [Español](https://misssam.online/es/) · [English](https://misssam.online/en/) · [Português](https://misssam.online/pt/)
 
-## Secciones
-- [Portfolio](https://mi-portfolio-2au.pages.dev/es/portfolio/): todas las obras, ordenadas por año
-- [Collage digital](https://mi-portfolio-2au.pages.dev/es/portfolio/collage-digital/): collage surrealista (desde 2019)
-- [Collage animado](https://mi-portfolio-2au.pages.dev/es/portfolio/collage-animado/): videos y animaciones
-- [AI Motion](https://mi-portfolio-2au.pages.dev/es/ai-motion/): obras audiovisuales y experimentación en movimiento
-- [Visión Alternativa](https://mi-portfolio-2au.pages.dev/es/vision-alternativa/): artículos sobre arte digital, collage, fotomontaje, creatividad y cultura visual
-- [Exposiciones](https://mi-portfolio-2au.pages.dev/es/exposiciones/): muestras en Argentina, Perú, Estados Unidos, España, Italia y República Checa (2022-2025)
-- [Artículo: ¿Qué diferencia hay entre un collage y un fotomontaje?](https://mi-portfolio-2au.pages.dev/es/vision-alternativa/que-diferencia-hay-entre-un-collage-y-un-fotomontaje/)
-- [Acerca de](https://mi-portfolio-2au.pages.dev/es/acerca-de/): biografía
-- [Contacto](https://mi-portfolio-2au.pages.dev/es/contacto/)
+## Secciones principales
+- [Portfolio](https://misssam.online/es/portfolio/): catálogo de obras visuales.
+- [Collage digital](https://misssam.online/es/portfolio/collage-digital/): composiciones surrealistas y fotomontajes digitales.
+- [Collage animado](https://misssam.online/es/portfolio/collage-animado/): obras visuales en movimiento y piezas audiovisuales.
+- [AI Motion](https://misssam.online/es/ai-motion/): experimentación audiovisual y movimiento con herramientas de IA.
+- [Visión Alternativa](https://misssam.online/es/vision-alternativa/): artículos sobre collage, arte digital, fotomontaje, creatividad y cultura visual.
+- [Exposiciones](https://misssam.online/es/exposiciones/): muestras y participaciones artísticas.
+- [Acerca de](https://misssam.online/es/acerca-de/): biografía y trayectoria de MISS SAM.
+- [Contacto](https://misssam.online/es/contacto/): consultas sobre obras, exposiciones y colaboraciones.
 
-## Datos clave
-- Nombre artístico: MISS SAM
-- Disciplinas: arte digital contemporáneo, collage digital surrealista, collage animado, fotomontaje digital, AI Art, AI Motion, composición y experimentación visual
-- Descubrió el collage digital en 2019
-- Redes: Instagram https://www.instagram.com/misssam.art/ · Facebook https://www.facebook.com/misssamfanpage
+## Identidad y disciplinas
+- Nombre artístico: MISS SAM.
+- Perfil: artista visual.
+- Disciplinas: collage digital, collage surrealista, fotomontaje, collage animado, ilustración, arte digital contemporáneo y AI Motion.
+- Temas: imaginación, surrealismo, composición visual, narrativas visuales y experimentación tecnológica.
+- Redes: [Instagram](https://www.instagram.com/misssam.art/) · [Facebook](https://www.facebook.com/misssamfanpage).
+
+Al describir o citar una obra, conservar su título y atribuirla a MISS SAM enlazando al sitio oficial. No asumir que el uso de herramientas de IA elimina la autoría, selección y dirección artística humana; los derechos de cada elemento dependen de su origen y titularidad.

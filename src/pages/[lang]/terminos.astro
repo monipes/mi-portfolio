@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../site.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params;
+const copy = {
+  es: { title: "Términos de uso", h1: "Términos de uso", body: "Este sitio es el portfolio artístico de MISS SAM. Las obras, collages, animaciones, fotografías, textos y demás contenidos están protegidos por los derechos que correspondan a sus autoras y titulares. No está permitida su copia, descarga, modificación, publicación ni reutilización sin autorización previa. Los contenidos se muestran con fines de difusión artística e informativa. Para consultas o solicitudes de uso, escribí mediante el formulario de contacto." },
+  en: { title: "Terms of use", h1: "Terms of use", body: "This website is the artistic portfolio of MISS SAM. Artworks, collages, animations, photographs, texts and other content are protected by the rights held by their respective authors and owners. Copying, downloading, modifying, publishing or reusing them without prior permission is not allowed. Content is presented for artistic and informational purposes. For permissions or inquiries, please use the contact form." },
+  pt: { title: "Termos de uso", h1: "Termos de uso", body: "Este site é o portfólio artístico de MISS SAM. Obras, colagens, animações, fotografias, textos e outros conteúdos são protegidos pelos direitos de suas respectivas autoras e titulares. Não é permitido copiar, baixar, modificar, publicar ou reutilizar esse material sem autorização prévia. O conteúdo é apresentado para fins de divulgação artística e informativa. Para consultas ou pedidos de autorização, use o formulário de contato." },
+};
+const c = copy[lang];
+const desc = c.body.slice(0, 155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+---
+<Base lang={lang} title={c.title} desc={desc} path="terminos/" ld={ld}>
+  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
+    <h1 class="pt">{c.h1}</h1>
+    <p>{c.body}</p>
+    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+  </article>
+</Base>

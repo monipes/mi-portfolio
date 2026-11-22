@@ -55,6 +55,7 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
     .two{display:grid;grid-template-columns:2fr 1fr;gap:2.5rem}@media(max-width:800px){.two{grid-template-columns:1fr}}
     .row{display:flex;gap:1.5rem;padding:1.25rem 0;border-top:1px solid var(--line)}.row .d{min-width:9rem;color:var(--mut)}
     footer{border-top:1px solid var(--line);padding:2rem clamp(1rem,4vw,3rem);color:var(--mut);font-size:.9rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+    .legal-links{display:flex;gap:1rem;flex-wrap:wrap}.legal-links a{color:var(--mut);text-decoration:none}.legal-links a:hover{color:var(--fg)}
     dialog{background:var(--bg);color:var(--fg);border:1px solid var(--line);width:min(640px,92vw);max-height:80vh;padding:1.25rem}dialog::backdrop{background:#000a}
     .pagefind-ui{--pagefind-ui-primary:var(--acc);--pagefind-ui-text:var(--fg);--pagefind-ui-background:var(--bg);--pagefind-ui-border:var(--line)}
     @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
@@ -225,6 +226,11 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
 <main data-pagefind-body><slot /></main>
 <footer>
   <span>© {new Date().getFullYear()} {site.name} · {site.city}. {tr.rights}</span>
+  <nav class="legal-links" aria-label={lang === 'es' ? 'Información legal' : lang === 'en' ? 'Legal information' : 'Informações legais'}>
+    <a href={`/${lang}/privacidad/`}>{lang === 'es' ? 'Privacidad' : lang === 'en' ? 'Privacy' : 'Privacidade'}</a>
+    <a href={`/${lang}/terminos/`}>{lang === 'es' ? 'Términos' : lang === 'en' ? 'Terms' : 'Termos'}</a>
+    <a href={`/${lang}/cookies/`}>{lang === 'es' ? 'Cookies' : 'Cookies'}</a>
+  </nav>
   <Social items={site.social} />
 </footer>
 <button id="up" aria-label={tr.top} title={tr.top}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>

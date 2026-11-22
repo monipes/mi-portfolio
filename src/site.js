@@ -1,7 +1,6 @@
-// Datos generales: editá acá tu nombre, mail y redes
+// Datos generales del portfolio y redes públicas
 export const site = {
   name: 'MISS SAM',
-  email: 'hola@tudominio.com',
   city: 'Argentina',
   social: [['Instagram','https://www.instagram.com/misssam.art/'],['Facebook','https://www.facebook.com/misssamfanpage']],
 };

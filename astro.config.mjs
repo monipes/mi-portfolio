@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import fs from 'node:fs';
-// Cuando conectes tu dominio propio (por ejemplo misssam.com.ar), cambiá esta dirección, public/robots.txt y public/llms.txt
-const SITE = 'https://mi-portfolio-2au.pages.dev';
+// Dominio canónico oficial de MISS SAM.
+const SITE = 'https://misssam.online';
 // imágenes de cada obra para el mapa del sitio (ayuda a Google Imágenes)
 const works = {};
 for (const f of fs.readdirSync('./src/content/obras')) {
