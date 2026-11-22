@@ -36,7 +36,7 @@ const ld = { '@context':'https://schema.org','@graph': list.map(e => ({ '@type':
               {L(e,'desc',lang) && <p style="margin:1rem 0 0;white-space:pre-line">{L(e,'desc',lang)}</p>}
               {(() => { const ws = [...(e.work ? [e.work] : []), ...(e.works || [])].map(k => byslug[k]).filter(Boolean); const vids = ws.filter(isVid), imgs = ws.filter(w => !isVid(w)); return <>
                 {vids.length > 0 && <div style="margin-top:1.25rem"><p class="where" style="margin:0">{tr.expoVideos}</p><div class="acts" style="margin-top:.6rem">{vids.map(w => <a class="btn" href={`/${lang}/obra/${w.slug}/`}>▶ {L(w,'title',lang)}</a>)}</div></div>}
-                {(imgs.length > 0 || e.url) && <div class="acts">{imgs.map(w => <a class="btn" href={`/${lang}/obra/${w.slug}/`}>{tr.viewWork}</a>)}{e.url && <a class="btn ghost" href={e.url} target="_blank" rel="noopener">{tr.moreInfo}</a>}</div>}
+                {(imgs.length > 0 || e.url) && <div class="acts">{imgs.map(w => <a class="btn" href={`/${lang}/obra/${w.slug}/`}>{tr.viewWork}</a>)}{e.url && <a class={`btn${e.slug === '2022-12-buenos-aires-en-un-2084' ? '' : ' ghost'}`} href={e.url} target="_blank" rel="noopener">{tr.moreInfo}</a>}</div>}
               </>; })()}
             </div>
           </article>;

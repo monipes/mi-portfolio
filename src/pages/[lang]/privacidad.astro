@@ -4,18 +4,17 @@ import { site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params;
 const copy = {
-  es: { title: "Privacidad", h1: "Política de privacidad", body: "Responsable del sitio: MISS SAM. El formulario de contacto solicita nombre, correo electrónico, asunto y mensaje únicamente para poder responder consultas sobre obras, exposiciones o colaboraciones. Los datos se envían mediante Formspree, el servicio que procesa el formulario, y no se utilizan para publicidad ni se venden. Al enviar un mensaje, aceptás este uso. Para solicitar la revisión o eliminación de los datos enviados, utilizá nuevamente el formulario de contacto e indicá tu solicitud." },
-  en: { title: "Privacy", h1: "Privacy policy", body: "Website responsible party: MISS SAM. The contact form requests your name, email address, subject and message only to reply to inquiries about artworks, exhibitions or collaborations. Submissions are processed through Formspree, the form service, and are not used for advertising or sold. By sending a message, you agree to this use. To request review or deletion of submitted data, use the contact form and describe your request." },
-  pt: { title: "Privacidade", h1: "Política de privacidade", body: "Responsável pelo site: MISS SAM. O formulário de contato solicita nome, e-mail, assunto e mensagem apenas para responder a consultas sobre obras, exposições ou colaborações. Os dados são processados pelo Formspree, serviço utilizado pelo formulário, e não são usados para publicidade nem vendidos. Ao enviar uma mensagem, você concorda com esse uso. Para solicitar revisão ou exclusão dos dados enviados, use novamente o formulário de contato e descreva sua solicitação." },
-};
-const c = copy[lang];
-const desc = c.body.slice(0, 155);
-const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+  es: { title:'Política de privacidad', sections:[['Datos del formulario','El formulario de contacto solicita nombre, correo electrónico, asunto y mensaje para poder responder consultas sobre obras, exposiciones o colaboraciones.'],['Uso y procesamiento','Los datos enviados se procesan a través de Formspree, el servicio que recibe el formulario. Se utilizan para responder el mensaje y no se venden ni se destinan a publicidad.'],['Tus consultas','Si querés consultar o solicitar la eliminación de los datos que enviaste, podés hacerlo mediante el mismo formulario de contacto.']] },
+  en: { title:'Privacy policy', sections:[['Contact form data','The contact form requests your name, email address, subject and message so inquiries about artworks, exhibitions or collaborations can be answered.'],['Use and processing','Submissions are processed through Formspree, the service that receives the form. They are used to reply and are not sold or used for advertising.'],['Your requests','To ask a question or request deletion of information you submitted, please use the same contact form.']] },
+  pt: { title:'Política de privacidade', sections:[['Dados do formulário','O formulário de contato solicita nome, e-mail, assunto e mensagem para responder a consultas sobre obras, exposições ou colaborações.'],['Uso e processamento','Os dados enviados são processados pelo Formspree, serviço que recebe o formulário. São utilizados para responder à mensagem e não são vendidos nem destinados à publicidade.'],['Suas solicitações','Para fazer uma consulta ou solicitar a exclusão dos dados enviados, utilize o próprio formulário de contato.']] }
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
 ---
-<Base lang={lang} title={c.title} desc={desc} path="privacidad/" ld={ld}>
-  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
-    <h1 class="pt">{c.h1}</h1>
-    <p>{c.body}</p>
-    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+<Base lang={lang} title={copy.title} desc={desc} path="privacidad/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
   </article>
 </Base>

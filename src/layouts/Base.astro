@@ -193,6 +193,17 @@ const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
       /* Oculta la barra/tooltip superior que puede inyectar Google Translate. */
     iframe.goog-te-banner-frame,.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame{display:none!important;visibility:hidden!important}
     html body{top:0!important;margin-top:0!important}
+
+    /* --- páginas legales: lectura clara y espaciada --- */
+    .legal-page{max-width:800px;margin:0 auto;padding:2.5rem 0 1rem}
+    .legal-page>h1{font-size:clamp(2rem,4vw,3rem);margin:0 0 2rem}
+    .legal-section{margin:0 0 1.65rem}
+    .legal-section h2{font-size:1.2rem;line-height:1.25;margin:0 0 .55rem}
+    .legal-section p{margin:0;line-height:1.8;max-width:72ch}
+    .legal-contact{margin-top:.35rem}
+    .legal-links{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+    .legal-links a{color:var(--mut);text-decoration:none}
+    .legal-links a:hover{color:var(--acc)}
   </style>
 </head>
 <body>

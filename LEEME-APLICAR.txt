@@ -1,0 +1,24 @@
+MISS SAM — AJUSTES VISUALES Y LEGALES
+
+Aplicar el contenido de este ZIP en la raíz del repositorio del sitio, respetando las carpetas src/ y sobrescribiendo los archivos indicados.
+
+CAMBIOS INCLUIDOS
+- Aviso legal y condiciones de uso, privacidad y cookies en español, inglés y portugués.
+- Páginas legales con títulos, subtítulos, párrafos separados y espacios de lectura.
+- Botón rojo de contacto al final de cada página legal.
+- Formulario de contacto conserva Formspree y su botón rojo; el enlace de privacidad apunta a /{idioma}/privacidad/ dentro del propio sitio.
+- En el pie del sitio aparecen enlaces a Privacidad, Términos y Cookies.
+- La galería excluye de forma explícita los registros de prueba “collage sam studio” y “prueba-carga-decapp”, incluso si algún registro antiguo aparece publicado.
+- En la exposición “Buenos Aires en un 2084”, el botón “Más información” usa el estilo rojo con tipografía blanca.
+
+ELIMINAR DOS REGISTROS DE PRUEBA
+En GitHub, dentro de src/content/obras/, eliminar estos dos archivos (son registros de prueba duplicados de “collage sam studio”):
+1. map-alt_es-sdsadsadasdsa-banner_y-55-banner-false-featured-false-published-true-order-50-technique-collagre-title_en-dasdsadsa-title_es-tretret-etrtertre-focus-top-hero-false-image-uploads-2-jpg.md
+2. prueba-carga-decapp.md
+
+No eliminar /uploads/2.jpg ni otros recursos: la corrección ya evita que esos registros se muestren en la galería. Si querés limpiar también el panel de contenido, podés borrar únicamente esos dos archivos desde GitHub. En el ZIP no se incluye la imagen.
+
+NOTAS
+- La captura muestra la tarjeta con imagen rota. En el código fuente recibido ambos registros aparecen con published: false y la galería filtra los no publicados. Si la tarjeta sigue apareciendo en el sitio publicado, eliminar los dos archivos indicados y volver a desplegar fuerza la desaparición de los registros de prueba antiguos.
+- La política de cookies describe únicamente lo que se comprobó en el código: preferencia de tema guardada en sessionStorage, conexión opcional con Google Translate y posible contenido audiovisual externo. No se declara uso de Google Analytics ni AdSense porque no se encontraron en el proyecto.
+- El formulario conserva el endpoint Formspree existente. La entrega real debe probarse desde el dominio publicado.

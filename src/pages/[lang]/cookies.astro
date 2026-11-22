@@ -4,18 +4,17 @@ import { site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params;
 const copy = {
-  es: { title: "Cookies", h1: "Cookies y almacenamiento local", body: "Este sitio no utiliza cookies propias de publicidad ni herramientas de seguimiento analítico. Para recordar la preferencia de apariencia (claro u oscuro), guarda una opción en el almacenamiento de sesión del navegador. Algunos contenidos o servicios externos, como videos insertados y recursos tipográficos, pueden aplicar sus propias tecnologías; su funcionamiento depende de las políticas de esos proveedores." },
-  en: { title: "Cookies", h1: "Cookies and local storage", body: "This website does not use its own advertising cookies or analytics tracking tools. It stores the light or dark appearance preference in the browser session storage. Some external content or services, such as embedded videos and font resources, may use their own technologies; their operation is governed by those providers’ policies." },
-  pt: { title: "Cookies", h1: "Cookies e armazenamento local", body: "Este site não utiliza cookies próprios de publicidade nem ferramentas de rastreamento analítico. A preferência de aparência (claro ou escuro) é guardada no armazenamento de sessão do navegador. Alguns conteúdos ou serviços externos, como vídeos incorporados e recursos de fontes, podem utilizar tecnologias próprias; seu funcionamento depende das políticas desses fornecedores." },
-};
-const c = copy[lang];
-const desc = c.body.slice(0, 155);
-const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+  es: { title:'Política de cookies', sections:[['¿Qué son las cookies?','Son pequeños archivos que algunos sitios guardan en tu dispositivo para recordar preferencias y facilitar la navegación.'],['Uso en MISS SAM','El sitio guarda temporalmente tu preferencia de apariencia (modo claro u oscuro) en el almacenamiento de sesión del navegador. El selector de traducción puede conectarte con Google Translate y algunas obras pueden incluir contenido audiovisual externo; esos servicios pueden utilizar sus propias cookies o tecnologías.'],['Cómo administrarlas','Podés bloquear o eliminar cookies desde la configuración de tu navegador. Algunas funciones de servicios externos podrían verse afectadas.'],['Contacto','Si tenés consultas, podés comunicarte mediante el formulario de contacto.']] },
+  en: { title:'Cookie policy', sections:[['What are cookies?','Cookies are small files that some websites store on your device to remember preferences and make browsing easier.'],['Use on MISS SAM','The site temporarily stores your light or dark appearance preference in the browser session storage. The translation selector may connect you to Google Translate, and some artworks may include external audiovisual content; those services may use their own cookies or technologies.'],['Managing cookies','You can block or delete cookies in your browser settings. Some external service features may be affected.'],['Contact','For questions, please use the contact form.']] },
+  pt: { title:'Política de cookies', sections:[['O que são cookies?','Cookies são pequenos arquivos que alguns sites armazenam no seu dispositivo para lembrar preferências e facilitar a navegação.'],['Uso no MISS SAM','O site armazena temporariamente sua preferência de aparência (modo claro ou escuro) no armazenamento de sessão do navegador. O seletor de tradução pode conectar você ao Google Translate e algumas obras podem incluir conteúdo audiovisual externo; esses serviços podem utilizar seus próprios cookies ou tecnologias.'],['Como administrar','Você pode bloquear ou excluir cookies nas configurações do navegador. Algumas funções de serviços externos podem ser afetadas.'],['Contato','Para dúvidas, utilize o formulário de contato.']] }
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
 ---
-<Base lang={lang} title={c.title} desc={desc} path="cookies/" ld={ld}>
-  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
-    <h1 class="pt">{c.h1}</h1>
-    <p>{c.body}</p>
-    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+<Base lang={lang} title={copy.title} desc={desc} path="cookies/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
   </article>
 </Base>
