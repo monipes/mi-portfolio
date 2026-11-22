@@ -1,43 +1,34 @@
-MISS SAM — CORRECCIONES PARA EL DOMINIO misssam.online
+MISS SAM — ACTUALIZACIÓN SEO PARA misssam.online
 
-Este ZIP contiene solamente archivos nuevos o modificados. No es el sitio completo.
+Este paquete es una corrección puntual para el proyecto existente. NO es un sitio nuevo ni reemplaza el portfolio completo.
 
-1) Aplicar
-- Descomprimí el ZIP.
-- Copiá el contenido de esta carpeta dentro de la raíz del proyecto mi-portfolio.
-- Aceptá combinar carpetas y reemplazar los archivos con el mismo nombre.
-- Subí los cambios a la rama main de GitHub para que Cloudflare Pages despliegue la actualización.
+QUÉ ACTUALIZA
+- Configura https://misssam.online como dominio canónico.
+- Actualiza sitemap, robots.txt y llms.txt para el dominio definitivo.
+- Incluye redirección permanente de www.misssam.online a misssam.online.
+- Actualiza metadatos y datos estructurados del sitio.
+- Actualiza las páginas legales y el enlace de privacidad del formulario.
+- Mantiene las obras y el diseño general; no elimina imágenes.
 
-2) Eliminar dos registros de prueba
-Borrá únicamente estos dos archivos del proyecto:
-- src/content/obras/map-alt_es-sdsadsadasdsa-banner_y-55-banner-false-featured-false-published-true-order-50-technique-collagre-title_en-dasdsadsa-title_es-tretret-etrtertre-focus-top-hero-false-image-uploads-2-jpg.md
-- src/content/obras/prueba-carga-decapp.md
-Ambos registros se titulan "collage sam studio"; uno estaba publicado y el otro oculto. No borres otras obras. La imagen 2.jpg no está incluida en el ZIP recibido y no se elimina ningún otro archivo de imágenes.
+CÓMO APLICARLO
+1. Descargá y descomprimí este ZIP.
+2. Abrí la carpeta "misssam_patch".
+3. Copiá TODO lo que hay dentro de esa carpeta a la carpeta raíz del repositorio de GitHub (el proyecto mi-portfolio), aceptando combinar carpetas y reemplazar los archivos que coincidan.
+4. En el mismo repositorio, eliminá SOLAMENTE estos dos archivos de prueba:
+   - src/content/obras/map-alt_es-sdsadsadasdsa-banner_y-55-banner-false-featured-false-published-true-order-50-technique-collagre-title_en-dasdsadsa-title_es-tretret-etrtertre-focus-top-hero-false-image-uploads-2-jpg.md
+   - src/content/obras/prueba-carga-decapp.md
+   No borres la imagen public/uploads/2.jpg ni ninguna otra obra.
+5. Guardá los cambios y hacé commit/push a la rama main. Cloudflare Pages debería iniciar un nuevo despliegue automáticamente.
+6. Esperá a que el despliegue termine correctamente. Después probá:
+   - https://misssam.online/robots.txt
+   - https://misssam.online/sitemap-index.xml
+   - https://www.misssam.online (debe redirigir a misssam.online)
 
-3) Qué queda corregido en el código
-- Dominio canónico: https://misssam.online
-- Sitemap y robots.txt actualizados al dominio definitivo.
-- Redirección permanente de www.misssam.online a misssam.online mediante Cloudflare Pages Function.
-- Panel Decap CMS preparado para el dominio definitivo.
-- Identidad estructurada Person/WebSite y archivo llms.txt coherentes con MISS SAM, sin domicilio.
-- Política breve de privacidad, términos de uso y cookies, en español, inglés y portugués.
-- Enlace de consentimiento del formulario actualizado a la política interna del sitio. Se conserva el formulario y su endpoint Formspree actual.
+IMPORTANTE
+- No envíes el sitemap anterior /sitemap.xml a Google.
+- El sitemap esperado, una vez publicado el nuevo build, es https://misssam.online/sitemap-index.xml.
+- No hace falta volver a cargar imágenes ni reconstruir el diseño.
+- Este ZIP no publica los cambios por sí solo: hay que incorporarlos al repositorio y dejar que Cloudflare Pages despliegue.
+- El archivo de configuración del panel Decap CMS actualiza su callback base, pero si el inicio de sesión del administrador usa una OAuth App de GitHub, puede ser necesario revisar en GitHub la callback URL indicada en el LEEME original del paquete.
 
-4) Pasos externos necesarios (no se pueden ejecutar desde este ZIP)
-A. Cloudflare Pages
-- En el proyecto de Pages, agregá como Custom Domains: misssam.online y www.misssam.online.
-- Cloudflare indicará los DNS/nameservers que correspondan. Antes de cambiar nameservers en Hostinger, copiá a Cloudflare cualquier registro DNS existente que necesites conservar (especialmente MX y TXT de correo).
-- Luego reemplazá en Hostinger los nameservers por los dos que Cloudflare te indique. No uses nameservers inventados ni copies los de otro dominio.
-- Cloudflare emitirá el certificado HTTPS cuando el dominio y el DNS queden activos.
-
-B. Acceso al panel de administración
-- En GitHub, abrí la OAuth App utilizada por Decap CMS y actualizá su Authorization callback URL a:
-  https://misssam.online/api/callback
-- Conservá los secretos GITHUB_CLIENT_ID y GITHUB_CLIENT_SECRET en Cloudflare Pages; no los publiques en el repositorio.
-
-C. Formulario
-- Se conserva el endpoint Formspree existente.
-- Si Formspree tiene una lista de dominios permitidos, agregá misssam.online y www.misssam.online.
-- Después del despliegue, enviá un mensaje de prueba desde https://misssam.online/es/contacto/ y comprobá que llegue al correo configurado dentro de Formspree. El ZIP no permite comprobar la recepción real ni cambiar el destinatario de la cuenta.
-
-No se modifican las obras, imágenes, galerías, artículos ni programación de Visión Alternativa, ni el diseño general del portfolio.
+Si no sabés cómo copiar archivos al repositorio de GitHub, no improvises ni borres nada: mandame una captura de la pantalla y te guío paso a paso.
