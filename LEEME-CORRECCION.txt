@@ -1,0 +1,18 @@
+MISS SAM — CORRECCIÓN PUNTUAL
+
+Incluye únicamente:
+1. Nueva obra "El universo en pausa" para Collage Digital, año 2026.
+2. Imagen de la obra.
+3. Eliminación del registro de prueba "Collage Sam Studio" que mostraba "SD".
+
+RUTAS:
+- Copiar el contenido de "mi-portfolio-main" dentro de la carpeta raíz de tu proyecto, respetando las carpetas.
+- El archivo nuevo .md va en src/content/obras/
+- La imagen .jpg va en public/uploads/
+
+ELIMINAR:
+En tu proyecto, borrar este archivo de prueba:
+src/content/obras/map-alt_es-sdsadsadasdsa-banner_y-55-banner-false-featured-false-order-50-technique-collagre-title_en-dasdsadsa-title_es-tretret-etrtertre-focus-top-hero-false-image-uploads-2-jpg.md
+
+No borres public/uploads/2.jpg: puede estar siendo utilizado por otra entrada de prueba o contenido.
+No reemplaza el portfolio completo. Solo contiene los dos archivos nuevos y la instrucción para borrar el registro de prueba.
