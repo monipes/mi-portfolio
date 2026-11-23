@@ -4,18 +4,32 @@ import { site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params;
 const copy = {
-  es: { title: "Cookies", h1: "Cookies y almacenamiento local", body: "Este sitio no utiliza cookies propias de publicidad ni herramientas de seguimiento analítico. Para recordar la preferencia de apariencia (claro u oscuro), guarda una opción en el almacenamiento de sesión del navegador. Algunos contenidos o servicios externos, como videos insertados y recursos tipográficos, pueden aplicar sus propias tecnologías; su funcionamiento depende de las políticas de esos proveedores." },
-  en: { title: "Cookies", h1: "Cookies and local storage", body: "This website does not use its own advertising cookies or analytics tracking tools. It stores the light or dark appearance preference in the browser session storage. Some external content or services, such as embedded videos and font resources, may use their own technologies; their operation is governed by those providers’ policies." },
-  pt: { title: "Cookies", h1: "Cookies e armazenamento local", body: "Este site não utiliza cookies próprios de publicidade nem ferramentas de rastreamento analítico. A preferência de aparência (claro ou escuro) é guardada no armazenamento de sessão do navegador. Alguns conteúdos ou serviços externos, como vídeos incorporados e recursos de fontes, podem utilizar tecnologias próprias; seu funcionamento depende das políticas desses fornecedores." },
-};
-const c = copy[lang];
-const desc = c.body.slice(0, 155);
-const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+  es: { title:'Política de cookies', sections:[
+    ['Cookies y almacenamiento del navegador','Una cookie es un pequeño archivo que un sitio puede guardar en el navegador. MISS SAM también utiliza sessionStorage para recordar temporalmente la preferencia de apariencia (modo claro u oscuro) durante la sesión. sessionStorage no es una cookie y se elimina al finalizar la sesión del navegador.'],
+    ['Servicios externos','El selector de traducción puede conectar con Google Translate y algunas obras pueden mostrar contenido audiovisual de plataformas externas. Esos proveedores pueden utilizar sus propias cookies o tecnologías, sujetas a sus respectivas políticas.'],
+    ['Cómo gestionar las cookies','Podés revisar, bloquear o eliminar cookies desde la configuración de tu navegador. Si bloqueás tecnologías de terceros, algunas funciones externas podrían no estar disponibles.'],
+    ['Contacto','Para consultas sobre esta política, utilizá el formulario de contacto.']
+  ]},
+  en: { title:'Cookie policy', sections:[
+    ['Cookies and browser storage','A cookie is a small file a website may store in a browser. MISS SAM also uses sessionStorage to temporarily remember the selected appearance (light or dark mode) during a session. sessionStorage is not a cookie and is cleared when the browser session ends.'],
+    ['External services','The translation selector may connect to Google Translate, and some artworks may display audiovisual content from external platforms. Those providers may use their own cookies or technologies under their respective policies.'],
+    ['Managing cookies','You can review, block or delete cookies in your browser settings. Blocking third-party technologies may affect some external features.'],
+    ['Contact','For questions about this policy, please use the contact form.']
+  ]},
+  pt: { title:'Política de cookies', sections:[
+    ['Cookies e armazenamento do navegador','Um cookie é um pequeno arquivo que um site pode armazenar no navegador. MISS SAM também utiliza sessionStorage para lembrar temporariamente a preferência de aparência (modo claro ou escuro) durante a sessão. sessionStorage não é um cookie e é apagado ao final da sessão do navegador.'],
+    ['Serviços externos','O seletor de tradução pode conectar ao Google Translate e algumas obras podem exibir conteúdo audiovisual de plataformas externas. Esses fornecedores podem utilizar seus próprios cookies ou tecnologias, conforme suas políticas.'],
+    ['Como gerenciar cookies','Você pode consultar, bloquear ou excluir cookies nas configurações do navegador. Bloquear tecnologias de terceiros pode afetar algumas funções externas.'],
+    ['Contato','Para dúvidas sobre esta política, utilize o formulário de contato.']
+  ]}
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
 ---
-<Base lang={lang} title={c.title} desc={desc} path="cookies/" ld={ld}>
-  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
-    <h1 class="pt">{c.h1}</h1>
-    <p>{c.body}</p>
-    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+<Base lang={lang} title={copy.title} desc={desc} path="cookies/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
   </article>
 </Base>

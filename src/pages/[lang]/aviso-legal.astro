@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../site.js';
+export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
+const { lang } = Astro.params;
+const copy = {
+  es: { title:'Aviso legal', sections:[
+    ['Titularidad del sitio','MISS SAM es un portfolio artístico personal dedicado a mostrar obras y proyectos de creación visual, collage digital, collage animado y experimentación artística. La identificación pública del sitio es MISS SAM. No se publica domicilio ni correo electrónico personal.'],
+    ['Propiedad intelectual','Las obras, collages, composiciones, fotografías, textos y demás creaciones originales pertenecen a MISS SAM o a sus respectivos titulares. Su publicación en este portfolio no concede licencias ni autoriza su reproducción, distribución, modificación o uso comercial sin permiso previo. Los materiales de terceros pertenecen a sus respectivos titulares.'],
+    ['Responsabilidad sobre contenidos externos','El sitio puede contener enlaces o recursos audiovisuales alojados por servicios externos. Cada proveedor es responsable de sus propios contenidos, disponibilidad y políticas.'],
+    ['Contacto','Para consultas sobre el sitio, las obras o solicitudes de autorización, utilizá el formulario de contacto.'],
+    ['Marco legal','Este sitio se rige por la normativa aplicable de la República Argentina.']
+  ]},
+  en: { title:'Legal notice', sections:[
+    ['Website ownership','MISS SAM is a personal artistic portfolio showcasing visual creations, digital collage, animated collage and artistic experimentation. The public identity of this website is MISS SAM. No private address or personal email is published.'],
+    ['Intellectual property','Artworks, collages, compositions, photographs, texts and other original creations belong to MISS SAM or their respective rights holders. Their appearance in this portfolio does not grant a licence or permission to reproduce, distribute, modify or use them commercially without prior authorisation. Third-party materials remain the property of their respective owners.'],
+    ['External content','The website may contain links or audiovisual resources hosted by external services. Each provider is responsible for its own content, availability and policies.'],
+    ['Contact','For questions about the website or artworks, or to request permission, please use the contact form.'],
+    ['Applicable law','This website is governed by the applicable laws of the Argentine Republic.']
+  ]},
+  pt: { title:'Aviso legal', sections:[
+    ['Titularidade do site','MISS SAM é um portfólio artístico pessoal que apresenta criações visuais, colagem digital, colagem animada e experimentação artística. A identificação pública deste site é MISS SAM. Não são publicados endereço residencial nem e-mail pessoal.'],
+    ['Propriedade intelectual','As obras, colagens, composições, fotografias, textos e demais criações originais pertencem a MISS SAM ou aos respectivos titulares. Sua publicação neste portfólio não concede licença nem autorização para reprodução, distribuição, modificação ou uso comercial sem autorização prévia. Materiais de terceiros permanecem pertencendo aos seus titulares.'],
+    ['Conteúdo externo','O site pode conter links ou recursos audiovisuais hospedados por serviços externos. Cada fornecedor é responsável por seu próprio conteúdo, disponibilidade e políticas.'],
+    ['Contato','Para dúvidas sobre o site ou as obras, ou para solicitar autorização, utilize o formulário de contato.'],
+    ['Legislação aplicável','Este site é regido pela legislação aplicável da República Argentina.']
+  ]}
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+---
+<Base lang={lang} title={copy.title} desc={desc} path="aviso-legal/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
+  </article>
+</Base>

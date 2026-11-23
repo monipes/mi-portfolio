@@ -4,18 +4,35 @@ import { site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params;
 const copy = {
-  es: { title: "Privacidad", h1: "Política de privacidad", body: "Responsable del sitio: MISS SAM. El formulario de contacto solicita nombre, correo electrónico, asunto y mensaje únicamente para poder responder consultas sobre obras, exposiciones o colaboraciones. Los datos se envían mediante Formspree, el servicio que procesa el formulario, y no se utilizan para publicidad ni se venden. Al enviar un mensaje, aceptás este uso. Para solicitar la revisión o eliminación de los datos enviados, utilizá nuevamente el formulario de contacto e indicá tu solicitud." },
-  en: { title: "Privacy", h1: "Privacy policy", body: "Website responsible party: MISS SAM. The contact form requests your name, email address, subject and message only to reply to inquiries about artworks, exhibitions or collaborations. Submissions are processed through Formspree, the form service, and are not used for advertising or sold. By sending a message, you agree to this use. To request review or deletion of submitted data, use the contact form and describe your request." },
-  pt: { title: "Privacidade", h1: "Política de privacidade", body: "Responsável pelo site: MISS SAM. O formulário de contato solicita nome, e-mail, assunto e mensagem apenas para responder a consultas sobre obras, exposições ou colaborações. Os dados são processados pelo Formspree, serviço utilizado pelo formulário, e não são usados para publicidade nem vendidos. Ao enviar uma mensagem, você concorda com esse uso. Para solicitar revisão ou exclusão dos dados enviados, use novamente o formulário de contato e descreva sua solicitação." },
-};
-const c = copy[lang];
-const desc = c.body.slice(0, 155);
-const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+  es: { title:'Política de privacidad', sections:[
+    ['Datos que se solicitan','El formulario de contacto solicita nombre, dirección de correo electrónico, asunto y mensaje. Estos datos son los que la persona visitante decide enviar al completar el formulario.'],
+    ['Finalidad y tratamiento','La información se utiliza para leer y responder consultas sobre obras, exposiciones o posibles colaboraciones. El formulario se procesa mediante Formspree, proveedor que recibe los envíos para hacer posible la comunicación. MISS SAM no solicita estos datos para venderlos ni para enviar publicidad.'],
+    ['Conservación y terceros','Los datos enviados pueden permanecer en los sistemas de Formspree y en los medios utilizados para gestionar y responder el mensaje, de acuerdo con las condiciones y políticas del proveedor. No se incorporan deliberadamente a listas publicitarias.'],
+    ['Tus derechos','De acuerdo con la Ley 25.326 de Protección de los Datos Personales de Argentina, podés solicitar información sobre tus datos y pedir su actualización, rectificación o supresión cuando corresponda. Para hacerlo, utilizá el formulario de contacto e indicá tu solicitud.'],
+    ['Contacto y cambios','Esta política puede actualizarse si cambia el formulario o el tratamiento de datos. Para consultas sobre privacidad, utilizá el formulario del sitio.']
+  ]},
+  en: { title:'Privacy policy', sections:[
+    ['Information collected','The contact form asks for your name, email address, subject and message. These are the details visitors choose to submit through the form.'],
+    ['Purpose and processing','The information is used to read and reply to questions about artworks, exhibitions or possible collaborations. The form is processed through Formspree, the provider that receives submissions to enable communication. MISS SAM does not request this information to sell it or send advertising.'],
+    ['Retention and third parties','Submitted information may remain in Formspree systems and in the tools used to manage and answer the message, subject to the provider’s terms and policies. It is not deliberately added to advertising lists.'],
+    ['Your rights','Under Argentina’s Personal Data Protection Law No. 25,326, you may request information about your data and, where applicable, ask for it to be updated, corrected or deleted. To make a request, use the contact form and describe what you need.'],
+    ['Contact and updates','This policy may be updated if the form or data practices change. For privacy questions, please use the website contact form.']
+  ]},
+  pt: { title:'Política de privacidade', sections:[
+    ['Dados solicitados','O formulário de contato solicita nome, endereço de e-mail, assunto e mensagem. Esses são os dados que a pessoa visitante decide enviar ao preencher o formulário.'],
+    ['Finalidade e tratamento','As informações são utilizadas para ler e responder consultas sobre obras, exposições ou possíveis colaborações. O formulário é processado pelo Formspree, serviço que recebe os envios para possibilitar a comunicação. MISS SAM não solicita esses dados para vendê-los nem para enviar publicidade.'],
+    ['Armazenamento e terceiros','Os dados enviados podem permanecer nos sistemas do Formspree e nos meios utilizados para gerenciar e responder à mensagem, conforme os termos e políticas do fornecedor. Não são adicionados deliberadamente a listas publicitárias.'],
+    ['Seus direitos','De acordo com a Lei argentina 25.326 de Proteção de Dados Pessoais, você pode solicitar informações sobre seus dados e pedir sua atualização, correção ou exclusão, quando aplicável. Para isso, utilize o formulário de contato e descreva sua solicitação.'],
+    ['Contato e alterações','Esta política pode ser atualizada se o formulário ou o tratamento de dados mudar. Para dúvidas sobre privacidade, utilize o formulário do site.']
+  ]}
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
 ---
-<Base lang={lang} title={c.title} desc={desc} path="privacidad/" ld={ld}>
-  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
-    <h1 class="pt">{c.h1}</h1>
-    <p>{c.body}</p>
-    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+<Base lang={lang} title={copy.title} desc={desc} path="privacidad/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
   </article>
 </Base>

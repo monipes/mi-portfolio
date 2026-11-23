@@ -4,18 +4,35 @@ import { site } from '../../site.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
 const { lang } = Astro.params;
 const copy = {
-  es: { title: "Términos de uso", h1: "Términos de uso", body: "Este sitio es el portfolio artístico de MISS SAM. Las obras, collages, animaciones, fotografías, textos y demás contenidos están protegidos por los derechos que correspondan a sus autoras y titulares. No está permitida su copia, descarga, modificación, publicación ni reutilización sin autorización previa. Los contenidos se muestran con fines de difusión artística e informativa. Para consultas o solicitudes de uso, escribí mediante el formulario de contacto." },
-  en: { title: "Terms of use", h1: "Terms of use", body: "This website is the artistic portfolio of MISS SAM. Artworks, collages, animations, photographs, texts and other content are protected by the rights held by their respective authors and owners. Copying, downloading, modifying, publishing or reusing them without prior permission is not allowed. Content is presented for artistic and informational purposes. For permissions or inquiries, please use the contact form." },
-  pt: { title: "Termos de uso", h1: "Termos de uso", body: "Este site é o portfólio artístico de MISS SAM. Obras, colagens, animações, fotografias, textos e outros conteúdos são protegidos pelos direitos de suas respectivas autoras e titulares. Não é permitido copiar, baixar, modificar, publicar ou reutilizar esse material sem autorização prévia. O conteúdo é apresentado para fins de divulgação artística e informativa. Para consultas ou pedidos de autorização, use o formulário de contato." },
-};
-const c = copy[lang];
-const desc = c.body.slice(0, 155);
-const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${c.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
+  es: { title:'Términos y condiciones de uso', sections:[
+    ['Acceso al sitio','El acceso al portfolio MISS SAM es gratuito y no requiere crear una cuenta. El sitio se ofrece para consultar y apreciar las obras y proyectos publicados.'],
+    ['Uso permitido','Podés navegar y compartir enlaces a las páginas del portfolio. No está permitido utilizar el sitio de forma ilícita, interferir con su funcionamiento ni vulnerar derechos de terceros.'],
+    ['Uso de las obras','Las imágenes y creaciones se muestran con fines de exhibición artística. No se autoriza descargarlas para republicarlas, modificarlas, distribuirlas o utilizarlas con fines comerciales sin permiso previo de sus titulares.'],
+    ['Disponibilidad y enlaces','Se procura mantener el sitio disponible y actualizado, pero no se garantiza que el acceso sea ininterrumpido. Los enlaces a servicios externos se ofrecen como referencia y se rigen por las condiciones de esos servicios.'],
+    ['Cambios y contacto','Estos términos pueden actualizarse cuando cambie el sitio o su funcionamiento. Para consultas, utilizá el formulario de contacto.']
+  ]},
+  en: { title:'Terms and conditions of use', sections:[
+    ['Access','Access to the MISS SAM portfolio is free and does not require an account. The website is provided to view the artworks and projects published here.'],
+    ['Permitted use','You may browse the website and share links to its pages. You may not use the website unlawfully, interfere with its operation or infringe third-party rights.'],
+    ['Use of artworks','Images and creations are displayed for artistic exhibition. You may not download them for republication, modification, distribution or commercial use without prior permission from their rights holders.'],
+    ['Availability and links','Reasonable efforts are made to keep the website available and up to date, but uninterrupted access is not guaranteed. External links are provided for reference and are subject to the relevant providers’ terms.'],
+    ['Changes and contact','These terms may be updated when the website or its operation changes. For questions, please use the contact form.']
+  ]},
+  pt: { title:'Termos e condições de uso', sections:[
+    ['Acesso ao site','O acesso ao portfólio MISS SAM é gratuito e não exige a criação de uma conta. O site é oferecido para consultar e apreciar as obras e projetos publicados.'],
+    ['Uso permitido','Você pode navegar pelo site e compartilhar links para suas páginas. Não é permitido utilizar o site de forma ilícita, interferir em seu funcionamento ou violar direitos de terceiros.'],
+    ['Uso das obras','As imagens e criações são exibidas para fins de apresentação artística. Não é permitido baixá-las para republicação, modificação, distribuição ou uso comercial sem autorização prévia dos titulares.'],
+    ['Disponibilidade e links','São feitos esforços razoáveis para manter o site disponível e atualizado, mas não se garante acesso ininterrupto. Links externos são fornecidos como referência e seguem as condições dos respectivos serviços.'],
+    ['Alterações e contato','Estes termos podem ser atualizados quando o site ou seu funcionamento mudar. Para dúvidas, utilize o formulário de contato.']
+  ]}
+}[lang];
+const desc = copy.sections.map(x => x[1]).join(' ').slice(0,155);
+const ld = { '@context':'https://schema.org', '@type':'WebPage', name:`${copy.title} · ${site.name}`, description:desc, inLanguage:lang === 'pt' ? 'pt-BR' : lang };
 ---
-<Base lang={lang} title={c.title} desc={desc} path="terminos/" ld={ld}>
-  <article class="wrap legal-page" style="max-width:760px;padding-top:2rem">
-    <h1 class="pt">{c.h1}</h1>
-    <p>{c.body}</p>
-    <p><a href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a></p>
+<Base lang={lang} title={copy.title} desc={desc} path="terminos/" ld={ld}>
+  <article class="wrap legal-page">
+    <h1 class="pt">{copy.title}</h1>
+    {copy.sections.map(([heading, body]) => <section class="legal-section"><h2>{heading}</h2><p>{body}</p></section>)}
+    <a class="btn legal-contact" href={`/${lang}/contacto/`}>{lang === 'es' ? 'Contacto' : lang === 'en' ? 'Contact' : 'Contato'}</a>
   </article>
 </Base>
