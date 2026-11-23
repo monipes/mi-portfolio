@@ -22,6 +22,13 @@ collections:
     label: Publicada (visible en el sitio)
     widget: boolean
     default: true
+  - name: added_at
+    label: Fecha de incorporación (automática)
+    widget: datetime
+    default: '{{now}}'
+    format: YYYY-MM-DDTHH:mm:ssZ
+    required: true
+    hint: Se completa al crear la obra. No modificar; determina que las obras nuevas aparezcan primero.
   - name: featured
     label: Destacada en la página de inicio
     widget: boolean
@@ -54,11 +61,6 @@ collections:
     max: 100
     required: false
     hint: Ajusta qué parte de la imagen se ve en el banner; no modifica el archivo original.
-  - name: order
-    label: Orden dentro del portfolio (número menor = primero)
-    widget: number
-    default: 50
-    hint: Organiza la posición de la obra dentro de su categoría del portfolio.
   - name: category
     label: Carpeta / tipo de obra
     widget: select
@@ -172,11 +174,13 @@ collections:
     label: Publicada (visible en el sitio)
     widget: boolean
     default: true
-  - name: order
-    label: Orden dentro del portfolio (número menor = primero)
-    widget: number
-    default: 50
-    hint: Organiza la posición de la obra dentro de su categoría del portfolio.
+  - name: added_at
+    label: Fecha de incorporación (automática)
+    widget: datetime
+    default: '{{now}}'
+    format: YYYY-MM-DDTHH:mm:ssZ
+    required: true
+    hint: Se completa al crear la obra. No modificar; determina que las obras nuevas aparezcan primero.
   - name: title_es
     label: Título de la obra
     widget: string
