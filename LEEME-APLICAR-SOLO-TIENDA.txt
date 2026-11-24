@@ -1,0 +1,8 @@
+CORRECCIONES SOLAMENTE - TIENDA MISS SAM
+
+Este paquete contiene únicamente los 4 archivos modificados de la tienda.
+No es el portfolio completo.
+
+Para aplicarlo: extraé el ZIP y copiá las carpetas/archivos conservando sus rutas,
+reemplazando los archivos del mismo nombre en tu proyecto.
+No borres ni reemplaces ninguna otra carpeta del portfolio.

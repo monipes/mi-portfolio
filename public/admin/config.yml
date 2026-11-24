@@ -642,6 +642,14 @@ collections:
         label: Enlace de Instagram
         widget: string
         required: false
+      - name: facebook_enabled
+        label: Mostrar Facebook
+        widget: boolean
+        default: true
+      - name: facebook
+        label: Enlace de Facebook
+        widget: string
+        required: false
       - name: whatsapp_enabled
         label: Mostrar WhatsApp
         widget: boolean

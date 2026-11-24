@@ -4,11 +4,13 @@
   "paused_message": "La tienda está pausada temporalmente. Gracias por tu paciencia.",
   "contacts": {
     "email_enabled": true,
-    "email": "missan2005@gmail.com",
+    "email": "missam2005@gmail.com",
     "instagram_enabled": true,
     "instagram": "https://www.instagram.com/misssam.art/",
     "whatsapp_enabled": true,
     "whatsapp": "",
-    "whatsapp_display": "+54 9 11 5555-0101"
+    "whatsapp_display": "",
+    "facebook_enabled": true,
+    "facebook": "https://www.facebook.com/misssamfanpage"
   }
 }

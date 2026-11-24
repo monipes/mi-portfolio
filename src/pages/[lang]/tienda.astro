@@ -47,11 +47,11 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     )}
     <section class="shop-contact">
       <h2>¿Tenés alguna consulta?</h2>
-      <p>Podés comunicarte con Isa por estos medios:</p>
+      <p>Podés comunicarte con MISS SAM por estos medios:</p>
       <div class="shop-contact-list">
-        {settings.contacts?.whatsapp_enabled && <p><strong>WhatsApp:</strong> <span>{settings.contacts.whatsapp_display || 'Número a configurar'}</span> <small>(número de ejemplo)</small></p>}
-        {settings.contacts?.instagram_enabled && settings.contacts.instagram && <details class="instagram-contact"><summary>Instagram</summary><a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Visitar Instagram de MISS SAM ↗</a></details>}
-        {settings.contacts?.email_enabled && settings.contacts.email && <p><strong>Email:</strong> <a href={`mailto:${settings.contacts.email}`}>{settings.contacts.email}</a></p>}
+        {settings.contacts?.instagram_enabled && settings.contacts.instagram && <a class="shop-social-button" href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+        {settings.contacts?.facebook_enabled && settings.contacts.facebook && <a class="shop-social-button" href={settings.contacts.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>}
+        {settings.contacts?.email_enabled && settings.contacts.email && <p class="shop-email"><strong>Email:</strong> <a href={`mailto:${settings.contacts.email}`}>{settings.contacts.email}</a></p>}
       </div>
     </section>
   </div>
@@ -62,8 +62,8 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     .shop-intro h1{font-size:clamp(2.2rem,5vw,3.3rem);margin:0 0 .55rem}
     .shop-intro>p:last-child{color:var(--mut);font-size:1.05rem;line-height:1.65;margin:0}
     .shop-categories{display:flex;gap:.65rem;flex-wrap:wrap;margin:1.5rem 0 3rem}
-    .shop-categories a{display:inline-flex;padding:.55rem 1rem;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.9rem;transition:background .2s,border-color .2s}
-    .shop-categories a:hover{background:var(--band);border-color:var(--acc)}
+    .shop-categories a,.shop-social-button{display:inline-flex;align-items:center;justify-content:center;padding:.62rem 1.15rem;border:1px solid var(--acc);border-radius:4px;background:var(--acc);color:#fff;text-decoration:none;font-size:.9rem;font-weight:700;transition:filter .2s,transform .2s}
+    .shop-categories a:hover,.shop-social-button:hover{filter:brightness(.94);transform:translateY(-1px)}
     .shop-message{margin:2rem 0 4rem;padding:clamp(2rem,6vw,5rem);background:var(--band);border:1px solid var(--line);max-width:850px}
     .shop-message h2{margin:0 0 1rem;font-size:clamp(2rem,5vw,3rem)}.shop-message p{max-width:55ch;color:var(--mut);font-size:1.05rem}
     .shop-category{margin:3.5rem 0}
@@ -73,8 +73,9 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     .shop-coming{color:var(--mut);padding:.5rem 0}
     .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:1.6rem}
     .shop-card{display:block;color:inherit;text-decoration:none;min-width:0}
-    .shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;aspect-ratio:1/1;overflow:hidden;border:0;border-radius:0;box-shadow:0 1px 2px #0002,0 10px 28px #0002;padding:5%}
-    .shop-card-image img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .3s}
+    .shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;border:0;border-radius:0;box-shadow:0 1px 2px #0002,0 10px 28px #0002;padding:14px}
+    .shop-card-image.art.frame{padding:14px}
+    .shop-card-image img{width:100%;height:auto;max-height:480px;object-fit:contain;display:block;transition:transform .3s}
     .shop-card:hover .shop-card-image img{transform:scale(1.025)}
     .shop-card-info{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;padding:1rem .25rem}
     .shop-card-info strong{font-size:1.02rem;line-height:1.35;font-weight:650}
@@ -84,14 +85,8 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     .shop-card-prices em{font-style:normal;background:var(--acc);color:white;border-radius:4px;padding:.22rem .45rem;font-size:.72rem;font-weight:700;white-space:nowrap}
     .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding:1.7rem 0 0}
     .shop-contact h2{margin:0 0 .45rem;font-size:1.35rem}.shop-contact>p{color:var(--mut);font-size:.92rem;margin:.4rem 0 1rem}
-    .shop-contact-list{display:grid;gap:.65rem;justify-items:start}
+    .shop-contact-list{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}.shop-email{flex-basis:100%;margin-top:.45rem!important}
     .shop-contact-list p{margin:0;color:var(--fg);font-size:.92rem}.shop-contact-list small{color:var(--mut);font-size:.75rem}
-    .shop-contact-list a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
-    .instagram-contact{position:relative}
-    .instagram-contact summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;padding:.48rem .9rem;border:1px solid var(--line);border-radius:6px;font-size:.88rem}
-    .instagram-contact summary::-webkit-details-marker{display:none}
-    .instagram-contact summary::after{content:'⌄';font-size:1rem}
-    .instagram-contact[open] summary::after{content:'⌃'}
-    .instagram-contact>a{display:block;margin-top:.55rem;font-size:.88rem}
+    .shop-contact-list a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}.shop-contact-list a.shop-social-button{color:#fff;text-decoration:none}
   </style>
 </Base>
