@@ -514,6 +514,21 @@ collections:
     widget: string
     required: false
     hint: "Ejemplo: Desde $ 15.000. Para cada formato podés cargar su propio precio abajo."
+  - name: price_before
+    label: Precio anterior (para mostrar tachado)
+    widget: string
+    required: false
+    hint: "Ejemplo: $ 20.000. Dejar vacío si no hay descuento."
+  - name: discount_label
+    label: Etiqueta de descuento
+    widget: string
+    required: false
+    hint: "Ejemplo: 5% OFF. Dejar vacío si no corresponde."
+  - name: card_subtitle
+    label: Texto gris debajo del nombre en la tarjeta
+    widget: string
+    required: false
+    hint: "Ejemplo: Collage digital."
   - name: variants
     label: Formatos y enlaces de compra (A4, A3, etc.)
     widget: list

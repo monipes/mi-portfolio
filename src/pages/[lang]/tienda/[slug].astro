@@ -32,7 +32,7 @@ const canonical = `/${lang}/tienda/${slug}/`;
             {product.category_label && <p class="product-category">{product.category_label}</p>}
             <h1>{product.title_es}</h1>
             {product.description_es && <p class="product-description">{product.description_es}</p>}
-            {product.price_label && <p class="product-price">{product.price_label}</p>}
+            {(product.price_before || product.price_label) && <div class="product-price">{product.price_before && <s>{product.price_before}</s>} {product.price_label && <strong>{product.price_label}</strong>} {product.discount_label && <span>{product.discount_label}</span>}</div>}
             {(product.variants || []).length > 0 ? <div class="product-variants"><h2>Elegí el formato</h2>{product.variants.map(v => <div class="variant"><div><strong>{v.label}</strong>{v.price && <b>{v.price}</b>}</div>{v.url && <a class="btn" href={v.url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}</div>)}</div>
               : product.buy_url && <a class="btn product-buy" href={product.buy_url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}
             {(product.buy_url || (product.variants || []).some(v => v.url)) && <p class="marketplace-note">La compra, el pago y el envío se gestionan directamente en Mercado Libre. Allí vas a poder elegir los medios de pago y las opciones de entrega disponibles.</p>}
@@ -62,7 +62,7 @@ const canonical = `/${lang}/tienda/${slug}/`;
     .product-gallery{display:grid;gap:1rem}.product-image{margin:0;background:var(--band);padding:clamp(.5rem,2vw,1rem)}.product-image img{display:block;width:100%;height:auto;max-height:85vh;object-fit:contain}
     .product-video{width:100%;aspect-ratio:16/9;background:#000}.product-info{position:sticky;top:7rem}.product-info h1{font-size:clamp(2rem,4vw,3.2rem);margin:0 0 1rem}
     .product-category{color:var(--acc);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}.product-description{white-space:pre-line;color:var(--bio);line-height:1.7}
-    .product-price{font-size:1.5rem;font-weight:700;margin:1.5rem 0}.product-buy{margin:.5rem 0}.product-variants{margin:2rem 0}.product-variants h2,.product-questions h2{font-size:1.35rem;margin:0 0 1rem}
+    .product-price{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;font-size:1.5rem;margin:1.5rem 0}.product-price s{font-size:1rem;color:var(--mut)}.product-price strong{font-size:1.6rem}.product-price span{font-size:.78rem;background:var(--acc);color:white;border-radius:4px;padding:.25rem .45rem;font-weight:700}.product-buy{margin:.5rem 0}.product-variants{margin:2rem 0}.product-variants h2,.product-questions h2{font-size:1.35rem;margin:0 0 1rem}
     .variant{padding:1rem 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.7rem}.variant>div{display:flex;justify-content:space-between;gap:1rem}.variant b{font-weight:600}
     .marketplace-note{font-size:.88rem;color:var(--mut);line-height:1.55;margin:1rem 0 2rem}.product-questions{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2rem}.product-questions p{color:var(--mut)}
     .product-contact{display:flex;gap:.6rem;flex-wrap:wrap}.product-contact a,.share-button{border:1px solid var(--line);padding:.5rem .8rem;background:none;color:var(--fg);font:inherit;text-decoration:none;cursor:pointer}.product-contact a:hover,.share-button:hover{border-color:var(--acc)}
