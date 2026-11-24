@@ -1,6 +1,6 @@
 ---
 published: true
-publish_at: "2026-11-24T20:00:00-03:00"
+publish_at: ""
 date: 2026-11-24
 title_es: "¿La inteligencia artificial está cambiando la manera de crear arte?"
 title_en: ""
