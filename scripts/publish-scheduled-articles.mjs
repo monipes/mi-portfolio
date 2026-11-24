@@ -18,10 +18,15 @@ const parseArgentinaDateTime = (value) => {
 for (const filename of fs.readdirSync(directory).filter((name) => name.endsWith('.md'))) {
   const fullPath = path.join(directory, filename);
   const source = fs.readFileSync(fullPath, 'utf8');
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) continue;
-
-  const frontmatter = match[1];
+  if (!source.startsWith('---\n') && !source.startsWith('---\r\n')) continue;
+  const openingDelimiterLength = source.startsWith('---\r\n') ? 5 : 4;
+  const afterOpening = source.slice(openingDelimiterLength);
+  const closingDelimiter = afterOpening.search(/\r?\n---(?:\r?\n|$)/);
+  // Some existing Vision Alternativa files omit the closing YAML delimiter.
+  // In that case, treat the remainder of the file as frontmatter.
+  const frontmatter = closingDelimiter >= 0
+    ? afterOpening.slice(0, closingDelimiter)
+    : afterOpening;
   const isPublished = /^published:\s*(?:true|yes|1)\s*$/im.test(frontmatter);
   const scheduledMatch = frontmatter.match(/^publish_at:\s*(.*?)\s*$/m);
   if (!isPublished || !scheduledMatch) continue;

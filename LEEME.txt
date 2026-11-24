@@ -1,13 +1,11 @@
-MISS SAM — Corrección puntual v4
+CORRECCIONES DEL PORTFOLIO MISS SAM
 
-Este paquete contiene SOLAMENTE 2 archivos corregidos. Copiá la carpeta src dentro del proyecto que ya estás actualizando y combiná/reemplazá los archivos cuando Windows lo pregunte.
+Este paquete contiene dos archivos para reemplazar en el repositorio, conservando las rutas indicadas:
 
-Cambios:
-- AI Motion ahora muestra todas las obras en UNA SOLA grilla horizontal, sin separarlas en bloques por año. Así “El portal que no se debe cruzar” y “Una nube para llevar” aparecen uno al lado del otro.
-- Cada tarjeta mantiene la imagen cuadrada y muestra su año debajo del título. “Una nube para llevar” figura como 2026.
-- Al abrir cada obra, la ficha muestra título, año y técnica (AI Motion), además de la descripción.
-- Visión Alternativa ya está configurada para mostrar 6 artículos por página: los primeros 6 quedan en la página 1 y el séptimo inicia la página 2. La paginación numérica se activa cuando hay más de una página.
+1) scripts/publish-scheduled-articles.mjs
+   Ajusta la lectura de los artículos programados de Visión Alternativa. Reconoce tanto encabezados YAML cerrados como los archivos existentes que tienen el delimitador inicial pero no el delimitador final. No modifica el contenido editorial.
 
-Archivos incluidos:
-src/pages/[lang]/ai-motion.astro
-src/pages/[lang]/ai-motion/[slug].astro
+2) src/site.js
+   Actualiza el aviso de derechos reservados en español, inglés y portugués para aclarar que las imágenes están protegidas por derechos de autor.
+
+IMPORTANTE: el paquete prepara los archivos, pero no los sube a GitHub ni despliega el sitio. Después de reemplazarlos en la rama main, ejecutar el workflow de publicación programada y comprobar el despliegue.
