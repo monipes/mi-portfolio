@@ -1,16 +1,16 @@
 {
-  "status": "active",
+  "status": "construction",
   "construction_message": "Estamos preparando la tienda. Muy pronto vas a poder encontrar acá obras y objetos de MISS SAM.",
   "paused_message": "La tienda está pausada temporalmente. Gracias por tu paciencia.",
   "contacts": {
-    "email_enabled": true,
-    "email": "missam2005@gmail.com",
-    "instagram_enabled": true,
+    "facebook": "https://www.facebook.com/misssamfanpage",
+    "facebook_enabled": true,
+    "whatsapp": "",
     "instagram": "https://www.instagram.com/misssam.art/",
     "whatsapp_enabled": true,
-    "whatsapp": "",
+    "instagram_enabled": true,
     "whatsapp_display": "",
-    "facebook_enabled": true,
-    "facebook": "https://www.facebook.com/misssamfanpage"
+    "email": "missam2005@gmail.com",
+    "email_enabled": true
   }
 }
