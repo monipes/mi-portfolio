@@ -3,11 +3,12 @@
   "construction_message": "Estamos preparando la tienda. Muy pronto vas a poder encontrar acá obras y objetos de MISS SAM.",
   "paused_message": "La tienda está pausada temporalmente. Gracias por tu paciencia.",
   "contacts": {
-    "email_enabled": false,
-    "email": "",
+    "email_enabled": true,
+    "email": "missan2005@gmail.com",
     "instagram_enabled": true,
     "instagram": "https://www.instagram.com/misssam.art/",
-    "whatsapp_enabled": false,
-    "whatsapp": ""
+    "whatsapp_enabled": true,
+    "whatsapp": "",
+    "whatsapp_display": "+54 9 11 5555-0101"
   }
 }

@@ -54,16 +54,10 @@ const canonical = `/${lang}/tienda/${slug}/`;
             {product.specifications_es && <div class="product-specs"><p>{product.specifications_es}</p></div>}
             <a class:list={['buy-button', !initialUrl && 'is-disabled']} id="marketplace-buy" href={initialUrl || undefined} target="_blank" rel="noopener noreferrer" aria-disabled={initialUrl ? 'false' : 'true'}>Comprar en Mercado Libre <span aria-hidden="true">↗</span></a>
             <p class="marketplace-note">Finalizás la compra en <strong>Mercado Libre</strong>: ahí elegís el medio de pago y el envío.</p>
-            <section class="product-questions">
-              <h2>Consultas</h2>
-              <p>Si tenés alguna duda sobre esta lámina, podés escribirme:</p>
-              <div class="product-contact">
-                {contacts.email_enabled && contacts.email && <a href={`mailto:${contacts.email}`}>Email</a>}
-                {contacts.instagram_enabled && contacts.instagram && <a href={contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
-                {contacts.whatsapp_enabled && whatsapp && <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
-              </div>
-            </section>
-            <button class="share-button" id="share-product" type="button" data-url={canonical}>Compartir</button>
+            <div class="product-actions">
+              {contacts.whatsapp_enabled && whatsapp ? <a class="whatsapp-button" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a> : <span class="whatsapp-button is-disabled" aria-disabled="true" title="Configurá el número de WhatsApp desde el panel">Consultar por WhatsApp</span>}
+              <button class="share-button" id="share-product" type="button" data-url={canonical}>Compartir</button>
+            </div>
           </section>
         </div>
         <script is:inline>
@@ -112,7 +106,7 @@ const canonical = `/${lang}/tienda/${slug}/`;
     .back{display:inline-block;color:var(--mut);text-decoration:none;font-size:.9rem;margin:0 0 1.5rem}.back:hover{color:var(--fg)}
     .product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(2rem,5vw,5rem);align-items:start}
     .product-gallery{display:grid;grid-template-columns:1fr;gap:1rem}
-    .product-image{margin:0;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e7e2dc;border-radius:12px;padding:clamp(1rem,3vw,2.25rem);box-shadow:0 3px 14px rgba(0,0,0,.055);overflow:hidden}
+    .product-image{margin:0;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e7e2dc;border-radius:0;padding:clamp(1.1rem,3.5vw,2.5rem);box-shadow:0 1px 2px #0002,0 10px 28px #0002;overflow:hidden}
     .product-image img{display:block;width:100%;height:100%;object-fit:contain}
     .product-video{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px}
     .product-info{max-width:520px;width:100%;margin:0 auto}
@@ -127,8 +121,8 @@ const canonical = `/${lang}/tienda/${slug}/`;
     .product-variants{border:0;padding:0;margin:1.5rem 0}
     .product-variants legend{font-size:.9rem;font-weight:650;margin-bottom:.7rem}
     .variant-options{display:flex;gap:.65rem;flex-wrap:wrap}
-    .variant-option{min-width:100px;display:flex;flex-direction:column;align-items:center;gap:.25rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--fg);padding:.7rem 1rem;font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
-    .variant-option small{font-size:.78rem;color:var(--mut)}
+    .variant-option{min-width:112px;display:flex;flex-direction:column;align-items:center;gap:.3rem;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--fg);padding:.8rem 1.1rem;font:inherit;font-size:1.08rem;font-weight:650;cursor:pointer;transition:border-color .15s,background .15s}
+    .variant-option small{font-size:.88rem;color:var(--mut);font-weight:500}
     .variant-option:hover{border-color:var(--acc)}
     .variant-option.is-selected{border:2px solid var(--acc);background:var(--band);padding:calc(.7rem - 1px) calc(1rem - 1px)}
     .product-specs{font-size:.78rem;line-height:1.55;color:var(--mut);white-space:pre-line;margin:1.2rem 0 1.3rem}
@@ -137,11 +131,10 @@ const canonical = `/${lang}/tienda/${slug}/`;
     .buy-button:hover{filter:brightness(.97);transform:translateY(-1px)}
     .buy-button.is-disabled{opacity:.72;cursor:not-allowed;filter:grayscale(.08)}
     .marketplace-note{background:#eee;border-left:3px solid var(--acc);padding:.8rem 1rem;font-size:.88rem;line-height:1.55;color:var(--fg);margin:.65rem 0 2rem}
-    .product-questions{border-top:1px solid var(--line);padding-top:1.3rem;margin-top:2rem}
-    .product-questions h2{font-size:1.1rem;margin:0 0 .45rem}.product-questions p{font-size:.88rem;color:var(--mut);margin:.4rem 0 .8rem}
-    .product-contact{display:flex;gap:1rem;flex-wrap:wrap}
-    .product-contact a,.share-button{color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:.9rem}
-    .share-button{margin-top:1.2rem;border:0;padding:0;background:none;font:inherit;cursor:pointer}
+    .product-actions{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:1.2rem}
+    .whatsapp-button{display:inline-flex;align-items:center;justify-content:center;padding:.55rem .9rem;border:1px solid var(--line);border-radius:6px;color:var(--fg);text-decoration:none;font-size:.88rem;font-weight:600}
+    .whatsapp-button:hover{border-color:var(--acc)}.whatsapp-button.is-disabled{opacity:.65;cursor:default}
+    .share-button{color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:.9rem;border:0;padding:0;background:none;font:inherit;cursor:pointer}
     .product-unavailable{background:var(--band);padding:3rem;margin:2rem 0;max-width:700px}.product-unavailable h1{font-size:2.5rem}
     @media(max-width:800px){.product-layout{grid-template-columns:1fr;gap:2rem}.product-info{max-width:620px}.product-image{max-width:100%}}
   </style>

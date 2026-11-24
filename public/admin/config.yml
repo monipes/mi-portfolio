@@ -629,7 +629,7 @@ collections:
       - name: email_enabled
         label: Mostrar email
         widget: boolean
-        default: false
+        default: true
       - name: email
         label: Dirección de email
         widget: string
@@ -645,11 +645,16 @@ collections:
       - name: whatsapp_enabled
         label: Mostrar WhatsApp
         widget: boolean
-        default: false
+        default: true
       - name: whatsapp
-        label: Enlace o número de WhatsApp
+        label: Enlace o número real de WhatsApp (para activar el botón)
         widget: string
         required: false
+      - name: whatsapp_display
+        label: Número visible de WhatsApp (texto de muestra)
+        widget: string
+        required: false
+        hint: Reemplazá el número de ejemplo cuando tengas el número definitivo.
 
 - name: google_analytics
   label: Google Analytics

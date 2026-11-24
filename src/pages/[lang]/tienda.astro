@@ -16,7 +16,7 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     <header class="shop-intro">
       <p class="shop-eyebrow">MISS SAM · OBJETOS Y ARTE IMPRESO</p>
       <h1>Tienda</h1>
-      <p>Descubrí láminas y objetos para llevar el universo visual de MISS SAM a tus espacios.</p>
+      <p>Descubrí las láminas y objetos de MISS SAM para llevar el arte a tus espacios.</p>
     </header>
     {status === 'construction' ? (
       <section class="shop-message"><h2>Tienda en construcción</h2><p>{settings.construction_message}</p></section>
@@ -35,7 +35,7 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
               {category.coming_soon && <span class="shop-soon">Próximamente</span>}
             </div>
             {category.coming_soon ? <p class="shop-coming">Muy pronto vas a encontrar novedades en esta categoría.</p> : items.length ? <div class="shop-grid">{items.map(p => <a class="shop-card" href={`/${lang}/tienda/${p.slug}/`}>
-              <span class="shop-card-image">{p.image && <img src={p.image} alt={p.alt_es || p.title_es} loading="lazy" />}</span>
+              <span class="shop-card-image art frame">{p.image && <img src={p.image} alt={p.alt_es || p.title_es} loading="lazy" />}</span>
               <span class="shop-card-info">
                 <strong>{p.title_es}</strong>
                 {(p.price_before || p.price_label) && <span class="shop-card-prices">{p.price_before && <s>{p.price_before}</s>}{p.price_label && <b>{p.price_label}</b>}{p.discount_label && <em>{p.discount_label}</em>}</span>}
@@ -47,11 +47,11 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     )}
     <section class="shop-contact">
       <h2>¿Tenés alguna consulta?</h2>
-      <p>Podés comunicarte con MISS SAM por estos medios:</p>
-      <div class="shop-contact-links">
-        {settings.contacts?.email_enabled && settings.contacts.email && <a href={`mailto:${settings.contacts.email}`}>Email</a>}
-        {settings.contacts?.instagram_enabled && settings.contacts.instagram && <a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
-        {settings.contacts?.whatsapp_enabled && settings.contacts.whatsapp && <a href={settings.contacts.whatsapp.startsWith('http') ? settings.contacts.whatsapp : `https://wa.me/${settings.contacts.whatsapp.replace(/[^0-9]/g,'')}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
+      <p>Podés comunicarte con Isa por estos medios:</p>
+      <div class="shop-contact-list">
+        {settings.contacts?.whatsapp_enabled && <p><strong>WhatsApp:</strong> <span>{settings.contacts.whatsapp_display || 'Número a configurar'}</span> <small>(número de ejemplo)</small></p>}
+        {settings.contacts?.instagram_enabled && settings.contacts.instagram && <details class="instagram-contact"><summary>Instagram</summary><a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Visitar Instagram de MISS SAM ↗</a></details>}
+        {settings.contacts?.email_enabled && settings.contacts.email && <p><strong>Email:</strong> <a href={`mailto:${settings.contacts.email}`}>{settings.contacts.email}</a></p>}
       </div>
     </section>
   </div>
@@ -73,7 +73,7 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     .shop-coming{color:var(--mut);padding:.5rem 0}
     .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:1.6rem}
     .shop-card{display:block;color:inherit;text-decoration:none;min-width:0}
-    .shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;aspect-ratio:1/1;overflow:hidden;border:1px solid #e7e2dc;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.055);padding:1rem}
+    .shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;aspect-ratio:1/1;overflow:hidden;border:0;border-radius:0;box-shadow:0 1px 2px #0002,0 10px 28px #0002;padding:5%}
     .shop-card-image img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .3s}
     .shop-card:hover .shop-card-image img{transform:scale(1.025)}
     .shop-card-info{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;padding:1rem .25rem}
@@ -82,9 +82,16 @@ const visibleProducts = allProducts.filter(p => !p.category || categories.some(c
     .shop-card-prices s{color:var(--mut);font-size:.9rem}
     .shop-card-prices b{font-size:1.12rem;font-weight:750;color:var(--fg)}
     .shop-card-prices em{font-style:normal;background:var(--acc);color:white;border-radius:4px;padding:.22rem .45rem;font-size:.72rem;font-weight:700;white-space:nowrap}
-    .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding-top:1.7rem}
-    .shop-contact h2{margin:0 0 .45rem;font-size:1.35rem}.shop-contact p{color:var(--mut);font-size:.92rem}
-    .shop-contact-links{display:flex;gap:1rem;flex-wrap:wrap}
-    .shop-contact-links a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:.92rem}
+    .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding:1.7rem 0 0}
+    .shop-contact h2{margin:0 0 .45rem;font-size:1.35rem}.shop-contact>p{color:var(--mut);font-size:.92rem;margin:.4rem 0 1rem}
+    .shop-contact-list{display:grid;gap:.65rem;justify-items:start}
+    .shop-contact-list p{margin:0;color:var(--fg);font-size:.92rem}.shop-contact-list small{color:var(--mut);font-size:.75rem}
+    .shop-contact-list a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+    .instagram-contact{position:relative}
+    .instagram-contact summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;padding:.48rem .9rem;border:1px solid var(--line);border-radius:6px;font-size:.88rem}
+    .instagram-contact summary::-webkit-details-marker{display:none}
+    .instagram-contact summary::after{content:'⌄';font-size:1rem}
+    .instagram-contact[open] summary::after{content:'⌃'}
+    .instagram-contact>a{display:block;margin-top:.55rem;font-size:.88rem}
   </style>
 </Base>
