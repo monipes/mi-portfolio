@@ -524,11 +524,16 @@ collections:
     widget: string
     required: false
     hint: "Ejemplo: 5% OFF. Dejar vacío si no corresponde."
-  - name: card_subtitle
-    label: Texto gris debajo del nombre en la tarjeta
+  - name: availability_es
+    label: Disponibilidad
     widget: string
     required: false
-    hint: "Ejemplo: Collage digital."
+    default: Disponible
+  - name: specifications_es
+    label: Especificaciones del producto (texto pequeño)
+    widget: text
+    required: false
+    hint: "Ejemplo: tamaño, tipo de papel, gramaje, impresión y terminación. Se muestra debajo de los formatos."
   - name: variants
     label: Formatos y enlaces de compra (A4, A3, etc.)
     widget: list
@@ -539,6 +544,14 @@ collections:
       widget: string
     - name: price
       label: Precio en pesos argentinos
+      widget: string
+      required: false
+    - name: price_before
+      label: Precio anterior del formato (opcional)
+      widget: string
+      required: false
+    - name: discount_label
+      label: Descuento del formato (opcional)
       widget: string
       required: false
     - name: url

@@ -15,6 +15,12 @@ const images = [product.image, ...(product.gallery || []).map(g => typeof g === 
 const contacts = settings.contacts || {};
 const whatsapp = contacts.whatsapp || '';
 const whatsappUrl = whatsapp.startsWith('http') ? whatsapp : `https://wa.me/${whatsapp.replace(/[^0-9]/g,'')}`;
+const variants = product.variants || [];
+const initialVariant = variants[0] || {};
+const initialPrice = initialVariant.price || product.price_label || '';
+const initialBefore = initialVariant.price_before || product.price_before || '';
+const initialDiscount = initialVariant.discount_label || product.discount_label || '';
+const initialUrl = initialVariant.url || product.buy_url || '';
 const canonical = `/${lang}/tienda/${slug}/`;
 ---
 <Base lang={lang} title={product.title_es} desc={product.description_es || product.title_es} path={`tienda/${slug}/`} image={product.image || '/icon-512.png'}>
@@ -28,23 +34,65 @@ const canonical = `/${lang}/tienda/${slug}/`;
             {product.video_file && <video class="product-video" src={product.video_file} controls playsinline preload="metadata" poster={product.image || undefined}></video>}
             {images.map((src,i) => <figure class="product-image"><img src={src} alt={i === 0 ? (product.alt_es || product.title_es) : (product.gallery?.[i-1]?.alt_es || product.title_es)} loading={i ? 'lazy' : 'eager'} /></figure>)}
           </div>
-          <aside class="product-info">
-            {product.category_label && <p class="product-category">{product.category_label}</p>}
+          <section class="product-info">
+            <p class="product-availability">{product.availability_es || 'Disponible'}</p>
             <h1>{product.title_es}</h1>
             {product.description_es && <p class="product-description">{product.description_es}</p>}
-            {(product.price_before || product.price_label) && <div class="product-price">{product.price_before && <s>{product.price_before}</s>} {product.price_label && <strong>{product.price_label}</strong>} {product.discount_label && <span>{product.discount_label}</span>}</div>}
-            {(product.variants || []).length > 0 ? <div class="product-variants"><h2>Elegí el formato</h2>{product.variants.map(v => <div class="variant"><div><strong>{v.label}</strong>{v.price && <b>{v.price}</b>}</div>{v.url && <a class="btn" href={v.url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}</div>)}</div>
-              : product.buy_url && <a class="btn product-buy" href={product.buy_url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}
-            {(product.buy_url || (product.variants || []).some(v => v.url)) && <p class="marketplace-note">La compra, el pago y el envío se gestionan directamente en Mercado Libre. Allí vas a poder elegir los medios de pago y las opciones de entrega disponibles.</p>}
-            <section class="product-questions"><h2>Consultas</h2><p>¿Tenés alguna pregunta sobre este producto?</p><div class="product-contact">
-              {contacts.email_enabled && contacts.email && <a href={`mailto:${contacts.email}`}>Email</a>}
-              {contacts.instagram_enabled && contacts.instagram && <a href={contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
-              {contacts.whatsapp_enabled && whatsapp && <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
-            </div></section>
-            <button class="share-button" id="share-product" type="button" data-url={canonical}>Compartir producto</button>
-          </aside>
+            <div class="product-price" aria-live="polite">
+              {initialBefore && <s id="price-before" hidden={!initialBefore}>{initialBefore}</s>}
+              <strong id="price-current">{initialPrice}</strong>
+              <span id="price-discount" hidden={!initialDiscount}>{initialDiscount}</span>
+            </div>
+            {variants.length > 0 && <fieldset class="product-variants">
+              <legend>Formato</legend>
+              <div class="variant-options">
+                {variants.map((v,i) => <button type="button" class:list={['variant-option', i === 0 && 'is-selected']} aria-pressed={i === 0 ? 'true' : 'false'} data-index={i} data-price={v.price || ''} data-before={v.price_before || ''} data-discount={v.discount_label || ''} data-url={v.url || ''}>
+                  <span>{v.label}</span>{v.price && <small>{v.price}</small>}
+                </button>)}
+              </div>
+            </fieldset>}
+            {product.specifications_es && <div class="product-specs"><p>{product.specifications_es}</p></div>}
+            <a class:list={['buy-button', !initialUrl && 'is-disabled']} id="marketplace-buy" href={initialUrl || undefined} target="_blank" rel="noopener noreferrer" aria-disabled={initialUrl ? 'false' : 'true'}>Comprar en Mercado Libre <span aria-hidden="true">↗</span></a>
+            <p class="marketplace-note">Finalizás la compra en <strong>Mercado Libre</strong>: ahí elegís el medio de pago y el envío.</p>
+            <section class="product-questions">
+              <h2>Consultas</h2>
+              <p>Si tenés alguna duda sobre esta lámina, podés escribirme:</p>
+              <div class="product-contact">
+                {contacts.email_enabled && contacts.email && <a href={`mailto:${contacts.email}`}>Email</a>}
+                {contacts.instagram_enabled && contacts.instagram && <a href={contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+                {contacts.whatsapp_enabled && whatsapp && <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
+              </div>
+            </section>
+            <button class="share-button" id="share-product" type="button" data-url={canonical}>Compartir</button>
+          </section>
         </div>
         <script is:inline>
+          const optionButtons = document.querySelectorAll('.variant-option');
+          const priceBefore = document.getElementById('price-before');
+          const priceCurrent = document.getElementById('price-current');
+          const priceDiscount = document.getElementById('price-discount');
+          const buyButton = document.getElementById('marketplace-buy');
+          optionButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+              optionButtons.forEach((item) => {
+                item.classList.remove('is-selected');
+                item.setAttribute('aria-pressed', 'false');
+              });
+              button.classList.add('is-selected');
+              button.setAttribute('aria-pressed', 'true');
+              const before = button.dataset.before || '';
+              const price = button.dataset.price || '';
+              const discount = button.dataset.discount || '';
+              const url = button.dataset.url || '';
+              if (priceBefore) { priceBefore.textContent = before; priceBefore.hidden = !before; }
+              priceCurrent.textContent = price;
+              priceDiscount.textContent = discount;
+              priceDiscount.hidden = !discount;
+              if (url) buyButton.href = url; else buyButton.removeAttribute('href');
+              buyButton.classList.toggle('is-disabled', !url);
+              buyButton.setAttribute('aria-disabled', url ? 'false' : 'true');
+            });
+          });
           const shareButton = document.getElementById('share-product');
           shareButton?.addEventListener('click', async () => {
             const url = new URL(shareButton.dataset.url, window.location.origin).href;
@@ -58,15 +106,43 @@ const canonical = `/${lang}/tienda/${slug}/`;
     )}
   </div>
   <style>
-    .product-page{padding-bottom:4rem}.product-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:clamp(2rem,5vw,5rem);align-items:start}
-    .product-gallery{display:grid;gap:1rem}.product-image{margin:0;background:var(--band);padding:clamp(.5rem,2vw,1rem)}.product-image img{display:block;width:100%;height:auto;max-height:85vh;object-fit:contain}
-    .product-video{width:100%;aspect-ratio:16/9;background:#000}.product-info{position:sticky;top:7rem}.product-info h1{font-size:clamp(2rem,4vw,3.2rem);margin:0 0 1rem}
-    .product-category{color:var(--acc);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}.product-description{white-space:pre-line;color:var(--bio);line-height:1.7}
-    .product-price{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;font-size:1.5rem;margin:1.5rem 0}.product-price s{font-size:1rem;color:var(--mut)}.product-price strong{font-size:1.6rem}.product-price span{font-size:.78rem;background:var(--acc);color:white;border-radius:4px;padding:.25rem .45rem;font-weight:700}.product-buy{margin:.5rem 0}.product-variants{margin:2rem 0}.product-variants h2,.product-questions h2{font-size:1.35rem;margin:0 0 1rem}
-    .variant{padding:1rem 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.7rem}.variant>div{display:flex;justify-content:space-between;gap:1rem}.variant b{font-weight:600}
-    .marketplace-note{font-size:.88rem;color:var(--mut);line-height:1.55;margin:1rem 0 2rem}.product-questions{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2rem}.product-questions p{color:var(--mut)}
-    .product-contact{display:flex;gap:.6rem;flex-wrap:wrap}.product-contact a,.share-button{border:1px solid var(--line);padding:.5rem .8rem;background:none;color:var(--fg);font:inherit;text-decoration:none;cursor:pointer}.product-contact a:hover,.share-button:hover{border-color:var(--acc)}
-    .share-button{margin-top:1.5rem}.product-unavailable{background:var(--band);padding:3rem;margin:2rem 0;max-width:700px}.product-unavailable h1{font-size:2.5rem}
-    @media(max-width:800px){.product-layout{grid-template-columns:1fr}.product-info{position:static}}
+    .product-page{padding-bottom:4rem}
+    .bc{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;font-size:.82rem;color:var(--mut);margin:1rem 0 1.3rem}
+    .bc a{color:var(--mut);text-decoration:none}.bc a:hover{text-decoration:underline}
+    .back{display:inline-block;color:var(--mut);text-decoration:none;font-size:.9rem;margin:0 0 1.5rem}.back:hover{color:var(--fg)}
+    .product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+    .product-gallery{display:grid;grid-template-columns:1fr;gap:1rem}
+    .product-image{margin:0;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e7e2dc;border-radius:12px;padding:clamp(1rem,3vw,2.25rem);box-shadow:0 3px 14px rgba(0,0,0,.055);overflow:hidden}
+    .product-image img{display:block;width:100%;height:100%;object-fit:contain}
+    .product-video{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px}
+    .product-info{max-width:520px;width:100%;margin:0 auto}
+    .product-availability{font-size:.82rem;color:var(--mut);margin:0 0 .9rem}
+    .product-info h1{text-align:center;font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.2;margin:0 auto 1rem;max-width:20ch}
+    .product-description{color:var(--mut);line-height:1.65;text-align:center;margin:0 auto 1.1rem;max-width:48ch}
+    .product-price{display:flex;justify-content:center;align-items:center;gap:.65rem;flex-wrap:wrap;margin:1.15rem 0 1.4rem}
+    .product-price s{color:var(--mut);font-size:1rem}
+    .product-price strong{font-size:1.65rem;line-height:1.2;font-weight:750;color:var(--fg)}
+    .product-price span{background:var(--acc);color:#fff;border-radius:4px;padding:.25rem .5rem;font-size:.76rem;font-weight:750}
+    .product-price span[hidden],.product-price s[hidden]{display:none}
+    .product-variants{border:0;padding:0;margin:1.5rem 0}
+    .product-variants legend{font-size:.9rem;font-weight:650;margin-bottom:.7rem}
+    .variant-options{display:flex;gap:.65rem;flex-wrap:wrap}
+    .variant-option{min-width:100px;display:flex;flex-direction:column;align-items:center;gap:.25rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--fg);padding:.7rem 1rem;font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+    .variant-option small{font-size:.78rem;color:var(--mut)}
+    .variant-option:hover{border-color:var(--acc)}
+    .variant-option.is-selected{border:2px solid var(--acc);background:var(--band);padding:calc(.7rem - 1px) calc(1rem - 1px)}
+    .product-specs{font-size:.78rem;line-height:1.55;color:var(--mut);white-space:pre-line;margin:1.2rem 0 1.3rem}
+    .product-specs p{margin:0}
+    .buy-button{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;min-height:58px;padding:1rem 1.2rem;border-radius:9px;background:#ffe600;color:#25215b;text-decoration:none;font-weight:750;text-align:center;box-shadow:0 3px 7px rgba(0,0,0,.12);transition:filter .15s,transform .15s}
+    .buy-button:hover{filter:brightness(.97);transform:translateY(-1px)}
+    .buy-button.is-disabled{opacity:.72;cursor:not-allowed;filter:grayscale(.08)}
+    .marketplace-note{background:#eee;border-left:3px solid var(--acc);padding:.8rem 1rem;font-size:.88rem;line-height:1.55;color:var(--fg);margin:.65rem 0 2rem}
+    .product-questions{border-top:1px solid var(--line);padding-top:1.3rem;margin-top:2rem}
+    .product-questions h2{font-size:1.1rem;margin:0 0 .45rem}.product-questions p{font-size:.88rem;color:var(--mut);margin:.4rem 0 .8rem}
+    .product-contact{display:flex;gap:1rem;flex-wrap:wrap}
+    .product-contact a,.share-button{color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:.9rem}
+    .share-button{margin-top:1.2rem;border:0;padding:0;background:none;font:inherit;cursor:pointer}
+    .product-unavailable{background:var(--band);padding:3rem;margin:2rem 0;max-width:700px}.product-unavailable h1{font-size:2.5rem}
+    @media(max-width:800px){.product-layout{grid-template-columns:1fr;gap:2rem}.product-info{max-width:620px}.product-image{max-width:100%}}
   </style>
 </Base>

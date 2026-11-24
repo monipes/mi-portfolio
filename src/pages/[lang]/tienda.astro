@@ -10,48 +10,81 @@ const status = settings.status || 'construction';
 const categories = shopCategories();
 const allProducts = products();
 const visibleProducts = allProducts.filter(p => !p.category || categories.some(c => c.slug === p.category));
-const categoryName = (slug) => categories.find(c => c.slug === slug)?.title_es || slug;
 ---
 <Base lang={lang} title={tr.shop} desc="Láminas y objetos de MISS SAM." path="tienda/">
   <div class="wrap shop-page">
-    <h1 class="pt">Tienda</h1>
+    <header class="shop-intro">
+      <p class="shop-eyebrow">MISS SAM · OBJETOS Y ARTE IMPRESO</p>
+      <h1>Tienda</h1>
+      <p>Descubrí láminas y objetos para llevar el universo visual de MISS SAM a tus espacios.</p>
+    </header>
     {status === 'construction' ? (
-      <section class="shop-message"><span class="shop-kicker">MISS SAM · TIENDA</span><h2>Tienda en construcción</h2><p>{settings.construction_message}</p></section>
+      <section class="shop-message"><h2>Tienda en construcción</h2><p>{settings.construction_message}</p></section>
     ) : status === 'paused' ? (
-      <section class="shop-message"><span class="shop-kicker">MISS SAM · TIENDA</span><h2>Tienda pausada</h2><p>{settings.paused_message}</p></section>
+      <section class="shop-message"><h2>Tienda pausada</h2><p>{settings.paused_message}</p></section>
     ) : (
       <>
-        <p class="shop-intro">Descubrí las láminas y objetos de MISS SAM.</p>
+        <nav class="shop-categories" aria-label="Categorías de la tienda">
+          {categories.map(category => <a href={`#categoria-${category.slug}`}>{category.title_es}</a>)}
+        </nav>
         {categories.map(category => {
           const items = visibleProducts.filter(p => p.category === category.slug);
-          return <section class="shop-category">
-            <div class="shop-heading"><div><h2>{category.title_es}</h2>{category.description_es && <p>{category.description_es}</p>}</div>{category.coming_soon && <span class="shop-soon">Próximamente</span>}</div>
-            {category.coming_soon ? <p class="shop-coming">Esta categoría estará disponible próximamente.</p> : items.length ? <div class="shop-grid">{items.map(p => <a class="shop-card" href={`/${lang}/tienda/${p.slug}/`}>
+          return <section class="shop-category" id={`categoria-${category.slug}`}>
+            <div class="shop-heading">
+              <h2>{category.title_es}</h2>
+              {category.coming_soon && <span class="shop-soon">Próximamente</span>}
+            </div>
+            {category.coming_soon ? <p class="shop-coming">Muy pronto vas a encontrar novedades en esta categoría.</p> : items.length ? <div class="shop-grid">{items.map(p => <a class="shop-card" href={`/${lang}/tienda/${p.slug}/`}>
               <span class="shop-card-image">{p.image && <img src={p.image} alt={p.alt_es || p.title_es} loading="lazy" />}</span>
-              <span class="shop-card-info"><strong>{p.title_es}</strong><small>{p.card_subtitle || categoryName(p.category)}</small>{(p.price_before || p.price_label) && <span class="shop-card-prices">{p.price_before && <s>{p.price_before}</s>}{p.price_label && <b>{p.price_label}</b>}{p.discount_label && <em>{p.discount_label}</em>}</span>}</span>
+              <span class="shop-card-info">
+                <strong>{p.title_es}</strong>
+                {(p.price_before || p.price_label) && <span class="shop-card-prices">{p.price_before && <s>{p.price_before}</s>}{p.price_label && <b>{p.price_label}</b>}{p.discount_label && <em>{p.discount_label}</em>}</span>}
+              </span>
             </a>)}</div> : <p class="shop-coming">Próximamente vas a encontrar productos en esta categoría.</p>}
           </section>;
         })}
       </>
     )}
-    {status !== 'active' && <section class="shop-contact"><h2>Consultas</h2><p>Si querés comunicarte, podés escribir por estos medios:</p><div class="shop-contact-links">
-      {settings.contacts?.email_enabled && settings.contacts.email && <a href={`mailto:${settings.contacts.email}`}>Email</a>}
-      {settings.contacts?.instagram_enabled && settings.contacts.instagram && <a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
-      {settings.contacts?.whatsapp_enabled && settings.contacts.whatsapp && <a href={settings.contacts.whatsapp.startsWith('http') ? settings.contacts.whatsapp : `https://wa.me/${settings.contacts.whatsapp.replace(/[^0-9]/g,'')}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
-    </div></section>}
+    <section class="shop-contact">
+      <h2>¿Tenés alguna consulta?</h2>
+      <p>Podés comunicarte con MISS SAM por estos medios:</p>
+      <div class="shop-contact-links">
+        {settings.contacts?.email_enabled && settings.contacts.email && <a href={`mailto:${settings.contacts.email}`}>Email</a>}
+        {settings.contacts?.instagram_enabled && settings.contacts.instagram && <a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+        {settings.contacts?.whatsapp_enabled && settings.contacts.whatsapp && <a href={settings.contacts.whatsapp.startsWith('http') ? settings.contacts.whatsapp : `https://wa.me/${settings.contacts.whatsapp.replace(/[^0-9]/g,'')}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
+      </div>
+    </section>
   </div>
   <style>
-    .shop-page{padding-bottom:3rem}.shop-intro{color:var(--mut);font-size:1.1rem;margin:0 0 2.5rem}
+    .shop-page{padding-bottom:4rem}
+    .shop-intro{padding:1.5rem 0 1.25rem;max-width:760px}
+    .shop-eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--acc);font-weight:700;margin:0 0 .7rem}
+    .shop-intro h1{font-size:clamp(2.2rem,5vw,3.3rem);margin:0 0 .55rem}
+    .shop-intro>p:last-child{color:var(--mut);font-size:1.05rem;line-height:1.65;margin:0}
+    .shop-categories{display:flex;gap:.65rem;flex-wrap:wrap;margin:1.5rem 0 3rem}
+    .shop-categories a{display:inline-flex;padding:.55rem 1rem;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.9rem;transition:background .2s,border-color .2s}
+    .shop-categories a:hover{background:var(--band);border-color:var(--acc)}
     .shop-message{margin:2rem 0 4rem;padding:clamp(2rem,6vw,5rem);background:var(--band);border:1px solid var(--line);max-width:850px}
-    .shop-message h2{margin:1rem 0;font-size:clamp(2rem,5vw,3.5rem)}.shop-message p{max-width:55ch;color:var(--mut);font-size:1.1rem}
-    .shop-kicker{font-size:.75rem;letter-spacing:.16em;color:var(--acc);font-weight:700}
-    .shop-category{margin:3.5rem 0}.shop-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem}
-    .shop-heading h2{margin:0;font-size:clamp(1.7rem,3vw,2.4rem)}.shop-heading p{margin:.5rem 0 0;color:var(--mut)}
-    .shop-soon{border:1px solid var(--acc);color:var(--acc);padding:.35rem .7rem;font-size:.8rem;white-space:nowrap}
-    .shop-coming{color:var(--mut);padding:1rem 0}.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:1.5rem}
-    .shop-card{text-decoration:none;display:block;color:inherit;min-width:0}.shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;aspect-ratio:1/1;overflow:hidden;border:1px solid var(--line);border-radius:13px;box-shadow:0 2px 9px rgba(0,0,0,.07);padding:1rem}.shop-card-image img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .3s}.shop-card:hover img{transform:scale(1.025)}
-    .shop-card-info{display:flex;flex-direction:column;gap:.25rem;padding:.8rem 0}.shop-card-info strong{font-size:1.02rem;line-height:1.35}.shop-card-info small{color:var(--mut);font-size:.9rem}.shop-card-prices{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:.35rem}.shop-card-prices s{color:var(--mut);font-size:.95rem}.shop-card-prices b{font-size:1.15rem;font-weight:700;color:var(--fg)}.shop-card-prices em{font-style:normal;background:var(--acc);color:white;border-radius:4px;padding:.22rem .45rem;font-size:.75rem;font-weight:700;white-space:nowrap}
-    .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding-top:1.5rem}.shop-contact h2{margin:0 0 .5rem}.shop-contact p{color:var(--mut)}
-    .shop-contact-links{display:flex;gap:.75rem;flex-wrap:wrap}.shop-contact-links a{border:1px solid var(--line);padding:.5rem .9rem;text-decoration:none}.shop-contact-links a:hover{border-color:var(--acc)}
+    .shop-message h2{margin:0 0 1rem;font-size:clamp(2rem,5vw,3rem)}.shop-message p{max-width:55ch;color:var(--mut);font-size:1.05rem}
+    .shop-category{margin:3.5rem 0}
+    .shop-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:.8rem;margin-bottom:1.5rem;border-bottom:1px solid var(--line)}
+    .shop-heading h2{margin:0;font-size:clamp(1.55rem,3vw,2rem)}
+    .shop-soon{border:1px solid var(--acc);color:var(--acc);border-radius:999px;padding:.35rem .75rem;font-size:.78rem;white-space:nowrap}
+    .shop-coming{color:var(--mut);padding:.5rem 0}
+    .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:1.6rem}
+    .shop-card{display:block;color:inherit;text-decoration:none;min-width:0}
+    .shop-card-image{display:flex;align-items:center;justify-content:center;background:#fff;aspect-ratio:1/1;overflow:hidden;border:1px solid #e7e2dc;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.055);padding:1rem}
+    .shop-card-image img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .3s}
+    .shop-card:hover .shop-card-image img{transform:scale(1.025)}
+    .shop-card-info{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;padding:1rem .25rem}
+    .shop-card-info strong{font-size:1.02rem;line-height:1.35;font-weight:650}
+    .shop-card-prices{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:.15rem}
+    .shop-card-prices s{color:var(--mut);font-size:.9rem}
+    .shop-card-prices b{font-size:1.12rem;font-weight:750;color:var(--fg)}
+    .shop-card-prices em{font-style:normal;background:var(--acc);color:white;border-radius:4px;padding:.22rem .45rem;font-size:.72rem;font-weight:700;white-space:nowrap}
+    .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding-top:1.7rem}
+    .shop-contact h2{margin:0 0 .45rem;font-size:1.35rem}.shop-contact p{color:var(--mut);font-size:.92rem}
+    .shop-contact-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .shop-contact-links a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:.92rem}
   </style>
 </Base>
