@@ -36,8 +36,6 @@ collections:
     hint: Activalo si querés que la obra aparezca en la sección de destacadas de la página de inicio.
   - name: featured_order
     label: Orden entre las obras destacadas (número menor = primero)
-    2: null
-    3…): null
     widget: number
     required: false
     hint: Solo organiza las obras que estén marcadas como destacadas.
@@ -53,8 +51,6 @@ collections:
     hint: Solo organiza las obras incluidas en el carrusel.
   - name: banner_y
     label: Encuadre vertical del banner (0 = arriba, 50 = centro, 100 = abajo)
-    50 = centro: null
-    100 = abajo): null
     widget: number
     default: 55
     min: 0
@@ -74,7 +70,6 @@ collections:
     widget: string
   - name: desc_es
     label: Descripción en español
-    máximo 110 caracteres): null
     widget: text
     required: false
     pattern:
@@ -83,11 +78,9 @@ collections:
     hint: Una frase breve sobre la obra. Máximo 110 caracteres.
   - name: image
     label: Imagen principal
-    hasta ~3000 px): null
     widget: image
   - name: focus
     label: Encuadre de la miniatura cuadrada (para obras verticales)
-    qué parte se ve (para obras verticales): null
     widget: select
     options:
     - label: Arriba
@@ -153,7 +146,6 @@ collections:
       widget: string
     - name: price
       label: Precio (texto libre
-      ej. USD 120): null
       widget: string
       required: false
     - name: url
@@ -375,7 +367,6 @@ collections:
     required: false
   - name: video_file
     label: Archivo de video MP4
-    opcional): null
     widget: file
     required: false
   - name: video_poster
