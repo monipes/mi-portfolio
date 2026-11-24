@@ -454,3 +454,16 @@ collections:
       label: Descripción de la foto (ES)
       widget: string
       required: false
+
+- name: google_analytics
+  label: Google Analytics
+  files:
+  - name: measurement
+    label: Medición de MISS SAM
+    file: src/data/analytics.json
+    fields:
+    - name: measurement_id
+      label: ID de medición de Google Analytics (G-...)
+      widget: string
+      required: false
+      hint: Pegá solamente el identificador que empieza con G-. No pegues el código HTML completo ni un ID GTM-.

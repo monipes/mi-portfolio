@@ -1,14 +1,30 @@
 ---
 import { t, langs, site } from '../site.js';
 import Social from '../components/Social.astro';
+import analytics from '../data/analytics.json';
 const { noindex = false, lang, title, desc = '', image = '/icon-512.png', path = '', ld = null, ogType = 'website' } = Astro.props;
 const tr = t[lang]; const origin = Astro.site?.origin ?? '';
+const rawMeasurementId = String(analytics.measurement_id || '').trim();
+const gaMeasurementId = /^G-[A-Z0-9]+$/i.test(rawMeasurementId) ? rawMeasurementId : '';
 const nav = [['portfolio','portfolio/'],['exhibitions','exposiciones/'],['shop','tienda/'],['contact','contacto/']];
 const full = title.includes(site.name) ? title : `${title} — ${site.name}`;
 ---
 <!doctype html>
 <html lang={lang === 'pt' ? 'pt-BR' : lang} data-theme="light">
 <head>
+  {gaMeasurementId && (
+    <>
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+      <script define:vars={{ gaMeasurementId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', gaMeasurementId);
+      </script>
+    </>
+  )}
   <meta charset="utf-8" />
   <link rel="icon" href="/favicon.ico" sizes="48x48" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{full}</title><meta name="description" content={desc} /><meta name="robots" content={noindex ? 'noindex' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'} />

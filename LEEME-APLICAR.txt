@@ -1,14 +1,52 @@
-MISS SAM — REPARACIÓN DE PÁGINAS LEGALES
+MISS SAM — GOOGLE ANALYTICS 4 (GA4)
 
-Este paquete corrige únicamente las páginas legales y sus enlaces del pie. No modifica Sitemap, obras, galerías, artículos, diseño general, formulario ni datos de contacto.
+ID de medición incorporado: G-5PKYXG6CRR
+ID del flujo web: 16406229059 (referencia de Analytics; no se necesita en el código de instalación)
+ID de contenedor de Google Tag Manager recibido: GTM-TJ9835KL (no se utiliza en esta integración directa de GA4)
 
-Archivos incluidos:
-- src/pages/[lang]/aviso-legal.astro (página independiente nueva)
-- src/pages/[lang]/privacidad.astro
-- src/pages/[lang]/terminos.astro
-- src/pages/[lang]/cookies.astro
-- src/layouts/Base.astro (solo se agrega el enlace a Aviso legal en el pie)
+QUÉ HACE ESTE PAQUETE
+- Añade al administrador Decap CMS una sección «Google Analytics».
+- Preconfigura el ID de medición G-5PKYXG6CRR en src/data/analytics.json.
+- Carga la etiqueta oficial de Google gtag.js en el <head> compartido de las páginas del sitio.
+- La medición se activa solamente cuando el ID G-... está presente y tiene un formato válido.
 
-Los textos están en español, inglés y portugués. No se publica domicilio ni correo personal. La privacidad identifica los campos del formulario y Formspree; no afirma que los datos se almacenen en una ubicación determinada. La política de cookies distingue sessionStorage de las cookies.
+ARCHIVOS INCLUIDOS (solo estos tres archivos)
+1. public/admin/config.yml
+2. src/layouts/Base.astro
+3. src/data/analytics.json
 
-IMPORTANTE: este es un paquete de reemplazo parcial, no el proyecto Astro completo. No subirlo ni desplegarlo hasta integrarlo en el repositorio completo y comprobar la compilación.
+CÓMO APLICARLO
+1. Hacé una copia de seguridad del repositorio GitHub antes de reemplazar archivos.
+2. En el repositorio monipes/mi-portfolio, rama main, reemplazá los dos archivos existentes:
+   - public/admin/config.yml
+   - src/layouts/Base.astro
+3. Agregá el archivo nuevo:
+   - src/data/analytics.json
+4. Guardá los cambios en main. Cloudflare Pages debería ejecutar un nuevo despliegue.
+5. Cuando termine, abrí https://misssam.online/admin.
+6. En el menú del administrador aparecerá «Google Analytics» > «Medición de MISS SAM».
+   El campo ya estará rellenado con G-5PKYXG6CRR. No hace falta que pegues otro código.
+7. Si en el futuro cambiás de propiedad de Analytics, podrás actualizar ese ID desde el panel y publicar los cambios.
+8. Tras el despliegue, abrí Google Analytics > Informes > Tiempo real y visitá tu sitio en otra pestaña para comprobar la recepción de actividad. Google advierte que los datos pueden tardar un poco en aparecer.
+
+IMPORTANTE SOBRE LOS TRES IDENTIFICADORES
+- G-5PKYXG6CRR: ID de medición de GA4. ESTE es el identificador instalado.
+- 16406229059: ID numérico del flujo web. Es una referencia interna del flujo y no sustituye al ID G- en la etiqueta gtag.js.
+- GTM-TJ9835KL: ID de un contenedor de Google Tag Manager. No se instala en esta integración directa de GA4.
+
+El fragmento que se recibió mezclaba la ruta gtm.js con el ID GTM- y comandos gtag(). Google documenta que para instalar directamente GA4 debe utilizarse gtag.js con el ID de medición G-. Por eso este paquete usa G-5PKYXG6CRR mediante gtag.js y no instala el contenedor GTM-TJ9835KL. Si más adelante se desea administrar etiquetas mediante Google Tag Manager, habrá que configurar GA4 dentro de ese contenedor y cambiar a una instalación GTM completa; no deben mezclarse ambos métodos.
+
+ALCANCE Y PROTECCIÓN DEL RESTO DEL SITIO
+- No se cambia src/lib/data.js ni la lógica de orden cronológico de las obras.
+- No se modifican las galerías, las obras, las exposiciones, los artículos, las imágenes ni el diseño.
+- No se modifica el SEO, el Sitemap, robots.txt ni las reglas de Cloudflare.
+- No se reemplaza el proyecto completo: el ZIP contiene solamente los tres archivos enumerados.
+
+PRIVACIDAD
+Google Analytics utiliza tecnologías de medición y puede recopilar información sobre visitas y uso del sitio. Asegurate de que la Política de Privacidad y la Política de Cookies publicadas describan esta herramienta y sus tecnologías, de acuerdo con los requisitos aplicables.
+
+VALIDACIÓN
+- ID G-... comprobado y guardado en el JSON.
+- JSON y YAML parseados correctamente.
+- El paquete contiene solamente los tres archivos del cambio y estas instrucciones.
+- No se pudo ejecutar una compilación Astro completa en este entorno; después del despliegue, comprobar el estado de Cloudflare Pages y el informe Tiempo real de Analytics.
