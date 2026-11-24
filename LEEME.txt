@@ -1,11 +1,34 @@
-CORRECCIONES DEL PORTFOLIO MISS SAM
+CORRECCIONES DEL PANEL Y PUBLICACIÓN PROGRAMADA
 
-Este paquete contiene dos archivos para reemplazar en el repositorio, conservando las rutas indicadas:
+Archivos incluidos (reemplazar en las mismas rutas del repositorio, rama main):
 
-1) scripts/publish-scheduled-articles.mjs
-   Ajusta la lectura de los artículos programados de Visión Alternativa. Reconoce tanto encabezados YAML cerrados como los archivos existentes que tienen el delimitador inicial pero no el delimitador final. No modifica el contenido editorial.
+1) public/admin/config.yml
+   En la colección "Visión Alternativa", cambia la etiqueta engañosa
+   "Publicada (visible en el sitio)" por "Habilitada para publicación"
+   y agrega una explicación. Esto afecta a TODOS los artículos de esa
+   colección, no hay que editar uno por uno.
 
-2) src/site.js
-   Actualiza el aviso de derechos reservados en español, inglés y portugués para aclarar que las imágenes están protegidas por derechos de autor.
+   IMPORTANTE:
+   - La casilla activada no significa que el artículo ya esté visible.
+   - Si "Programar publicación" tiene una fecha futura, el artículo
+     permanece oculto hasta esa fecha.
+   - Para publicarlo antes manualmente, hay que dejar vacío
+     "Programar publicación" y guardar el artículo.
 
-IMPORTANTE: el paquete prepara los archivos, pero no los sube a GitHub ni despliega el sitio. Después de reemplazarlos en la rama main, ejecutar el workflow de publicación programada y comprobar el despliegue.
+2) scripts/publish-scheduled-articles.mjs
+   Reconoce también los archivos de artículos que no tienen el delimitador
+   YAML de cierre, que es el formato encontrado en varios artículos existentes.
+   Cuando llega la fecha programada, limpia publish_at para habilitar la nota.
+
+3) src/site.js
+   Conserva la corrección del aviso de derechos de autor del pie de página
+   en español, inglés y portugués.
+
+No se modifican los artículos ni sus fechas. No se modifica el diseño ni
+otras secciones del panel.
+
+Después de subir los tres archivos:
+- Confirmar los cambios en la rama main.
+- Ir a Actions > Publicar artículos programados y ejecutar Run workflow
+  para procesar cualquier artículo cuya fecha ya haya llegado.
+- Para verificar el despliegue, revisar también la acción de Cloudflare Pages.
