@@ -1,12 +1,57 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Card from '../../components/Card.astro';
-import { paths, t } from '../../site.js';
-import { works } from '../../lib/data.js';
+import { t } from '../../site.js';
+import { shopSettings, products, shopCategories } from '../../lib/shop.js';
 export function getStaticPaths() { return ['es','en','pt'].map(lang => ({ params: { lang } })); }
-const { lang } = Astro.params; const tr = t[lang]; const list = works().filter(w => w.buy_url || (w.editions || []).length);
+const { lang } = Astro.params;
+const tr = t[lang];
+const settings = shopSettings;
+const status = settings.status || 'construction';
+const categories = shopCategories();
+const allProducts = products();
+const visibleProducts = allProducts.filter(p => !p.category || categories.some(c => c.slug === p.category));
+const categoryName = (slug) => categories.find(c => c.slug === slug)?.title_es || slug;
 ---
-<Base lang={lang} title={tr.shop} desc={tr.soon} path="tienda/">
-  <div class="wrap"><h1 class="pt">{tr.shop}</h1><p>{tr.soon}</p>
-  {list.length > 0 && <div class="grid">{list.map(w => <Card w={w} lang={lang} />)}</div>}</div>
+<Base lang={lang} title={tr.shop} desc="Láminas y objetos de MISS SAM." path="tienda/">
+  <div class="wrap shop-page">
+    <h1 class="pt">Tienda</h1>
+    {status === 'construction' ? (
+      <section class="shop-message"><span class="shop-kicker">MISS SAM · TIENDA</span><h2>Tienda en construcción</h2><p>{settings.construction_message}</p></section>
+    ) : status === 'paused' ? (
+      <section class="shop-message"><span class="shop-kicker">MISS SAM · TIENDA</span><h2>Tienda pausada</h2><p>{settings.paused_message}</p></section>
+    ) : (
+      <>
+        <p class="shop-intro">Descubrí las láminas y objetos de MISS SAM.</p>
+        {categories.map(category => {
+          const items = visibleProducts.filter(p => p.category === category.slug);
+          return <section class="shop-category">
+            <div class="shop-heading"><div><h2>{category.title_es}</h2>{category.description_es && <p>{category.description_es}</p>}</div>{category.coming_soon && <span class="shop-soon">Próximamente</span>}</div>
+            {category.coming_soon ? <p class="shop-coming">Esta categoría estará disponible próximamente.</p> : items.length ? <div class="shop-grid">{items.map(p => <a class="shop-card" href={`/${lang}/tienda/${p.slug}/`}>
+              <span class="shop-card-image">{p.image && <img src={p.image} alt={p.alt_es || p.title_es} loading="lazy" />}</span>
+              <span class="shop-card-info"><strong>{p.title_es}</strong><small>{categoryName(p.category)}</small>{p.price_label && <b>{p.price_label}</b>}</span>
+            </a>)}</div> : <p class="shop-coming">Próximamente vas a encontrar productos en esta categoría.</p>}
+          </section>;
+        })}
+      </>
+    )}
+    {status !== 'active' && <section class="shop-contact"><h2>Consultas</h2><p>Si querés comunicarte, podés escribir por estos medios:</p><div class="shop-contact-links">
+      {settings.contacts?.email_enabled && settings.contacts.email && <a href={`mailto:${settings.contacts.email}`}>Email</a>}
+      {settings.contacts?.instagram_enabled && settings.contacts.instagram && <a href={settings.contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+      {settings.contacts?.whatsapp_enabled && settings.contacts.whatsapp && <a href={settings.contacts.whatsapp.startsWith('http') ? settings.contacts.whatsapp : `https://wa.me/${settings.contacts.whatsapp.replace(/[^0-9]/g,'')}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
+    </div></section>}
+  </div>
+  <style>
+    .shop-page{padding-bottom:3rem}.shop-intro{color:var(--mut);font-size:1.1rem;margin:0 0 2.5rem}
+    .shop-message{margin:2rem 0 4rem;padding:clamp(2rem,6vw,5rem);background:var(--band);border:1px solid var(--line);max-width:850px}
+    .shop-message h2{margin:1rem 0;font-size:clamp(2rem,5vw,3.5rem)}.shop-message p{max-width:55ch;color:var(--mut);font-size:1.1rem}
+    .shop-kicker{font-size:.75rem;letter-spacing:.16em;color:var(--acc);font-weight:700}
+    .shop-category{margin:3.5rem 0}.shop-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.5rem}
+    .shop-heading h2{margin:0;font-size:clamp(1.7rem,3vw,2.4rem)}.shop-heading p{margin:.5rem 0 0;color:var(--mut)}
+    .shop-soon{border:1px solid var(--acc);color:var(--acc);padding:.35rem .7rem;font-size:.8rem;white-space:nowrap}
+    .shop-coming{color:var(--mut);padding:1rem 0}.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:1.5rem}
+    .shop-card{text-decoration:none;display:block}.shop-card-image{display:block;background:var(--band);aspect-ratio:4/5;overflow:hidden}.shop-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.shop-card:hover img{transform:scale(1.025)}
+    .shop-card-info{display:flex;flex-direction:column;gap:.25rem;padding:.8rem 0}.shop-card-info small{color:var(--mut)}.shop-card-info b{font-weight:500;color:var(--acc);margin-top:.2rem}
+    .shop-contact{border-top:1px solid var(--line);margin-top:4rem;padding-top:1.5rem}.shop-contact h2{margin:0 0 .5rem}.shop-contact p{color:var(--mut)}
+    .shop-contact-links{display:flex;gap:.75rem;flex-wrap:wrap}.shop-contact-links a{border:1px solid var(--line);padding:.5rem .9rem;text-decoration:none}.shop-contact-links a:hover{border-color:var(--acc)}
+  </style>
 </Base>

@@ -1,0 +1,72 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../site.js';
+import { products, shopSettings } from '../../../lib/shop.js';
+export function getStaticPaths() {
+  const all = products();
+  return ['es','en','pt'].flatMap(lang => all.map(product => ({ params: { lang, slug: product.slug }, props: { product } })));
+}
+const { lang, slug } = Astro.params;
+const { product } = Astro.props;
+const tr = t[lang];
+const settings = shopSettings;
+const status = settings.status || 'construction';
+const images = [product.image, ...(product.gallery || []).map(g => typeof g === 'string' ? g : g.image)].filter(Boolean);
+const contacts = settings.contacts || {};
+const whatsapp = contacts.whatsapp || '';
+const whatsappUrl = whatsapp.startsWith('http') ? whatsapp : `https://wa.me/${whatsapp.replace(/[^0-9]/g,'')}`;
+const canonical = `/${lang}/tienda/${slug}/`;
+---
+<Base lang={lang} title={product.title_es} desc={product.description_es || product.title_es} path={`tienda/${slug}/`} image={product.image || '/icon-512.png'}>
+  <div class="wrap product-page">
+    <nav class="bc"><a href={`/${lang}/`}>{tr.home}</a><span aria-hidden="true">›</span><a href={`/${lang}/tienda/`}>Tienda</a><span aria-hidden="true">›</span><span>{product.title_es}</span></nav>
+    {status !== 'active' ? <section class="product-unavailable"><h1>{status === 'paused' ? 'Tienda pausada' : 'Tienda en construcción'}</h1><p>{status === 'paused' ? settings.paused_message : settings.construction_message}</p><a class="back" href={`/${lang}/tienda/`}>Volver a Tienda</a></section> : (
+      <>
+        <a class="back" href={`/${lang}/tienda/`}>← Volver a Tienda</a>
+        <div class="product-layout">
+          <div class="product-gallery">
+            {product.video_file && <video class="product-video" src={product.video_file} controls playsinline preload="metadata" poster={product.image || undefined}></video>}
+            {images.map((src,i) => <figure class="product-image"><img src={src} alt={i === 0 ? (product.alt_es || product.title_es) : (product.gallery?.[i-1]?.alt_es || product.title_es)} loading={i ? 'lazy' : 'eager'} /></figure>)}
+          </div>
+          <aside class="product-info">
+            {product.category_label && <p class="product-category">{product.category_label}</p>}
+            <h1>{product.title_es}</h1>
+            {product.description_es && <p class="product-description">{product.description_es}</p>}
+            {product.price_label && <p class="product-price">{product.price_label}</p>}
+            {(product.variants || []).length > 0 ? <div class="product-variants"><h2>Elegí el formato</h2>{product.variants.map(v => <div class="variant"><div><strong>{v.label}</strong>{v.price && <b>{v.price}</b>}</div>{v.url && <a class="btn" href={v.url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}</div>)}</div>
+              : product.buy_url && <a class="btn product-buy" href={product.buy_url} target="_blank" rel="noopener noreferrer">Comprar ahora en Mercado Libre</a>}
+            {(product.buy_url || (product.variants || []).some(v => v.url)) && <p class="marketplace-note">La compra, el pago y el envío se gestionan directamente en Mercado Libre. Allí vas a poder elegir los medios de pago y las opciones de entrega disponibles.</p>}
+            <section class="product-questions"><h2>Consultas</h2><p>¿Tenés alguna pregunta sobre este producto?</p><div class="product-contact">
+              {contacts.email_enabled && contacts.email && <a href={`mailto:${contacts.email}`}>Email</a>}
+              {contacts.instagram_enabled && contacts.instagram && <a href={contacts.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+              {contacts.whatsapp_enabled && whatsapp && <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>}
+            </div></section>
+            <button class="share-button" id="share-product" type="button" data-url={canonical}>Compartir producto</button>
+          </aside>
+        </div>
+        <script is:inline>
+          const shareButton = document.getElementById('share-product');
+          shareButton?.addEventListener('click', async () => {
+            const url = new URL(shareButton.dataset.url, window.location.origin).href;
+            try {
+              if (navigator.share) await navigator.share({title: document.title, url});
+              else { await navigator.clipboard.writeText(url); shareButton.textContent = 'Enlace copiado'; }
+            } catch (e) {}
+          });
+        </script>
+      </>
+    )}
+  </div>
+  <style>
+    .product-page{padding-bottom:4rem}.product-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+    .product-gallery{display:grid;gap:1rem}.product-image{margin:0;background:var(--band);padding:clamp(.5rem,2vw,1rem)}.product-image img{display:block;width:100%;height:auto;max-height:85vh;object-fit:contain}
+    .product-video{width:100%;aspect-ratio:16/9;background:#000}.product-info{position:sticky;top:7rem}.product-info h1{font-size:clamp(2rem,4vw,3.2rem);margin:0 0 1rem}
+    .product-category{color:var(--acc);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}.product-description{white-space:pre-line;color:var(--bio);line-height:1.7}
+    .product-price{font-size:1.5rem;font-weight:700;margin:1.5rem 0}.product-buy{margin:.5rem 0}.product-variants{margin:2rem 0}.product-variants h2,.product-questions h2{font-size:1.35rem;margin:0 0 1rem}
+    .variant{padding:1rem 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.7rem}.variant>div{display:flex;justify-content:space-between;gap:1rem}.variant b{font-weight:600}
+    .marketplace-note{font-size:.88rem;color:var(--mut);line-height:1.55;margin:1rem 0 2rem}.product-questions{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2rem}.product-questions p{color:var(--mut)}
+    .product-contact{display:flex;gap:.6rem;flex-wrap:wrap}.product-contact a,.share-button{border:1px solid var(--line);padding:.5rem .8rem;background:none;color:var(--fg);font:inherit;text-decoration:none;cursor:pointer}.product-contact a:hover,.share-button:hover{border-color:var(--acc)}
+    .share-button{margin-top:1.5rem}.product-unavailable{background:var(--band);padding:3rem;margin:2rem 0;max-width:700px}.product-unavailable h1{font-size:2.5rem}
+    @media(max-width:800px){.product-layout{grid-template-columns:1fr}.product-info{position:static}}
+  </style>
+</Base>

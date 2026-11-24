@@ -446,6 +446,183 @@ collections:
       widget: string
       required: false
 
+- name: shop_products
+  label: Tienda · Productos
+  identifier_field: title_es
+  folder: src/content/productos
+  create: true
+  slug: '{{slug}}'
+  extension: md
+  format: frontmatter
+  summary: '{{title_es}}'
+  fields:
+  - name: published
+    label: Producto visible en la tienda
+    widget: boolean
+    default: true
+  - name: order
+    label: Orden (número menor = primero)
+    widget: number
+    required: false
+  - name: featured
+    label: Producto destacado
+    widget: boolean
+    default: false
+    required: false
+  - name: title_es
+    label: Nombre del producto
+    widget: string
+  - name: category
+    label: Categoría
+    widget: relation
+    collection: shop_categories
+    search_fields:
+    - title_es
+    value_field: slug
+    display_fields:
+    - title_es
+  - name: description_es
+    label: Descripción del producto
+    widget: text
+    required: false
+  - name: image
+    label: Foto principal
+    widget: image
+  - name: alt_es
+    label: Descripción de la foto principal
+    widget: string
+    required: false
+  - name: gallery
+    label: Fotos adicionales (hasta 6)
+    widget: list
+    required: false
+    max: 6
+    fields:
+    - name: image
+      label: Foto
+      widget: image
+    - name: alt_es
+      label: Descripción de la foto
+      widget: string
+      required: false
+  - name: video_file
+    label: Video del producto (opcional)
+    widget: file
+    required: false
+  - name: price_label
+    label: Precio orientativo (opcional)
+    widget: string
+    required: false
+    hint: "Ejemplo: Desde $ 15.000. Para cada formato podés cargar su propio precio abajo."
+  - name: variants
+    label: Formatos y enlaces de compra (A4, A3, etc.)
+    widget: list
+    required: false
+    fields:
+    - name: label
+      label: Formato
+      widget: string
+    - name: price
+      label: Precio en pesos argentinos
+      widget: string
+      required: false
+    - name: url
+      label: Enlace de Mercado Libre para este formato
+      widget: string
+      required: false
+  - name: buy_url
+    label: Enlace de Mercado Libre (si no hay variantes)
+    widget: string
+    required: false
+
+- name: shop_categories
+  label: Tienda · Categorías
+  identifier_field: title_es
+  folder: src/content/categorias-tienda
+  create: true
+  slug: '{{slug}}'
+  extension: md
+  format: frontmatter
+  summary: '{{title_es}}'
+  fields:
+  - name: title_es
+    label: Nombre de la categoría
+    widget: string
+  - name: slug
+    label: Identificador (sin espacios, ej. laminas)
+    widget: string
+  - name: description_es
+    label: Descripción
+    widget: text
+    required: false
+  - name: order
+    label: Orden
+    widget: number
+    default: 10
+  - name: published
+    label: Categoría visible
+    widget: boolean
+    default: true
+  - name: coming_soon
+    label: Mostrar como Próximamente
+    widget: boolean
+    default: false
+
+- name: shop_configuration
+  label: Tienda · Configuración general
+  files:
+  - name: shop_settings
+    label: Estado y consultas
+    file: src/data/tienda.json
+    fields:
+    - name: status
+      label: Estado de la tienda
+      widget: select
+      options:
+      - label: En construcción (no mostrar productos)
+        value: construction
+      - label: Activa (mostrar productos y compras)
+        value: active
+      - label: Pausada / vacaciones
+        value: paused
+      default: active
+    - name: construction_message
+      label: Mensaje mientras está en construcción
+      widget: text
+      required: false
+    - name: paused_message
+      label: Mensaje cuando está pausada
+      widget: text
+      required: false
+    - name: contacts
+      label: Medios de consulta
+      widget: object
+      fields:
+      - name: email_enabled
+        label: Mostrar email
+        widget: boolean
+        default: false
+      - name: email
+        label: Dirección de email
+        widget: string
+        required: false
+      - name: instagram_enabled
+        label: Mostrar Instagram
+        widget: boolean
+        default: true
+      - name: instagram
+        label: Enlace de Instagram
+        widget: string
+        required: false
+      - name: whatsapp_enabled
+        label: Mostrar WhatsApp
+        widget: boolean
+        default: false
+      - name: whatsapp
+        label: Enlace o número de WhatsApp
+        widget: string
+        required: false
+
 - name: google_analytics
   label: Google Analytics
   files:
