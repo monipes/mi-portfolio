@@ -1,30 +1,16 @@
-CORRECCIONES MISS SAM — ARCHIVOS PARA REEMPLAZAR / AGREGAR
+CORRECCIONES MISS SAM — ACTUALIZACIÓN
 
-Este paquete contiene SOLAMENTE los archivos corregidos y las dos imágenes nuevas. No contiene el proyecto completo.
+Este paquete reemplaza al ZIP anterior. Incluye los mismos archivos e imágenes, con dos ajustes adicionales:
+- El botón TikTok de la tienda usa ahora exactamente el mismo fondo de acento que Facebook e Instagram; se eliminó el rojo diferente que lo hacía desparejo.
+- Se corrigieron las expresiones regulares del script de publicación programada. En la versión anterior estaban escapadas de más y no detectaban correctamente published, publish_at ni los encabezados YAML. El script actualizado ya pasó la comprobación sintáctica de Node.js.
 
-CÓMO APLICARLO
-1) Descomprimí este ZIP.
-2) Copiá las carpetas y archivos respetando exactamente las rutas que aparecen dentro del paquete, dentro de la carpeta raíz de tu repositorio.
-3) Cuando Windows pregunte, elegí combinar carpetas y reemplazar los archivos existentes.
-4) Los dos archivos Markdown de obras son nuevos; las dos imágenes se agregan en public/uploads/.
-5) Después subí los cambios al repositorio (branch main) como hacés habitualmente.
+APLICACIÓN
+1. Descomprimí este ZIP.
+2. Copiá su contenido dentro de la carpeta raíz del repositorio.
+3. Elegí combinar carpetas y reemplazar los archivos existentes.
+4. Subí los cambios a la rama main.
 
-CAMBIOS INCLUIDOS
-- TikTok agregado a las redes del pie de página y a la página de contacto.
-- Campos de Instagram, Facebook y TikTok configurables desde el administrador.
-- TikTok configurado con el enlace https://www.tiktok.com/@misssam.art en el pie de página y en los contactos de la tienda.
-- TikTok queda habilitado para mostrarse en la tienda como recuadro rojo con letras blancas, sin ícono.
-- Ajustes del tratamiento de fechas argentinas en la visibilidad de Visión Alternativa.
-- Workflow de GitHub Actions y script de publicación programada revisados.
-- Etiqueta del panel aclarada: “Habilitada para publicación”, para no confundir habilitación con publicación efectiva.
-- Dos nuevas obras: “Entre mundos” primero y “La puerta entre dos mundos” después. Ambas figuran como Collage digital, año 2026.
-- Se incluyen las dos imágenes originales, ya ubicadas con los nombres que indican las fichas.
+PUBLICACIÓN AUTOMÁTICA
+El workflow está configurado para ejecutarse cada cinco minutos y procesa fechas en horario de Argentina (UTC-3 cuando el artículo no especifica zona horaria). Cuando alcanza la fecha, vacía publish_at y hace un commit para disparar el despliegue.
 
-IMÁGENES INCLUIDAS
-- public/uploads/entre-mundos.jpg
-- public/uploads/la-puerta-entre-dos-mundos.jpg
-
-PUBLICACIÓN PROGRAMADA
-El workflow se ejecuta cada cinco minutos y, cuando una fecha llega, limpia publish_at para provocar un commit que active el despliegue. Esto depende de que GitHub Actions esté habilitado y de que Cloudflare Pages esté conectado al branch main para desplegar los commits. Después de subir estos archivos, verificá una ejecución en GitHub → Actions. El paquete no puede confirmar por sí solo que GitHub acepte el push ni que Cloudflare complete el despliegue.
-
-No se modificó ningún artículo de Visión Alternativa existente, incluido el artículo de inteligencia artificial que ya publicaste manualmente.
+IMPORTANTE: esto corrige el código del paquete, pero no permite garantizar la publicación automática hasta que los cambios estén en GitHub y se compruebe una ejecución exitosa en Actions y un despliegue correcto en Cloudflare Pages. GitHub Actions debe estar habilitado y Cloudflare Pages conectado a main. El artículo de inteligencia artificial publicado manualmente no se modifica.
