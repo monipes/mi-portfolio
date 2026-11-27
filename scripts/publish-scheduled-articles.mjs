@@ -5,41 +5,54 @@ const directory = path.resolve('src/content/vision-alternativa');
 const now = Date.now();
 let published = 0;
 
-const parseArgentinaDateTime = (value) => {
+function argentinaTimestamp(value) {
   const raw = String(value || '').trim().replace(/^['"]|['"]$/g, '');
   if (!raw) return null;
-  // The CMS picker is configured for the editor's local time. Its timezone-free
-  // value is interpreted as Argentina time (UTC-3); explicit offsets are preserved.
-  const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw);
+  const hasTimezone = /(?:Z|[+-]\\d{2}:?\\d{2})$/i.test(raw);
   const timestamp = Date.parse(hasTimezone ? raw : `${raw}-03:00`);
   return Number.isFinite(timestamp) ? timestamp : null;
-};
+}
+
+function getFrontmatter(source) {
+  const normalized = source.replace(/^\\uFEFF/, '');
+  const opening = normalized.match(/^---\\r?\\n/);
+  if (!opening) return null;
+  const bodyStart = opening[0].length;
+  const rest = normalized.slice(bodyStart);
+  const closing = rest.search(/\\r?\\n---(?:\\r?\\n|$)/);
+  // El contenido histórico puede no tener delimitador de cierre.
+  return closing >= 0 ? rest.slice(0, closing) : rest;
+}
 
 for (const filename of fs.readdirSync(directory).filter((name) => name.endsWith('.md'))) {
   const fullPath = path.join(directory, filename);
   const source = fs.readFileSync(fullPath, 'utf8');
-  if (!source.startsWith('---\n') && !source.startsWith('---\r\n')) continue;
-  const openingDelimiterLength = source.startsWith('---\r\n') ? 5 : 4;
-  const afterOpening = source.slice(openingDelimiterLength);
-  const closingDelimiter = afterOpening.search(/\r?\n---(?:\r?\n|$)/);
-  // Some existing Vision Alternativa files omit the closing YAML delimiter.
-  // In that case, treat the remainder of the file as frontmatter.
-  const frontmatter = closingDelimiter >= 0
-    ? afterOpening.slice(0, closingDelimiter)
-    : afterOpening;
-  const isPublished = /^published:\s*(?:true|yes|1)\s*$/im.test(frontmatter);
-  const scheduledMatch = frontmatter.match(/^publish_at:\s*(.*?)\s*$/m);
+  const frontmatter = getFrontmatter(source);
+  if (frontmatter === null) {
+    console.log(`Omitido (sin encabezado YAML): ${filename}`);
+    continue;
+  }
+
+  const publishedMatch = frontmatter.match(/^published:\\s*(true|false|yes|no|1|0)\\s*$/im);
+  const isPublished = publishedMatch && /^(true|yes|1)$/i.test(publishedMatch[1]);
+  const scheduledMatch = frontmatter.match(/^publish_at:\\s*(.*?)\\s*$/m);
   if (!isPublished || !scheduledMatch) continue;
 
-  const scheduled = parseArgentinaDateTime(scheduledMatch[1]);
-  if (scheduled === null || scheduled > now) continue;
+  const scheduled = argentinaTimestamp(scheduledMatch[1]);
+  if (scheduled === null) {
+    console.log(`Fecha de programación no válida: ${filename}`);
+    continue;
+  }
+  if (scheduled > now) continue;
 
-  const updated = source.replace(/^publish_at:\s*.*$/m, 'publish_at: ""');
+  // Vaciar publish_at genera un cambio real en Git y dispara el despliegue estático.
+  // El artículo conserva published: true y queda visible en el sitio.
+  const updated = source.replace(/^publish_at:\\s*.*$/m, 'publish_at: ""');
   if (updated !== source) {
     fs.writeFileSync(fullPath, updated, 'utf8');
     published += 1;
-    console.log(`Publicación habilitada: ${filename}`);
+    console.log(`Fecha alcanzada; activando despliegue: ${filename}`);
   }
 }
 
-console.log(`Artículos programados habilitados: ${published}`);
+console.log(`Artículos listos para publicación: ${published}`);

@@ -1,25 +1,30 @@
-MISS SAM — CORRECCIONES PUNTUALES
+CORRECCIONES MISS SAM — ARCHIVOS PARA REEMPLAZAR / AGREGAR
 
-Este paquete contiene únicamente 5 archivos para combinar con tu proyecto existente:
+Este paquete contiene SOLAMENTE los archivos corregidos y las dos imágenes nuevas. No contiene el proyecto completo.
 
-1) src/content/ai-motion/una-nube-para-llevar.md
-   - Restablece el año 2026. La tarjeta ya muestra el año desde este dato y la ficha interior también lo presenta en sus metadatos.
+CÓMO APLICARLO
+1) Descomprimí este ZIP.
+2) Copiá las carpetas y archivos respetando exactamente las rutas que aparecen dentro del paquete, dentro de la carpeta raíz de tu repositorio.
+3) Cuando Windows pregunte, elegí combinar carpetas y reemplazar los archivos existentes.
+4) Los dos archivos Markdown de obras son nuevos; las dos imágenes se agregan en public/uploads/.
+5) Después subí los cambios al repositorio (branch main) como hacés habitualmente.
 
-2) src/lib/vision.js
-   - Oculta artículos programados hasta la fecha y hora indicadas.
-   - Evita mostrar tarjetas incompletas o vacías.
+CAMBIOS INCLUIDOS
+- TikTok agregado a las redes del pie de página y a la página de contacto.
+- Campos de Instagram, Facebook y TikTok configurables desde el administrador.
+- TikTok configurado con el enlace https://www.tiktok.com/@misssam.art en el pie de página y en los contactos de la tienda.
+- TikTok queda habilitado para mostrarse en la tienda como recuadro rojo con letras blancas, sin ícono.
+- Ajustes del tratamiento de fechas argentinas en la visibilidad de Visión Alternativa.
+- Workflow de GitHub Actions y script de publicación programada revisados.
+- Etiqueta del panel aclarada: “Habilitada para publicación”, para no confundir habilitación con publicación efectiva.
+- Dos nuevas obras: “Entre mundos” primero y “La puerta entre dos mundos” después. Ambas figuran como Collage digital, año 2026.
+- Se incluyen las dos imágenes originales, ya ubicadas con los nombres que indican las fichas.
 
-3) src/pages/[lang]/vision-alternativa/index.astro
-   - Da a los botones Anterior/Siguiente y a la numeración el estilo rojo con blanco de la flecha superior.
+IMÁGENES INCLUIDAS
+- public/uploads/entre-mundos.jpg
+- public/uploads/la-puerta-entre-dos-mundos.jpg
 
-4) src/pages/[lang]/vision-alternativa/[slug].astro
-   - En pantallas de PC, ajusta a lo ancho del artículo el título, la bajada y el cuerpo. En móvil conserva el estilo actual.
+PUBLICACIÓN PROGRAMADA
+El workflow se ejecuta cada cinco minutos y, cuando una fecha llega, limpia publish_at para provocar un commit que active el despliegue. Esto depende de que GitHub Actions esté habilitado y de que Cloudflare Pages esté conectado al branch main para desplegar los commits. Después de subir estos archivos, verificá una ejecución en GitHub → Actions. El paquete no puede confirmar por sí solo que GitHub acepte el push ni que Cloudflare complete el despliegue.
 
-5) public/uploads/inteligencia-artificial-cambia-creacion-artistica.jpg
-   - Nueva imagen de collage fotográfico sin texto para el artículo “¿La inteligencia artificial está cambiando la manera de crear arte?”.
-
-CÓMO APLICAR:
-Descomprimí el ZIP dentro de la carpeta de tu proyecto y aceptá combinar carpetas/reemplazar únicamente los archivos indicados. No reemplaces el proyecto completo.
-
-NOTA:
-La flechita superior ya está incluida en la plantilla general del sitio, por eso no se modifica. Este paquete no incluye los artículos completos ni las demás imágenes, porque no necesitan cambios en esta corrección.
+No se modificó ningún artículo de Visión Alternativa existente, incluido el artículo de inteligencia artificial que ya publicaste manualmente.

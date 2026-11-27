@@ -1,8 +1,9 @@
+import socialLinks from './data/social.json';
 // Datos generales del portfolio y redes públicas
 export const site = {
   name: 'MISS SAM',
   city: 'Argentina',
-  social: [['Instagram','https://www.instagram.com/misssam.art/'],['Facebook','https://www.facebook.com/misssamfanpage']],
+  social: [['Instagram', socialLinks.instagram], ['Facebook', socialLinks.facebook], ['TikTok', socialLinks.tiktok]].filter(([, url]) => Boolean(url)),
 };
 export const langs = ['es','en','pt'];
 export const paths = langs.map(lang => ({ params: { lang } }));

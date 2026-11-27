@@ -19,9 +19,10 @@ collections:
   summary: '{{title_es}} ({{year}})'
   fields:
   - name: published
-    label: Publicada (visible en el sitio)
+    label: Habilitada para publicación
     widget: boolean
     default: true
+    hint: Activada permite que la obra o artículo se muestre cuando corresponda. En Visión Alternativa, la fecha de programación controla cuándo aparece públicamente.
   - name: added_at
     label: Fecha de incorporación (automática)
     widget: datetime
@@ -459,3 +460,93 @@ collections:
       widget: string
       required: false
       hint: Pegá solamente el identificador que empieza con G-. No pegues el código HTML completo ni un ID GTM-.
+
+- name: social_settings
+  label: Redes sociales del sitio
+  files:
+  - name: social
+    label: Enlaces del pie de página y contacto
+    file: src/data/social.json
+    fields:
+    - name: instagram
+      label: Enlace de Instagram
+      widget: string
+      required: false
+    - name: facebook
+      label: Enlace de Facebook
+      widget: string
+      required: false
+    - name: tiktok
+      label: Enlace de TikTok
+      widget: string
+      required: false
+- name: shop_settings
+  label: Configuración de la tienda
+  files:
+  - name: shop
+    label: Estado, mensajes y contactos de la tienda
+    file: src/data/tienda.json
+    fields:
+    - name: status
+      label: Estado de la tienda
+      widget: select
+      options:
+      - construction
+      - paused
+      - active
+    - name: construction_message
+      label: Mensaje de tienda en construcción
+      widget: string
+      required: false
+    - name: paused_message
+      label: Mensaje de tienda pausada
+      widget: string
+      required: false
+    - name: contacts
+      label: Redes y contacto
+      widget: object
+      fields:
+      - name: instagram
+        label: Enlace de Instagram
+        widget: string
+        required: false
+      - name: instagram_enabled
+        label: Mostrar Instagram
+        widget: boolean
+        default: true
+      - name: facebook
+        label: Enlace de Facebook
+        widget: string
+        required: false
+      - name: facebook_enabled
+        label: Mostrar Facebook
+        widget: boolean
+        default: true
+      - name: tiktok
+        label: Enlace de TikTok
+        widget: string
+        required: false
+      - name: tiktok_enabled
+        label: Mostrar TikTok
+        widget: boolean
+        default: true
+      - name: email
+        label: Email
+        widget: string
+        required: false
+      - name: email_enabled
+        label: Mostrar email
+        widget: boolean
+        default: true
+      - name: whatsapp
+        label: Enlace de WhatsApp
+        widget: string
+        required: false
+      - name: whatsapp_enabled
+        label: Mostrar WhatsApp
+        widget: boolean
+        default: false
+      - name: whatsapp_display
+        label: Texto visible de WhatsApp
+        widget: string
+        required: false
